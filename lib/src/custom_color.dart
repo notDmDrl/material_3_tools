@@ -86,6 +86,22 @@ class CustomColor {
 
   /// A color that's clearly legible when drawn on [primaryContainer].
   final Color onPrimaryContainer;
+
+  /// Linearly interpolate between two custom colors.
+  CustomColor lerp(covariant CustomColor? other, double t) => CustomColor(
+        primary: Color.lerp(primary, other?.primary, t)!,
+        onPrimary: Color.lerp(onPrimary, other?.onPrimary, t)!,
+        primaryContainer: Color.lerp(
+          primaryContainer,
+          other?.primaryContainer,
+          t,
+        )!,
+        onPrimaryContainer: Color.lerp(
+          onPrimaryContainer,
+          other?.onPrimaryContainer,
+          t,
+        )!,
+      );
 }
 
 /// Rework of [Scheme] with only color fields required to create [CustomColor].

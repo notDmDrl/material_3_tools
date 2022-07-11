@@ -126,7 +126,7 @@ class BackgroundStateOverlay implements MaterialStateProperty<Color?> {
 ///
 /// * Used in [M3OutlinedButtonStyle];
 @immutable
-class OutlineStateOverlay implements MaterialStateProperty<BorderSide?> {
+class OutlineStateOverlay implements MaterialStateProperty<BorderSide> {
   /// Creates Material 3 outline interaction state.
   const OutlineStateOverlay({
     required this.color,
@@ -154,7 +154,7 @@ class OutlineStateOverlay implements MaterialStateProperty<BorderSide?> {
   final Color? focusedColor;
 
   @override
-  BorderSide? resolve(Set<MaterialState> states) {
+  BorderSide resolve(Set<MaterialState> states) {
     if (states.contains(MaterialState.disabled)) {
       return BorderSide(color: (disabledColor ?? color).withOpacity(0.12));
     }
@@ -167,8 +167,32 @@ class OutlineStateOverlay implements MaterialStateProperty<BorderSide?> {
   }
 }
 
-/// Defines elevation states for `FilledButton` and `FilledTonalButton` which
-/// are not present in the Flutter.
+/// Defines elevation states for [ElevatedButton}.
+@immutable
+class ElevatedButtonElevation implements MaterialStateProperty<double> {
+  /// Creates Material 3 elevated button elevation state.
+  const ElevatedButtonElevation();
+
+  @override
+  double resolve(Set<MaterialState> states) {
+    if (states.contains(MaterialState.disabled)) {
+      return 0;
+    }
+    if (states.contains(MaterialState.hovered)) {
+      return 3;
+    }
+    if (states.contains(MaterialState.focused)) {
+      return 1;
+    }
+    if (states.contains(MaterialState.pressed)) {
+      return 1;
+    }
+
+    return 1;
+  }
+}
+
+/// Defines elevation states for `FilledButton` and `FilledButton.tonal`.
 @immutable
 class FilledButtonElevation implements MaterialStateProperty<double> {
   /// Creates Material 3 filled button elevation state.
