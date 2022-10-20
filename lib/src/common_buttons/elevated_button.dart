@@ -23,7 +23,7 @@ class M3ElevatedButtonStyle extends M3ButtonStyle {
     super.textStyle,
     super.backgroundColor,
     super.foregroundColor,
-    super.overlayColor,
+    super.disabledColor,
     super.shadowColor,
     super.surfaceTintColor,
     super.elevation = const ElevatedButtonElevation(),

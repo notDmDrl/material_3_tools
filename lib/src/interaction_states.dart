@@ -26,21 +26,21 @@ class InteractionStatesOverlay implements MaterialStateProperty<Color?> {
   /// Overlay color.
   ///
   /// Usually is [ColorScheme.primary].
-  final Color color;
+  final Color? color;
 
   @override
   Color? resolve(Set<MaterialState> states) {
     if (states.contains(MaterialState.hovered)) {
-      return color.withOpacity(0.08);
+      return color?.withOpacity(0.08);
     }
     if (states.contains(MaterialState.focused)) {
-      return color.withOpacity(0.12);
+      return color?.withOpacity(0.12);
     }
     if (states.contains(MaterialState.pressed)) {
-      return color.withOpacity(0.12);
+      return color?.withOpacity(0.12);
     }
     if (states.contains(MaterialState.dragged)) {
-      return color.withOpacity(0.16);
+      return color?.withOpacity(0.16);
     }
 
     return null;

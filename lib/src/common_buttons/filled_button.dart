@@ -23,7 +23,7 @@ class M3FilledButtonStyle extends M3ButtonStyle {
     super.textStyle,
     super.backgroundColor,
     super.foregroundColor,
-    super.overlayColor,
+    super.disabledColor,
     super.shadowColor,
     super.shape,
     super.elevation = const FilledButtonElevation(),

@@ -9,7 +9,7 @@ import 'package:flutter/material.dart';
 abstract class Shapes {
   // This class is not meant to be instantiated or extended; this constructor
   // prevents instantiation and extension.
-  Shapes._();
+  const Shapes._();
 
   /// Baseline shape with all corners having `radius` of zero.
   ///
@@ -22,7 +22,7 @@ abstract class Shapes {
   /// * [ProgressIndicator];
   /// * [TabBar];
   /// * [AppBar] and [SliverAppBar];
-  /// * Full-screen dialog;
+  /// * [Dialog.fullscreen];
   static const BorderRadius none = BorderRadius.zero;
 
   /// Baseline shape with all corners having `radius` of 4.0.
@@ -31,7 +31,7 @@ abstract class Shapes {
   ///
   /// * [SnackBar];
   /// * [TextField];
-  /// * Popup menu;
+  /// * [PopupMenuButton];
   static const BorderRadius extraSmall = BorderRadius.all(Radius.circular(4));
 
   /// Baseline shape with top corners having `radius` of 4.0 and bottom corners
@@ -171,10 +171,12 @@ abstract class Shapes {
   /// Baseline shape with all corners having `radius` of 90.0.
   ///
   /// Widgets that should use [Shapes.full]:
-  ///
+  /// * [Badge];
   /// * [TextButton];
   /// * [ElevatedButton];
   /// * [OutlinedButton];
+  /// * [FilledButton];
+  /// * [FilledButton.tonal]
   /// * [IconButton];
   /// * [Slider];
   /// * [Switch];

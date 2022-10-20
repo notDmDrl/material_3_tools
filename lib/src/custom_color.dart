@@ -23,7 +23,7 @@ Color harmonizedColor(Color source, Color? harmonizationColor) {
   return Color(Blend.harmonize(source.value, harmonizationColor.value));
 }
 
-/// A set of 4 colors base on the [Material 3 Custom colors spec](https://m3.material.io/styles/color/the-color-system/custom-colors)
+/// A set of 4 colors based on the [Material 3 Custom colors spec](https://m3.material.io/styles/color/the-color-system/custom-colors)
 ///
 /// Custom colors are similar to [ColorScheme], but they only have primary set
 /// of colors.

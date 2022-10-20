@@ -4,9 +4,9 @@ import '../custom_color.dart';
 
 /// Defines a set of [CustomColor] to be defined inside [ThemeData.extensions].
 ///
-/// Custom colors are mapped based on [T] key.
+/// Custom colors are mapped based on [Object] key.
 ///
-/// All examples are assuming [T] is a [Enum] with values:
+/// All examples are assuming [Object] is a [Enum] with values:
 ///
 /// ```dart
 /// enum AppCustomColors { red, green, blue }
@@ -41,7 +41,7 @@ import '../custom_color.dart';
 /// To directly get required color use [CustomColors.maybeColorOf]:
 ///
 /// ```dart
-/// final color = CustomColors.maybeColorOf(context, AppCustomColors.red);
+/// final color = CustomColors.of(context, AppCustomColors.red);
 /// ```
 @immutable
 class CustomColors extends ThemeExtension<CustomColors> {

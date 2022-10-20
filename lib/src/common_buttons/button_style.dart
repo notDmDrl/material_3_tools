@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../interaction_states.dart';
+import '../../material_3_tools.dart';
 
 /// A helper class that allows creating Material 3 [ButtonStyle] without
 /// providing [BuildContext] for accessing [ColorScheme] via
@@ -55,9 +55,9 @@ class M3ButtonStyle extends ButtonStyle {
   /// Material 3 defaults where possible.
   const M3ButtonStyle({
     TextStyle? textStyle,
-    BackgroundStateOverlay? backgroundColor,
-    ForegroundStateOverlay? foregroundColor,
-    InteractionStatesOverlay? overlayColor,
+    Color? backgroundColor,
+    Color? foregroundColor,
+    Color? disabledColor,
     Color? shadowColor,
     Color? surfaceTintColor,
     super.elevation,
@@ -73,7 +73,7 @@ class M3ButtonStyle extends ButtonStyle {
     super.splashFactory = InkSparkle.splashFactory,
   })  : _textStyle = textStyle,
         _foregroundColor = foregroundColor,
-        _overlayColor = overlayColor,
+        _disabledColor = disabledColor,
         _backgroundColor = backgroundColor,
         _shadowColor = shadowColor,
         _surfaceTintColor = surfaceTintColor,
@@ -122,9 +122,9 @@ class M3ButtonStyle extends ButtonStyle {
 
   // Private fields for creating [ButtonStyleButton.allOrNull].
   final TextStyle? _textStyle;
-  final ForegroundStateOverlay? _foregroundColor;
-  final InteractionStatesOverlay? _overlayColor;
-  final BackgroundStateOverlay? _backgroundColor;
+  final Color? _foregroundColor;
+  final Color? _disabledColor;
+  final Color? _backgroundColor;
   final Color? _shadowColor;
   final Color? _surfaceTintColor;
   final EdgeInsetsGeometry? _padding;
@@ -140,13 +140,23 @@ class M3ButtonStyle extends ButtonStyle {
       ButtonStyleButton.allOrNull(_textStyle);
 
   @override
-  MaterialStateProperty<Color?>? get backgroundColor => _backgroundColor;
+  MaterialStateProperty<Color?>? get backgroundColor =>
+      this is M3TextButtonStyle
+          ? null
+          : BackgroundStateOverlay(
+              color: _backgroundColor,
+              disabledColor: _disabledColor,
+            );
 
   @override
-  MaterialStateProperty<Color?>? get foregroundColor => _foregroundColor;
+  MaterialStateProperty<Color?>? get foregroundColor => ForegroundStateOverlay(
+        color: _foregroundColor,
+        disabledColor: _disabledColor,
+      );
 
   @override
-  MaterialStateProperty<Color?>? get overlayColor => _overlayColor;
+  MaterialStateProperty<Color?>? get overlayColor =>
+      InteractionStatesOverlay(_foregroundColor);
 
   @override
   MaterialStateProperty<Color?>? get shadowColor =>

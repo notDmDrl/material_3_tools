@@ -22,7 +22,7 @@ class M3OutlinedButtonStyle extends M3ButtonStyle {
   const M3OutlinedButtonStyle({
     super.textStyle,
     super.foregroundColor,
-    super.overlayColor,
+    super.disabledColor,
     super.side,
     super.backgroundColor,
     super.elevation = const MaterialStatePropertyAll(0),
