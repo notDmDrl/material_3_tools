@@ -68,7 +68,7 @@ class M3ButtonStyle extends ButtonStyle {
     OutlineStateOverlay? side,
     OutlinedBorder? shape,
     MouseCursor? mouseCursor,
-    super.tapTargetSize,
+    super.tapTargetSize = MaterialTapTargetSize.shrinkWrap,
     super.visualDensity,
     super.splashFactory = InkSparkle.splashFactory,
   })  : _textStyle = textStyle,

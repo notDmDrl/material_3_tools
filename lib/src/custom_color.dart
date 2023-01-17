@@ -88,7 +88,7 @@ class CustomColor {
   final Color onPrimaryContainer;
 
   /// Linearly interpolate between two custom colors.
-  CustomColor lerp(covariant CustomColor? other, double t) => CustomColor(
+  CustomColor lerp(CustomColor? other, double t) => CustomColor(
         primary: Color.lerp(primary, other?.primary, t)!,
         onPrimary: Color.lerp(onPrimary, other?.onPrimary, t)!,
         primaryContainer: Color.lerp(
