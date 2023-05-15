@@ -5,7 +5,8 @@ import '../../material_3_tools.dart';
 /// A helper class that allows creating Material 3 [ButtonStyle] without
 /// providing [BuildContext] for accessing [ColorScheme] via
 /// `Theme.of(context).colorScheme` while also using values from Material 3
-/// [common buttons](https://m3.material.io/components/buttons/overview) guidelines.
+/// [common buttons](https://m3.material.io/components/buttons/overview)
+/// guidelines.
 ///
 /// [M3ButtonStyle] is best suited for situations when your app has custom
 /// design which is not compatible with Material 3 color system (ex. color
@@ -50,7 +51,7 @@ import '../../material_3_tools.dart';
 /// * [Material 3 buttons accessibility]
 /// <https://m3.material.io/components/buttons/accessibility>
 @immutable
-class M3ButtonStyle extends ButtonStyle {
+base class M3ButtonStyle extends ButtonStyle {
   /// Creates [ButtonStyle] with non [MaterialStateProperty] properties and
   /// Material 3 defaults where possible.
   const M3ButtonStyle({

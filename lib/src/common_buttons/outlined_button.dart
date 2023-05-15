@@ -17,7 +17,7 @@ import '../../material_3_tools.dart';
 /// * Material 3 buttons accessibility:
 /// <https://m3.material.io/components/buttons/accessibility>
 @immutable
-class M3OutlinedButtonStyle extends M3ButtonStyle {
+final class M3OutlinedButtonStyle extends M3ButtonStyle {
   /// Creates [ButtonStyle] for [OutlinedButton] with const constructor.
   const M3OutlinedButtonStyle({
     super.textStyle,

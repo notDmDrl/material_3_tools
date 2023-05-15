@@ -4,11 +4,7 @@
 ///
 /// * Material 3 specification for durations:
 /// <https://m3.material.io/styles/motion/easing-and-duration/tokens-specs>
-abstract class MotionDuration {
-  // This class is not meant to be instantiated or extended; this constructor
-  // prevents instantiation and extension.
-  const MotionDuration._();
-
+abstract final class MotionDuration {
   /// [md.sys.motion.duration.short1](https://m3.material.io/styles/motion/easing-and-duration/tokens-specs#6341c2bf-54a0-4260-8ec7-6173926709a3)
   static const Duration short1 = Duration(milliseconds: 50);
 

@@ -6,7 +6,6 @@ export 'src/common_buttons/filled_button.dart';
 export 'src/common_buttons/outlined_button.dart';
 export 'src/common_buttons/text_button.dart';
 export 'src/custom_color.dart';
-export 'src/elevation.dart';
 export 'src/interaction_states.dart';
 export 'src/motion/duration.dart';
 export 'src/motion/easing.dart';

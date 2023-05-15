@@ -44,7 +44,7 @@ import '../custom_color.dart';
 /// final color = CustomColors.of(context, AppCustomColors.red);
 /// ```
 @immutable
-class CustomColors extends ThemeExtension<CustomColors> {
+final class CustomColors extends ThemeExtension<CustomColors> {
   /// Creates a map of [CustomColor].
   const CustomColors(this.colors);
 

@@ -57,15 +57,10 @@ class CustomColor {
   }) {
     final color = harmonizedColor(sourceColor, harmonizationColor).value;
 
-    final _Scheme scheme;
-    switch (brightness) {
-      case Brightness.dark:
-        scheme = _Scheme._darkFromCorePalette(_tonalPalette(color));
-        break;
-      case Brightness.light:
-        scheme = _Scheme._lightFromCorePalette(_tonalPalette(color));
-        break;
-    }
+    final scheme = switch (brightness) {
+      Brightness.dark => _Scheme._darkFromCorePalette(_tonalPalette(color)),
+      Brightness.light => _Scheme._lightFromCorePalette(_tonalPalette(color)),
+    };
 
     return CustomColor(
       primary: Color(scheme.primary),

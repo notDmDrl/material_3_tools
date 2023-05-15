@@ -6,11 +6,7 @@ import 'package:flutter/material.dart';
 ///
 /// * Material 3 specification for shapes:
 /// <https://m3.material.io/styles/shape/shape-scale-tokens>
-abstract class Shapes {
-  // This class is not meant to be instantiated or extended; this constructor
-  // prevents instantiation and extension.
-  const Shapes._();
-
+abstract final class Shapes {
   /// Baseline shape with all corners having `radius` of zero.
   ///
   /// Widgets that should use [Shapes.none]:
