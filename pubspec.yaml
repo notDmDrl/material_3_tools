@@ -1,12 +1,12 @@
 name: material_3_tools
 description: Utils that simplify usage of Material Design 3 (M3) theming available in Flutter
-version: 0.0.2
+version: 0.0.3
 homepage: https://github.com/notDmDrl/material_3_tools
 repository: https://github.com/notDmDrl/material_3_tools
 
 environment:
-  sdk: ">=3.0.0 <4.0.0"
-  flutter: ">=3.10.0"
+  sdk: ">=3.2.0-0 <4.0.0"
+  flutter: ">=3.15.0-0"
 
 dependencies:
   flutter:
@@ -15,4 +15,4 @@ dependencies:
   material_color_utilities: 0.5.0
 
 dev_dependencies:
-  very_good_analysis: ^3.1.0
+  very_good_analysis: ^5.1.0

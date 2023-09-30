@@ -6,7 +6,7 @@ import 'package:flutter/animation.dart';
 ///
 /// * Material 3 specification for easing:
 /// <https://m3.material.io/styles/motion/easing-and-duration/tokens-specs>
-abstract final class Easing {
+abstract final class MaterialEasing {
   /// [Linear](https://m3.material.io/styles/motion/easing-and-duration/tokens-specs#6341c2bf-54a0-4260-8ec7-6173926709a3)
   static const Curve linear = Cubic(0, 0, 1, 1);
 
