@@ -10,6 +10,7 @@ import '/material_3_tools.dart';
 /// <https://m3.material.io/foundations/interaction-states>
 ///
 /// * Used in [M3TextButtonStyle];
+/// * Used in [M3FilledButtonStyle];
 /// * Used in [M3OutlinedButtonStyle];
 /// * Used in [M3ElevatedButtonStyle];
 ///
@@ -34,10 +35,10 @@ class InteractionStatesOverlay implements MaterialStateProperty<Color?> {
       return color?.withOpacity(0.08);
     }
     if (states.contains(MaterialState.focused)) {
-      return color?.withOpacity(0.12);
+      return color?.withOpacity(0.1);
     }
     if (states.contains(MaterialState.pressed)) {
-      return color?.withOpacity(0.12);
+      return color?.withOpacity(0.1);
     }
     if (states.contains(MaterialState.dragged)) {
       return color?.withOpacity(0.16);
@@ -55,6 +56,7 @@ class InteractionStatesOverlay implements MaterialStateProperty<Color?> {
 /// <https://m3.material.io/foundations/interaction-states>
 ///
 /// * Used in [M3TextButtonStyle];
+/// * Used in [M3FilledButtonStyle];
 /// * Used in [M3OutlinedButtonStyle];
 /// * Used in [M3ElevatedButtonStyle];
 @immutable
@@ -90,6 +92,7 @@ class ForegroundStateOverlay implements MaterialStateProperty<Color?> {
 /// <https://m3.material.io/foundations/interaction-states>
 ///
 /// * Used in [M3TextButtonStyle];
+/// * Used in [M3FilledButtonStyle];
 /// * Used in [M3OutlinedButtonStyle];
 /// * Used in [M3ElevatedButtonStyle];
 @immutable
@@ -167,7 +170,7 @@ class OutlineStateOverlay implements MaterialStateProperty<BorderSide> {
   }
 }
 
-/// Defines elevation states for [ElevatedButton}.
+/// Defines elevation states for [ElevatedButton].
 @immutable
 class ElevatedButtonElevation implements MaterialStateProperty<double> {
   /// Creates Material 3 elevated button elevation state.
@@ -192,7 +195,7 @@ class ElevatedButtonElevation implements MaterialStateProperty<double> {
   }
 }
 
-/// Defines elevation states for `FilledButton` and `FilledButton.tonal`.
+/// Defines elevation states for [FilledButton] and [FilledButton.tonal].
 @immutable
 class FilledButtonElevation implements MaterialStateProperty<double> {
   /// Creates Material 3 filled button elevation state.
@@ -202,6 +205,9 @@ class FilledButtonElevation implements MaterialStateProperty<double> {
   double resolve(Set<MaterialState> states) {
     if (states.contains(MaterialState.hovered)) {
       return 1;
+    }
+    if (states.contains(MaterialState.dragged)) {
+      return 6;
     }
 
     return 0;

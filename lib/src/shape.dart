@@ -176,6 +176,6 @@ abstract final class Shapes {
   /// * [IconButton];
   /// * [Slider];
   /// * [Switch];
-  /// * Search bar;
+  /// * [SearchBar];
   static const BorderRadius full = BorderRadius.all(Radius.circular(90));
 }
