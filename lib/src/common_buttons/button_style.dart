@@ -48,7 +48,7 @@ import '../../material_3_tools.dart';
 /// * Text button Material 3 guidelines:
 /// <https://m3.material.io/components/buttons/guidelines#c9bcbc0b-ee05-45ad-8e80-e814ae919fbb>
 ///
-/// * [Material 3 buttons accessibility]
+/// * Material 3 buttons accessibility:
 /// <https://m3.material.io/components/buttons/accessibility>
 @immutable
 base class M3ButtonStyle extends ButtonStyle {
