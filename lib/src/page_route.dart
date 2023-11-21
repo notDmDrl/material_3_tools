@@ -91,7 +91,11 @@ mixin _M3MaterialRouteTransitionMixin<T> on PageRoute<T> {
   static const _kTransitionsTheme = PageTransitionsTheme(
     builders: {
       TargetPlatform.android: ForwardAndBackwardTransitionsBuilder(),
+      TargetPlatform.windows: ForwardAndBackwardTransitionsBuilder(),
+      TargetPlatform.linux: ForwardAndBackwardTransitionsBuilder(),
+      TargetPlatform.fuchsia: ForwardAndBackwardTransitionsBuilder(),
       TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
+      TargetPlatform.macOS: CupertinoPageTransitionsBuilder(),
     },
   );
 
