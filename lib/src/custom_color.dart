@@ -1,16 +1,5 @@
-import 'dart:math' as math;
-
 import 'package:flutter/material.dart';
 import 'package:material_color_utilities/material_color_utilities.dart';
-
-/// Create just primary [TonalPalette].
-///
-/// Based on [CorePalette.of].
-TonalPalette _tonalPalette(int argb) {
-  final cam = Cam16.fromInt(argb);
-
-  return TonalPalette.of(cam.hue, math.max(48, cam.chroma));
-}
 
 /// Harmonize custom color with, usually, your theme primary color.
 ///
@@ -23,7 +12,7 @@ Color harmonizedColor(Color source, Color? harmonizationColor) {
   return Color(Blend.harmonize(source.value, harmonizationColor.value));
 }
 
-/// A set of 4 colors based on the [Material 3 Custom colors spec](https://m3.material.io/styles/color/the-color-system/custom-colors)
+/// A set of 4 colors based on the [Material 3 Custom colors spec](https://m3.material.io/styles/color/advanced/define-new-colors#f13116d1-3023-44b9-b0b5-2ee07dc1af5f)
 ///
 /// Custom colors are similar to [ColorScheme], but they only have primary set
 /// of colors.
@@ -31,12 +20,11 @@ Color harmonizedColor(Color source, Color? harmonizationColor) {
 /// Custom colors are used as an addition to existing [ColorScheme] with ability
 /// to harmonize [CustomColor] to, usually, [ColorScheme.primary] color.
 ///
-/// > Harmonization is a feature that can shift tones of a custom color to
-/// > ensure that visual balance and accessible contrast is achieved when
-/// > combined with user-generated colors.
-/// [link](https://m3.material.io/styles/color/the-color-system/custom-colors#ddaf6b05-71b7-4985-949b-9fbf06ff3791)
+/// > In dynamic schemes, you can automatically adjust the hue of static colors
+/// > so they look better alongside the scheme’s primary color.
+/// [link](https://m3.material.io/styles/color/advanced/adjust-existing-colors#1cc12e43-237b-45b9-8fe0-9a3549c1f61e)
 @immutable
-class CustomColor {
+final class CustomColor {
   /// Creates [CustomColor] from all required colors.
   ///
   /// [CustomColor.fromSource] can be used as a simpler way to create a custom
@@ -57,16 +45,21 @@ class CustomColor {
   }) {
     final color = harmonizedColor(sourceColor, harmonizationColor).value;
 
-    final scheme = switch (brightness) {
-      Brightness.dark => _Scheme._darkFromCorePalette(_tonalPalette(color)),
-      Brightness.light => _Scheme._lightFromCorePalette(_tonalPalette(color)),
-    };
+    final scheme = SchemeTonalSpot(
+      sourceColorHct: Hct.fromInt(color),
+      isDark: brightness == Brightness.dark,
+      contrastLevel: 0,
+    );
 
     return CustomColor(
-      primary: Color(scheme.primary),
-      onPrimary: Color(scheme.onPrimary),
-      primaryContainer: Color(scheme.primaryContainer),
-      onPrimaryContainer: Color(scheme.onPrimaryContainer),
+      primary: Color(MaterialDynamicColors.primary.getArgb(scheme)),
+      onPrimary: Color(MaterialDynamicColors.onPrimary.getArgb(scheme)),
+      primaryContainer: Color(
+        MaterialDynamicColors.primaryContainer.getArgb(scheme),
+      ),
+      onPrimaryContainer: Color(
+        MaterialDynamicColors.onPrimaryContainer.getArgb(scheme),
+      ),
     );
   }
 
@@ -97,32 +90,4 @@ class CustomColor {
           t,
         )!,
       );
-}
-
-/// Rework of [Scheme] with only color fields required to create [CustomColor].
-@immutable
-class _Scheme {
-  const _Scheme({
-    required this.primary,
-    required this.onPrimary,
-    required this.primaryContainer,
-    required this.onPrimaryContainer,
-  });
-
-  _Scheme._lightFromCorePalette(TonalPalette palette)
-      : primary = palette.get(40),
-        onPrimary = palette.get(100),
-        primaryContainer = palette.get(90),
-        onPrimaryContainer = palette.get(10);
-
-  _Scheme._darkFromCorePalette(TonalPalette palette)
-      : primary = palette.get(80),
-        onPrimary = palette.get(20),
-        primaryContainer = palette.get(30),
-        onPrimaryContainer = palette.get(90);
-
-  final int primary;
-  final int onPrimary;
-  final int primaryContainer;
-  final int onPrimaryContainer;
 }
