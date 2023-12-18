@@ -60,13 +60,12 @@ base class M3ButtonStyle extends ButtonStyle {
     Color? foregroundColor,
     Color? disabledColor,
     Color? shadowColor,
-    Color? surfaceTintColor,
     super.elevation,
     EdgeInsetsGeometry? padding,
     Size? minimumSize = const Size(64, 40),
     Size? fixedSize,
     Size? maximumSize = Size.infinite,
-    OutlineStateOverlay? side,
+    OutlineStateOverlay? super.side,
     OutlinedBorder? shape,
     MouseCursor? mouseCursor,
     super.tapTargetSize = MaterialTapTargetSize.shrinkWrap,
@@ -77,11 +76,9 @@ base class M3ButtonStyle extends ButtonStyle {
         _disabledColor = disabledColor,
         _backgroundColor = backgroundColor,
         _shadowColor = shadowColor,
-        _surfaceTintColor = surfaceTintColor,
         _padding = padding,
         _minimumSize = minimumSize,
         _fixedSize = fixedSize,
-        _side = side,
         _shape = shape,
         _maximumSize = maximumSize,
         _mouseCursor = mouseCursor,
@@ -89,6 +86,7 @@ base class M3ButtonStyle extends ButtonStyle {
           animationDuration: kThemeChangeDuration,
           enableFeedback: true,
           alignment: Alignment.center,
+          surfaceTintColor: const MaterialStatePropertyAll(Colors.transparent),
         );
 
   /// Padding values for [ElevatedButton], [FilledButton] and [OutlinedButton].
@@ -127,12 +125,10 @@ base class M3ButtonStyle extends ButtonStyle {
   final Color? _disabledColor;
   final Color? _backgroundColor;
   final Color? _shadowColor;
-  final Color? _surfaceTintColor;
   final EdgeInsetsGeometry? _padding;
   final Size? _minimumSize;
   final Size? _fixedSize;
   final Size? _maximumSize;
-  final OutlineStateOverlay? _side;
   final OutlinedBorder? _shape;
   final MouseCursor? _mouseCursor;
 
@@ -164,10 +160,6 @@ base class M3ButtonStyle extends ButtonStyle {
       ButtonStyleButton.allOrNull(_shadowColor);
 
   @override
-  MaterialStateProperty<Color?>? get surfaceTintColor =>
-      ButtonStyleButton.allOrNull(_surfaceTintColor);
-
-  @override
   MaterialStateProperty<EdgeInsetsGeometry?>? get padding =>
       ButtonStyleButton.allOrNull(_padding);
 
@@ -182,9 +174,6 @@ base class M3ButtonStyle extends ButtonStyle {
   @override
   MaterialStateProperty<Size?>? get maximumSize =>
       ButtonStyleButton.allOrNull(_maximumSize);
-
-  @override
-  MaterialStateProperty<BorderSide?>? get side => _side;
 
   @override
   MaterialStateProperty<OutlinedBorder?>? get shape =>

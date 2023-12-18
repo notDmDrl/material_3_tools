@@ -25,7 +25,6 @@ final class M3ElevatedButtonStyle extends M3ButtonStyle {
     super.foregroundColor,
     super.disabledColor,
     super.shadowColor,
-    super.surfaceTintColor,
     super.elevation = const ElevatedButtonElevation(),
     super.padding = M3ButtonStyle.layoutPadding,
     super.minimumSize,

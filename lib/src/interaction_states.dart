@@ -62,7 +62,10 @@ class InteractionStatesOverlay implements MaterialStateProperty<Color?> {
 @immutable
 class ForegroundStateOverlay implements MaterialStateProperty<Color?> {
   /// Creates Material 3 foreground interaction state overlay.
-  const ForegroundStateOverlay({required this.color, this.disabledColor});
+  const ForegroundStateOverlay({
+    required this.color,
+    this.disabledColor,
+  });
 
   /// Enabled color.
   ///
@@ -98,7 +101,10 @@ class ForegroundStateOverlay implements MaterialStateProperty<Color?> {
 @immutable
 class BackgroundStateOverlay implements MaterialStateProperty<Color?> {
   /// Creates Material 3 background interaction state overlay.
-  const BackgroundStateOverlay({required this.color, this.disabledColor});
+  const BackgroundStateOverlay({
+    required this.color,
+    this.disabledColor,
+  });
 
   /// Enabled color.
   ///
@@ -178,18 +184,10 @@ class ElevatedButtonElevation implements MaterialStateProperty<double> {
 
   @override
   double resolve(Set<MaterialState> states) {
-    if (states.contains(MaterialState.disabled)) {
-      return 0;
-    }
-    if (states.contains(MaterialState.hovered)) {
-      return 3;
-    }
-    if (states.contains(MaterialState.focused)) {
-      return 1;
-    }
-    if (states.contains(MaterialState.pressed)) {
-      return 1;
-    }
+    if (states.contains(MaterialState.disabled)) return 0;
+    if (states.contains(MaterialState.hovered)) return 3;
+    if (states.contains(MaterialState.focused)) return 1;
+    if (states.contains(MaterialState.pressed)) return 1;
 
     return 1;
   }
