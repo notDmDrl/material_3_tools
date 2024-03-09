@@ -7,6 +7,8 @@ export 'src/common_buttons/filled_button.dart';
 export 'src/common_buttons/outlined_button.dart';
 export 'src/common_buttons/text_button.dart';
 export 'src/custom_color.dart';
+export 'src/extensions/navigator.dart';
+export 'src/extensions/theme.dart';
 export 'src/input/outlined_border.dart';
 export 'src/interaction_states.dart';
 export 'src/motion/easing.dart';
