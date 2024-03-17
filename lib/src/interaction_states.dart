@@ -41,7 +41,7 @@ class InteractionStatesOverlay implements MaterialStateProperty<Color?> {
       return color?.withOpacity(0.1);
     }
     if (states.contains(MaterialState.dragged)) {
-      return color?.withOpacity(0.16);
+      return color?.withOpacity(0.1);
     }
 
     return null;

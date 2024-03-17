@@ -4,43 +4,45 @@ import 'package:flutter/material.dart';
 import '../easing.dart';
 
 /// Defines a transition in which the outgoing page fades out, then the incoming
-/// page fades in and scales up.
+/// page fades in and scales up (if [applyScaleTransition] is set to true).
 ///
 /// See also:
 ///
 ///  * Top level transition:
 ///  <https://m3.material.io/styles/motion/transitions/transition-patterns#8327d206-2a7d-423a-abf0-2be86130535b>
+///  * Top level transition with scale animation:
+///  <https://github.com/material-components/material-components-android/blob/master/docs/theming/Motion.md#fade-through>
 @immutable
-final class TopLevelTransition extends PageTransitionSwitcher {
+final class TopLevelTransition extends StatelessWidget {
   /// Creates [TopLevelTransition].
   const TopLevelTransition({
     super.key,
-    required super.child,
-  }) : super(
-          transitionBuilder: _TopLevelTransition.new,
-          duration: Durations.medium2,
-        );
-}
+    required this.child,
+    this.applyScaleTransition = false,
+  });
 
-@immutable
-class _TopLevelTransition extends StatelessWidget {
-  const _TopLevelTransition(
-    this.child,
-    this.animation,
-    this.secondaryAnimation,
-  );
+  /// The current child widget to display.
+  ///
+  /// See [PageTransitionSwitcher.child].
+  final Widget child;
 
-  final Animation<double> animation;
-  final Animation<double> secondaryAnimation;
-  final Widget? child;
+  /// Whether to apply a scale transition to an incoming page.
+  final bool applyScaleTransition;
 
   @override
-  Widget build(BuildContext context) => _ZoomedFadeInFadeOut(
-        listenable: animation,
-        child: _ZoomedFadeInFadeOut(
-          listenable: ReverseAnimation(secondaryAnimation),
-          child: child,
-        ),
+  Widget build(BuildContext context) => PageTransitionSwitcher(
+        transitionBuilder: (child, animation, secondaryAnimation) {
+          return _ZoomedFadeInFadeOut(
+            listenable: animation,
+            applyScaleTransition: applyScaleTransition,
+            child: _ZoomedFadeInFadeOut(
+              listenable: ReverseAnimation(secondaryAnimation),
+              applyScaleTransition: applyScaleTransition,
+              child: child,
+            ),
+          );
+        },
+        child: child,
       );
 }
 
@@ -48,10 +50,12 @@ class _TopLevelTransition extends StatelessWidget {
 class _ZoomedFadeInFadeOut extends AnimatedWidget {
   const _ZoomedFadeInFadeOut({
     required super.listenable,
+    required this.applyScaleTransition,
     this.child,
   });
 
   final Widget? child;
+  final bool applyScaleTransition;
 
   static final _inCurve = CurveTween(curve: MaterialEasing.legacy);
 
@@ -78,17 +82,23 @@ class _ZoomedFadeInFadeOut extends AnimatedWidget {
   ]);
 
   static FadeTransition _forward(
-    BuildContext _,
     Animation<double> animation,
-    Widget? child,
-  ) =>
-      FadeTransition(
-        opacity: _fadeInOpacity.animate(animation),
-        child: ScaleTransition(
-          scale: _scaleIn.animate(animation),
-          child: child,
-        ),
+    Widget? child, {
+    required bool applyScaleTransition,
+  }) {
+    var resolvedChild = child;
+    if (applyScaleTransition) {
+      resolvedChild = ScaleTransition(
+        scale: _scaleIn.animate(animation),
+        child: child,
       );
+    }
+
+    return FadeTransition(
+      opacity: _fadeInOpacity.animate(animation),
+      child: resolvedChild,
+    );
+  }
 
   static final _outCurve = CurveTween(curve: MaterialEasing.legacy);
 
@@ -116,7 +126,11 @@ class _ZoomedFadeInFadeOut extends AnimatedWidget {
   @override
   Widget build(BuildContext context) => DualTransitionBuilder(
         animation: listenable as Animation<double>,
-        forwardBuilder: _forward,
+        forwardBuilder: (_, animation, child) => _forward(
+          animation,
+          child,
+          applyScaleTransition: applyScaleTransition,
+        ),
         reverseBuilder: _reverse,
         child: child,
       );

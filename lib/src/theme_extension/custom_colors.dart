@@ -6,7 +6,7 @@ import '../custom_color.dart';
 ///
 /// Custom colors are mapped based on [Object] key.
 ///
-/// All examples are assuming [Object] is a [Enum] with values:
+/// All examples are assuming [Object] is an [Enum] with values:
 ///
 /// ```dart
 /// enum AppCustomColors { red, green, blue }
@@ -73,8 +73,7 @@ final class CustomColors extends ThemeExtension<CustomColors> {
 
   /// Creates a new map of [CustomColor]s.
   @override
-  CustomColors copyWith({Map<Object, CustomColor>? colors}) =>
-      CustomColors(colors ?? this.colors);
+  CustomColors copyWith({Map<Object, CustomColor>? colors}) => CustomColors(colors ?? this.colors);
 
   @override
   CustomColors lerp(
