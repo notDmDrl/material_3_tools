@@ -25,7 +25,7 @@ final class M3OutlinedButtonStyle extends M3ButtonStyle {
     super.disabledColor,
     super.side,
     super.backgroundColor,
-    super.elevation = const MaterialStatePropertyAll(0),
+    super.elevation = const WidgetStatePropertyAll(0),
     super.padding = M3ButtonStyle.layoutPadding,
     super.minimumSize,
     super.fixedSize,

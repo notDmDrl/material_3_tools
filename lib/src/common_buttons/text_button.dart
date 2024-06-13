@@ -23,7 +23,7 @@ final class M3TextButtonStyle extends M3ButtonStyle {
     super.textStyle,
     super.foregroundColor,
     super.disabledColor,
-    super.elevation = const MaterialStatePropertyAll(0),
+    super.elevation = const WidgetStatePropertyAll(0),
     super.padding = M3ButtonStyle.textButtonLayoutPadding,
     super.minimumSize,
     super.fixedSize,

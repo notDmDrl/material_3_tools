@@ -15,8 +15,8 @@ import '../../material_3_tools.dart';
 /// buttons design.
 ///
 /// While more verbose than [ButtonStyle] it allows much more easily
-/// create const [ButtonStyle] thanks to replacing [MaterialStateProperty] with
-/// corresponding type in each [ButtonStyle]'s [MaterialStateProperty] property.
+/// create const [ButtonStyle] thanks to replacing [WidgetStateProperty] with
+/// corresponding type in each [ButtonStyle]'s [WidgetStateProperty] property.
 ///
 /// See also:
 ///
@@ -52,7 +52,7 @@ import '../../material_3_tools.dart';
 /// <https://m3.material.io/components/buttons/accessibility>
 @immutable
 base class M3ButtonStyle extends ButtonStyle {
-  /// Creates [ButtonStyle] with non [MaterialStateProperty] properties and
+  /// Creates [ButtonStyle] with non [WidgetStateProperty] properties and
   /// Material 3 defaults where possible.
   const M3ButtonStyle({
     TextStyle? textStyle,
@@ -86,7 +86,7 @@ base class M3ButtonStyle extends ButtonStyle {
           animationDuration: kThemeChangeDuration,
           enableFeedback: true,
           alignment: Alignment.center,
-          surfaceTintColor: const MaterialStatePropertyAll(Colors.transparent),
+          surfaceTintColor: const WidgetStatePropertyAll(Colors.transparent),
         );
 
   /// Padding values for [ElevatedButton], [FilledButton] and [OutlinedButton].
@@ -133,53 +133,52 @@ base class M3ButtonStyle extends ButtonStyle {
   final MouseCursor? _mouseCursor;
 
   @override
-  MaterialStateProperty<TextStyle?>? get textStyle =>
+  WidgetStateProperty<TextStyle?>? get textStyle =>
       ButtonStyleButton.allOrNull(_textStyle);
 
   @override
-  MaterialStateProperty<Color?>? get backgroundColor =>
-      this is M3TextButtonStyle
-          ? null
-          : BackgroundStateOverlay(
-              color: _backgroundColor,
-              disabledColor: _disabledColor,
-            );
+  WidgetStateProperty<Color?>? get backgroundColor => this is M3TextButtonStyle
+      ? null
+      : BackgroundStateOverlay(
+          color: _backgroundColor,
+          disabledColor: _disabledColor,
+        );
 
   @override
-  MaterialStateProperty<Color?>? get foregroundColor => ForegroundStateOverlay(
+  WidgetStateProperty<Color?>? get foregroundColor => ForegroundStateOverlay(
         color: _foregroundColor,
         disabledColor: _disabledColor,
       );
 
   @override
-  MaterialStateProperty<Color?>? get overlayColor =>
+  WidgetStateProperty<Color?>? get overlayColor =>
       InteractionStatesOverlay(_foregroundColor);
 
   @override
-  MaterialStateProperty<Color?>? get shadowColor =>
+  WidgetStateProperty<Color?>? get shadowColor =>
       ButtonStyleButton.allOrNull(_shadowColor);
 
   @override
-  MaterialStateProperty<EdgeInsetsGeometry?>? get padding =>
+  WidgetStateProperty<EdgeInsetsGeometry?>? get padding =>
       ButtonStyleButton.allOrNull(_padding);
 
   @override
-  MaterialStateProperty<Size?>? get minimumSize =>
+  WidgetStateProperty<Size?>? get minimumSize =>
       ButtonStyleButton.allOrNull(_minimumSize);
 
   @override
-  MaterialStateProperty<Size?>? get fixedSize =>
+  WidgetStateProperty<Size?>? get fixedSize =>
       ButtonStyleButton.allOrNull(_fixedSize);
 
   @override
-  MaterialStateProperty<Size?>? get maximumSize =>
+  WidgetStateProperty<Size?>? get maximumSize =>
       ButtonStyleButton.allOrNull(_maximumSize);
 
   @override
-  MaterialStateProperty<OutlinedBorder?>? get shape =>
+  WidgetStateProperty<OutlinedBorder?>? get shape =>
       ButtonStyleButton.allOrNull(_shape);
 
   @override
-  MaterialStateProperty<MouseCursor?>? get mouseCursor =>
+  WidgetStateProperty<MouseCursor?>? get mouseCursor =>
       ButtonStyleButton.allOrNull(_mouseCursor);
 }
