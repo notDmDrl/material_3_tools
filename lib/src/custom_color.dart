@@ -4,8 +4,7 @@ import 'package:material_color_utilities/material_color_utilities.dart';
 /// Harmonize custom color with, usually, your theme primary color.
 ///
 /// [harmonizationColor] typically is [ColorScheme.primary] color.
-///
-/// Copied implementation from <https://pub.dev/packages/dynamic_color>
+// Copied implementation from <https://pub.dev/packages/dynamic_color>
 Color harmonizedColor(Color source, Color? harmonizationColor) {
   if (harmonizationColor == null || source == harmonizationColor) return source;
 
@@ -36,20 +35,66 @@ final class CustomColor {
     required this.onPrimaryContainer,
   });
 
-  /// Creates [CustomColor] by providing source color, brightness and optional
-  /// harmonization color.
+  /// Creates [CustomColor] by providing source color, brightness, scheme
+  /// variant, and optional harmonization color.
   factory CustomColor.fromSource({
     required Color sourceColor,
     Brightness brightness = Brightness.light,
+    DynamicSchemeVariant schemeVariant = DynamicSchemeVariant.tonalSpot,
     Color? harmonizationColor,
   }) {
     final color = harmonizedColor(sourceColor, harmonizationColor).value;
 
-    final scheme = SchemeTonalSpot(
-      sourceColorHct: Hct.fromInt(color),
-      isDark: brightness == Brightness.dark,
-      contrastLevel: 0,
-    );
+    final isDark = brightness == Brightness.dark;
+    final sourceColorHct = Hct.fromInt(color);
+
+    final scheme = switch (schemeVariant) {
+      DynamicSchemeVariant.tonalSpot => SchemeTonalSpot(
+          sourceColorHct: sourceColorHct,
+          isDark: isDark,
+          contrastLevel: 0,
+        ),
+      DynamicSchemeVariant.fidelity => SchemeFidelity(
+          sourceColorHct: sourceColorHct,
+          isDark: isDark,
+          contrastLevel: 0,
+        ),
+      DynamicSchemeVariant.monochrome => SchemeMonochrome(
+          sourceColorHct: sourceColorHct,
+          isDark: isDark,
+          contrastLevel: 0,
+        ),
+      DynamicSchemeVariant.neutral => SchemeNeutral(
+          sourceColorHct: sourceColorHct,
+          isDark: isDark,
+          contrastLevel: 0,
+        ),
+      DynamicSchemeVariant.vibrant => SchemeVibrant(
+          sourceColorHct: sourceColorHct,
+          isDark: isDark,
+          contrastLevel: 0,
+        ),
+      DynamicSchemeVariant.expressive => SchemeExpressive(
+          sourceColorHct: sourceColorHct,
+          isDark: isDark,
+          contrastLevel: 0,
+        ),
+      DynamicSchemeVariant.content => SchemeContent(
+          sourceColorHct: sourceColorHct,
+          isDark: isDark,
+          contrastLevel: 0,
+        ),
+      DynamicSchemeVariant.rainbow => SchemeRainbow(
+          sourceColorHct: sourceColorHct,
+          isDark: isDark,
+          contrastLevel: 0,
+        ),
+      DynamicSchemeVariant.fruitSalad => SchemeFruitSalad(
+          sourceColorHct: sourceColorHct,
+          isDark: isDark,
+          contrastLevel: 0,
+        ),
+    };
 
     return CustomColor(
       primary: Color(MaterialDynamicColors.primary.getArgb(scheme)),
