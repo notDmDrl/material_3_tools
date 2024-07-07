@@ -1,6 +1,7 @@
 ///
 library material_3_tools;
 
+export 'src/app.dart';
 export 'src/common_buttons/button_style.dart';
 export 'src/common_buttons/elevated_button.dart';
 export 'src/common_buttons/filled_button.dart';
