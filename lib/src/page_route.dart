@@ -66,10 +66,13 @@ mixin _M3MaterialRouteTransitionMixin<T> on PageRoute<T> {
   @override
   bool canTransitionTo(TransitionRoute<dynamic> nextRoute) =>
       switch (nextRoute) {
+        _M3MaterialRouteTransitionMixin(:final fullscreenDialog) =>
+          !fullscreenDialog,
         MaterialRouteTransitionMixin(:final fullscreenDialog) =>
           !fullscreenDialog,
         CupertinoRouteTransitionMixin(:final fullscreenDialog) =>
           !fullscreenDialog,
+        PopupRoute() => false,
         _ => true,
       };
 
