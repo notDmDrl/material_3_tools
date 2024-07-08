@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../material_3_tools.dart';
+import '../interaction_states.dart';
+import 'text_button.dart';
 
 /// A helper class that allows creating Material 3 [ButtonStyle] without
 /// providing [BuildContext] for accessing [ColorScheme] via

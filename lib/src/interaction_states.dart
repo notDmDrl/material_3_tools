@@ -1,6 +1,10 @@
-import 'package:flutter/material.dart';
+/// @docImport 'common_buttons/elevated_button.dart';
+/// @docImport 'common_buttons/filled_button.dart';
+/// @docImport 'common_buttons/outlined_button.dart';
+/// @docImport 'common_buttons/text_button.dart';
+library;
 
-import '/material_3_tools.dart';
+import 'package:flutter/material.dart';
 
 /// Defines the ink response focus, hover, drag and splash colors.
 ///

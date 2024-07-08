@@ -1,7 +1,7 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/cupertino.dart' show CupertinoRouteTransitionMixin;
 import 'package:flutter/material.dart';
 
-import '../material_3_tools.dart';
+import 'motion/transition/forward_and_backward.dart';
 
 /// A modal route that replaces the entire screen with a platform-adaptive M3
 /// transition.

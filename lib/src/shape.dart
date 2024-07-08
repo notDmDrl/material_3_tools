@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart' show BorderRadius, Radius;
 
 /// [BorderRadius] constants which represent Material 3 [shape system](https://m3.material.io/styles/shape/overview).
 ///
@@ -8,26 +8,9 @@ import 'package:flutter/material.dart';
 /// <https://m3.material.io/styles/shape/shape-scale-tokens>
 abstract final class Shapes {
   /// Baseline shape with all corners having `radius` of zero.
-  ///
-  /// Widgets that should use [Shapes.none]:
-  ///
-  /// * [MaterialBanner];
-  /// * [BottomAppBar];
-  /// * [NavigationBar];
-  /// * [NavigationRail];
-  /// * [ProgressIndicator];
-  /// * [TabBar];
-  /// * [AppBar] and [SliverAppBar];
-  /// * [Dialog.fullscreen];
   static const BorderRadius none = BorderRadius.zero;
 
   /// Baseline shape with all corners having `radius` of 4.0.
-  ///
-  /// Widgets that should use [Shapes.extraSmall]:
-  ///
-  /// * [SnackBar];
-  /// * [TextField];
-  /// * [PopupMenuButton];
   static const BorderRadius extraSmall = BorderRadius.all(
     Radius.circular(4),
   );
@@ -57,11 +40,6 @@ abstract final class Shapes {
   );
 
   /// Baseline shape with all corners having `radius` of 8.0.
-  ///
-  /// Widgets that should use [Shapes.small]:
-  ///
-  /// * [Chip];
-  /// * [Tooltip];
   static const BorderRadius small = BorderRadius.all(
     Radius.circular(8),
   );
@@ -91,11 +69,6 @@ abstract final class Shapes {
   );
 
   /// Baseline shape with all corners having `radius` of 12.0.
-  ///
-  /// Widgets that should use [Shapes.medium]:
-  ///
-  /// * [Card];
-  /// * [FloatingActionButton.small];
   static const BorderRadius medium = BorderRadius.all(
     Radius.circular(12),
   );
@@ -125,12 +98,6 @@ abstract final class Shapes {
   );
 
   /// Baseline shape with all corners having `radius` of 16.0.
-  ///
-  /// Widgets that should use [Shapes.large]:
-  ///
-  /// * [FloatingActionButton];
-  /// * [FloatingActionButton.extended];
-  /// * [Drawer];
   static const BorderRadius large = BorderRadius.all(
     Radius.circular(16),
   );
@@ -160,12 +127,6 @@ abstract final class Shapes {
   );
 
   /// Baseline shape with all corners having `radius` of 28.0.
-  ///
-  /// Widgets that should use [Shapes.extraLarge]:
-  ///
-  /// * [BottomSheet];
-  /// * [Dialog];
-  /// * [FloatingActionButton.large];
   static const BorderRadius extraLarge = BorderRadius.all(
     Radius.circular(28),
   );
@@ -195,18 +156,6 @@ abstract final class Shapes {
   );
 
   /// Baseline shape with all corners having `radius` of 90.0.
-  ///
-  /// Widgets that should use [Shapes.full]:
-  /// * [Badge];
-  /// * [TextButton];
-  /// * [ElevatedButton];
-  /// * [OutlinedButton];
-  /// * [FilledButton];
-  /// * [FilledButton.tonal]
-  /// * [IconButton];
-  /// * [Slider];
-  /// * [Switch];
-  /// * [SearchBar];
   static const BorderRadius full = BorderRadius.all(
     Radius.circular(90),
   );

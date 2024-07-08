@@ -1,6 +1,7 @@
-import 'package:flutter/material.dart';
+/// @docImport 'motion/transition/top_level.dart';
+library;
 
-import '../material_3_tools.dart';
+import 'package:flutter/material.dart';
 
 /// Signature for the callback invoked when [SelectableIcon]s selection state
 /// changes.
@@ -47,7 +48,7 @@ final class SelectableIcon extends StatefulWidget {
 
   /// The duration of icon's fill animation.
   ///
-  /// Defaults to [Durations.medium2] ([TopLevelTransition]s duration).
+  /// Defaults to [Durations.medium2].
   final Duration duration;
 
   /// The curve of icon's fill animation.

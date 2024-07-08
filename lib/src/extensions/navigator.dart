@@ -1,4 +1,10 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart'
+    show
+        Navigator,
+        NavigatorState,
+        RouteSettings,
+        WidgetBuilder,
+        optionalTypeArgs;
 
 import '../page_route.dart';
 

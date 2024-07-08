@@ -1,10 +1,13 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart'
+    show Brightness, Color, ColorScheme, DynamicSchemeVariant, immutable;
 import 'package:material_color_utilities/material_color_utilities.dart';
 
 /// Harmonize custom color with, usually, your theme primary color.
 ///
-/// [harmonizationColor] typically is [ColorScheme.primary] color.
-// Copied implementation from <https://pub.dev/packages/dynamic_color>
+/// See also:
+///
+/// * Harmonize colors M3 docs:
+/// <https://m3.material.io/styles/color/advanced/adjust-existing-colors#1cc12e43-237b-45b9-8fe0-9a3549c1f61e>
 Color harmonizedColor(Color source, Color? harmonizationColor) {
   if (harmonizationColor == null || source == harmonizationColor) return source;
 

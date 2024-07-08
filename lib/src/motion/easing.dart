@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' show Curve, Curves, Easing;
 
 /// [Curve] constants which represent Material 3 [easing](https://m3.material.io/styles/motion/overview).
 ///

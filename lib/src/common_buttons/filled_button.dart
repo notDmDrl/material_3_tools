@@ -1,6 +1,10 @@
-import 'package:flutter/material.dart';
+/// @docImport 'package:flutter/material.dart';
+library;
 
-import '../../material_3_tools.dart';
+import 'package:flutter/foundation.dart' show immutable;
+
+import '../interaction_states.dart';
+import 'button_style.dart';
 
 /// A helper class that allows creating Material 3 [FilledButton]
 /// [ButtonStyle] by extending [M3ButtonStyle] and limiting properties to the

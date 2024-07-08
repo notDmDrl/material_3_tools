@@ -1,4 +1,16 @@
+// Copyright (c) 2024 https://github.com/notDmDrl
+// Use of this source code is governed by a MIT-style license that can be
+// found in the LICENSE file.
+
+/// Flutter widgets and utils that simplify usage of Material Design 3 (M3)
+/// theming available in Flutter.
 ///
+/// To use, import `package:material_3_tools/material_3_tools.dart`
+///
+/// See also:
+///
+/// * Material Design 3 guidelines:
+///   https://m3.material.io/
 library material_3_tools;
 
 export 'src/app.dart';

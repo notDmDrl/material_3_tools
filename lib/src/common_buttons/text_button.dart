@@ -1,6 +1,10 @@
-import 'package:flutter/material.dart';
+/// @docImport 'package:flutter/material.dart';
+library;
 
-import '../../material_3_tools.dart';
+import 'package:flutter/material.dart'
+    show InkSparkle, WidgetStatePropertyAll, immutable;
+
+import 'button_style.dart';
 
 /// A helper class that allows creating Material 3 [TextButton]
 /// [ButtonStyle] by extending [M3ButtonStyle] and limiting properties to the
