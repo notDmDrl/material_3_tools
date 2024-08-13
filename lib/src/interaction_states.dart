@@ -6,6 +6,15 @@ library;
 
 import 'package:flutter/material.dart';
 
+// Values taken from https://cs.android.com/androidx/platform/frameworks/support/+/androidx-main:compose/material3/material3/src/commonMain/kotlin/androidx/compose/material3/tokens/StateTokens.kt
+const _kDraggedOpacity = 0.16;
+const _kFocusOpacity = 0.1;
+const _kHoverOpacity = 0.08;
+const _kPressedOpacity = 0.1;
+
+const _kDisabledContainerOpacity = 0.12;
+const _kDisabledForegroundOpacity = 0.38;
+
 /// Defines the ink response focus, hover, drag and splash colors.
 ///
 /// See also:
@@ -36,16 +45,16 @@ class InteractionStatesOverlay implements WidgetStateProperty<Color?> {
   @override
   Color? resolve(Set<WidgetState> states) {
     if (states.contains(WidgetState.hovered)) {
-      return color?.withOpacity(0.08);
+      return color?.withOpacity(_kHoverOpacity);
     }
     if (states.contains(WidgetState.focused)) {
-      return color?.withOpacity(0.1);
+      return color?.withOpacity(_kFocusOpacity);
     }
     if (states.contains(WidgetState.pressed)) {
-      return color?.withOpacity(0.1);
+      return color?.withOpacity(_kPressedOpacity);
     }
     if (states.contains(WidgetState.dragged)) {
-      return color?.withOpacity(0.1);
+      return color?.withOpacity(_kDraggedOpacity);
     }
 
     return null;
@@ -84,7 +93,7 @@ class ForegroundStateOverlay implements WidgetStateProperty<Color?> {
   @override
   Color? resolve(Set<WidgetState> states) {
     if (states.contains(WidgetState.disabled)) {
-      return (disabledColor ?? color)?.withOpacity(0.38);
+      return (disabledColor ?? color)?.withOpacity(_kDisabledForegroundOpacity);
     }
 
     return color;
@@ -123,7 +132,7 @@ class BackgroundStateOverlay implements WidgetStateProperty<Color?> {
   @override
   Color? resolve(Set<WidgetState> states) {
     if (states.contains(WidgetState.disabled)) {
-      return (disabledColor ?? color)?.withOpacity(0.12);
+      return (disabledColor ?? color)?.withOpacity(_kDisabledContainerOpacity);
     }
 
     return color;
@@ -169,9 +178,10 @@ class OutlineStateOverlay implements WidgetStateProperty<BorderSide> {
   @override
   BorderSide resolve(Set<WidgetState> states) {
     if (states.contains(WidgetState.disabled)) {
-      return BorderSide(color: (disabledColor ?? color).withOpacity(0.12));
+      return BorderSide(
+        color: (disabledColor ?? color).withOpacity(_kDisabledContainerOpacity),
+      );
     }
-
     if (states.contains(WidgetState.focused)) {
       return BorderSide(color: focusedColor ?? color);
     }
@@ -190,8 +200,6 @@ class ElevatedButtonElevation implements WidgetStateProperty<double> {
   double resolve(Set<WidgetState> states) {
     if (states.contains(WidgetState.disabled)) return 0;
     if (states.contains(WidgetState.hovered)) return 3;
-    if (states.contains(WidgetState.focused)) return 1;
-    if (states.contains(WidgetState.pressed)) return 1;
 
     return 1;
   }
@@ -205,12 +213,8 @@ class FilledButtonElevation implements WidgetStateProperty<double> {
 
   @override
   double resolve(Set<WidgetState> states) {
-    if (states.contains(WidgetState.hovered)) {
-      return 1;
-    }
-    if (states.contains(WidgetState.dragged)) {
-      return 6;
-    }
+    if (states.contains(WidgetState.hovered)) return 1;
+    if (states.contains(WidgetState.dragged)) return 6;
 
     return 0;
   }

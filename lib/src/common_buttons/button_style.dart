@@ -120,6 +120,25 @@ base class M3ButtonStyle extends ButtonStyle {
   static const EdgeInsets textButtonIconLayoutPadding =
       EdgeInsets.only(left: 12, right: 16);
 
+  /// Helper method used to scale [M3ButtonStyle].**padding values.
+  static EdgeInsetsGeometry scaledPaddingOf(
+    BuildContext context,
+    EdgeInsets padding,
+  ) {
+    const kFontSize = 14.0;
+    final theme = Theme.of(context).textTheme;
+    final defaultFontSize = theme.labelLarge?.fontSize ?? kFontSize;
+    final effectiveTextScale =
+        MediaQuery.textScalerOf(context).scale(defaultFontSize) / kFontSize;
+
+    return ButtonStyleButton.scaledPadding(
+      padding,
+      EdgeInsets.only(left: padding.left / 2, right: padding.right / 2),
+      EdgeInsets.only(left: padding.left / 2 / 2, right: padding.right / 2 / 2),
+      effectiveTextScale,
+    );
+  }
+
   // Private fields for creating [ButtonStyleButton.allOrNull].
   final TextStyle? _textStyle;
   final Color? _foregroundColor;
@@ -146,13 +165,13 @@ base class M3ButtonStyle extends ButtonStyle {
         );
 
   @override
-  WidgetStateProperty<Color?>? get foregroundColor => ForegroundStateOverlay(
+  WidgetStateProperty<Color?> get foregroundColor => ForegroundStateOverlay(
         color: _foregroundColor,
         disabledColor: _disabledColor,
       );
 
   @override
-  WidgetStateProperty<Color?>? get overlayColor =>
+  WidgetStateProperty<Color?> get overlayColor =>
       InteractionStatesOverlay(_foregroundColor);
 
   @override

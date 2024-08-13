@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart' show PredictiveBackEvent;
+import 'package:meta/meta.dart' show experimental;
 
 import '../easing.dart';
+
+part '_predictive_back.dart';
 
 /// Used by [PageTransitionsTheme] to define a horizontal slide and fade
 /// [MaterialPageRoute] page transition animation that looks like the default
@@ -23,7 +27,13 @@ final class ForwardAndBackwardTransitionsBuilder
     extends PageTransitionsBuilder {
   /// Constructs a page transition animation that matches the transition used in
   /// Material 3 and Android 12+
-  const ForwardAndBackwardTransitionsBuilder();
+  const ForwardAndBackwardTransitionsBuilder({
+    this.usePredictiveBack = false,
+  });
+
+  /// Whether to use the predictive back gesture on supported devices
+  @experimental
+  final bool usePredictiveBack;
 
   @override
   Widget buildTransitions<T>(
@@ -32,12 +42,38 @@ final class ForwardAndBackwardTransitionsBuilder
     Animation<double> animation,
     Animation<double> secondaryAnimation,
     Widget child,
-  ) =>
-      ForwardAndBackwardTransition(
+  ) {
+    if (!usePredictiveBack || !route.popGestureEnabled) {
+      return ForwardAndBackwardTransition(
         animation: animation,
         secondaryAnimation: secondaryAnimation,
         child: child,
       );
+    }
+
+    return _PredictiveBackGestureDetector(
+      route: route,
+      builder: (context) {
+        // Only do a predictive back transition when the user is performing a
+        // pop gesture. Otherwise, for things like button presses or other
+        // programmatic navigation, fall back to ZoomPageTransitionsBuilder.
+        if (route.popGestureInProgress) {
+          return _PredictiveBackPageTransition(
+            animation: animation,
+            secondaryAnimation: secondaryAnimation,
+            getIsCurrent: () => route.isCurrent,
+            child: child,
+          );
+        }
+
+        return ForwardAndBackwardTransition(
+          animation: animation,
+          secondaryAnimation: secondaryAnimation,
+          child: child,
+        );
+      },
+    );
+  }
 }
 
 /// Defines a transition in which outgoing and incoming elements share a
