@@ -7,10 +7,8 @@ import 'package:flutter/material.dart';
 /// changes.
 ///
 /// Used by [SelectableIcon.icon].
-typedef SelectableIconBuilder = Widget Function(
-  BuildContext context,
-  double fill,
-);
+typedef SelectableIconBuilder =
+    Widget Function(BuildContext context, double fill);
 
 /// An [Icon] that animates its [Icon.fill] value.
 ///
@@ -107,11 +105,11 @@ class _SelectableIconState extends State<SelectableIcon>
 
   @override
   Widget build(BuildContext context) => AnimatedBuilder(
-        animation: CurvedAnimation(
-          parent: controller,
-          curve: widget.curve,
-          reverseCurve: widget.curve.flipped,
-        ),
-        builder: (context, __) => widget.icon(context, controller.value),
-      );
+    animation: CurvedAnimation(
+      parent: controller,
+      curve: widget.curve,
+      reverseCurve: widget.curve.flipped,
+    ),
+    builder: (context, __) => widget.icon(context, controller.value),
+  );
 }

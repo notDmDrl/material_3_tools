@@ -40,9 +40,7 @@ abstract final class Shapes {
   );
 
   /// Baseline shape with all corners having `radius` of 8.0.
-  static const BorderRadius small = BorderRadius.all(
-    CornerSize.small,
-  );
+  static const BorderRadius small = BorderRadius.all(CornerSize.small);
 
   /// Baseline shape with top corners having `radius` of 8.0 and bottom corners
   /// having `radius` of 0.0.
@@ -69,9 +67,7 @@ abstract final class Shapes {
   );
 
   /// Baseline shape with all corners having `radius` of 12.0.
-  static const BorderRadius medium = BorderRadius.all(
-    CornerSize.medium,
-  );
+  static const BorderRadius medium = BorderRadius.all(CornerSize.medium);
 
   /// Baseline shape with top corners having `radius` of 12.0 and bottom corners
   /// having `radius` of 0.0.
@@ -98,9 +94,7 @@ abstract final class Shapes {
   );
 
   /// Baseline shape with all corners having `radius` of 16.0.
-  static const BorderRadius large = BorderRadius.all(
-    CornerSize.large,
-  );
+  static const BorderRadius large = BorderRadius.all(CornerSize.large);
 
   /// Baseline shape with top corners having `radius` of 16.0 and bottom corners
   /// having `radius` of 0.0.
@@ -243,9 +237,7 @@ abstract final class Shapes {
   );
 
   /// Baseline shape with all corners having `radius` of 90.0.
-  static const BorderRadius full = BorderRadius.all(
-    CornerSize.full,
-  );
+  static const BorderRadius full = BorderRadius.all(CornerSize.full);
 }
 
 /// [Radius.circular] constants which represent Material 3 [shape system](https://m3.material.io/styles/shape/overview).

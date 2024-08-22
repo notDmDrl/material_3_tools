@@ -53,50 +53,50 @@ final class CustomColor {
 
     final scheme = switch (schemeVariant) {
       DynamicSchemeVariant.tonalSpot => SchemeTonalSpot(
-          sourceColorHct: sourceColorHct,
-          isDark: isDark,
-          contrastLevel: 0,
-        ),
+        sourceColorHct: sourceColorHct,
+        isDark: isDark,
+        contrastLevel: 0,
+      ),
       DynamicSchemeVariant.fidelity => SchemeFidelity(
-          sourceColorHct: sourceColorHct,
-          isDark: isDark,
-          contrastLevel: 0,
-        ),
+        sourceColorHct: sourceColorHct,
+        isDark: isDark,
+        contrastLevel: 0,
+      ),
       DynamicSchemeVariant.monochrome => SchemeMonochrome(
-          sourceColorHct: sourceColorHct,
-          isDark: isDark,
-          contrastLevel: 0,
-        ),
+        sourceColorHct: sourceColorHct,
+        isDark: isDark,
+        contrastLevel: 0,
+      ),
       DynamicSchemeVariant.neutral => SchemeNeutral(
-          sourceColorHct: sourceColorHct,
-          isDark: isDark,
-          contrastLevel: 0,
-        ),
+        sourceColorHct: sourceColorHct,
+        isDark: isDark,
+        contrastLevel: 0,
+      ),
       DynamicSchemeVariant.vibrant => SchemeVibrant(
-          sourceColorHct: sourceColorHct,
-          isDark: isDark,
-          contrastLevel: 0,
-        ),
+        sourceColorHct: sourceColorHct,
+        isDark: isDark,
+        contrastLevel: 0,
+      ),
       DynamicSchemeVariant.expressive => SchemeExpressive(
-          sourceColorHct: sourceColorHct,
-          isDark: isDark,
-          contrastLevel: 0,
-        ),
+        sourceColorHct: sourceColorHct,
+        isDark: isDark,
+        contrastLevel: 0,
+      ),
       DynamicSchemeVariant.content => SchemeContent(
-          sourceColorHct: sourceColorHct,
-          isDark: isDark,
-          contrastLevel: 0,
-        ),
+        sourceColorHct: sourceColorHct,
+        isDark: isDark,
+        contrastLevel: 0,
+      ),
       DynamicSchemeVariant.rainbow => SchemeRainbow(
-          sourceColorHct: sourceColorHct,
-          isDark: isDark,
-          contrastLevel: 0,
-        ),
+        sourceColorHct: sourceColorHct,
+        isDark: isDark,
+        contrastLevel: 0,
+      ),
       DynamicSchemeVariant.fruitSalad => SchemeFruitSalad(
-          sourceColorHct: sourceColorHct,
-          isDark: isDark,
-          contrastLevel: 0,
-        ),
+        sourceColorHct: sourceColorHct,
+        isDark: isDark,
+        contrastLevel: 0,
+      ),
     };
 
     return CustomColor(
@@ -125,17 +125,10 @@ final class CustomColor {
 
   /// Linearly interpolate between two custom colors.
   CustomColor lerp(CustomColor? other, double t) => CustomColor(
-        primary: Color.lerp(primary, other?.primary, t)!,
-        onPrimary: Color.lerp(onPrimary, other?.onPrimary, t)!,
-        primaryContainer: Color.lerp(
-          primaryContainer,
-          other?.primaryContainer,
-          t,
-        )!,
-        onPrimaryContainer: Color.lerp(
-          onPrimaryContainer,
-          other?.onPrimaryContainer,
-          t,
-        )!,
-      );
+    primary: Color.lerp(primary, other?.primary, t)!,
+    onPrimary: Color.lerp(onPrimary, other?.onPrimary, t)!,
+    primaryContainer: Color.lerp(primaryContainer, other?.primaryContainer, t)!,
+    onPrimaryContainer:
+        Color.lerp(onPrimaryContainer, other?.onPrimaryContainer, t)!,
+  );
 }

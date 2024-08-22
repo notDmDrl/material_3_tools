@@ -17,7 +17,8 @@ class _PredictiveBackGestureDetector extends StatefulWidget {
 }
 
 class _PredictiveBackGestureDetectorState
-    extends State<_PredictiveBackGestureDetector> with WidgetsBindingObserver {
+    extends State<_PredictiveBackGestureDetector>
+    with WidgetsBindingObserver {
   /// True when the predictive back gesture is enabled.
   bool get _isEnabled =>
       widget.route.isCurrent && widget.route.popGestureEnabled;
@@ -127,38 +128,32 @@ class _PredictiveBackPageTransition extends StatelessWidget {
     // These values were eyeballed from the Settings app on a physical Pixel 6
     // running Android 14.
     final isCurrent = getIsCurrent();
-    final xShiftTween = isCurrent
-        ? ConstantTween<double>(0)
-        : Tween<double>(begin: _getXShift(context), end: 0);
-    final Animatable<double> scaleTween = isCurrent
-        ? ConstantTween<double>(_scaleFullyOpened)
-        : Tween<double>(
-            begin: _scaleStartTransition,
-            end: _scaleFullyOpened,
-          );
-    final Animatable<double> fadeTween =
-        TweenSequence<double>(<TweenSequenceItem<double>>[
-      TweenSequenceItem<double>(
-        tween: Tween<double>(
-          begin: _opacityFullyOpened,
-          end: _opacityStart,
+    final xShiftTween =
+        isCurrent
+            ? ConstantTween<double>(0)
+            : Tween<double>(begin: _getXShift(context), end: 0);
+    final Animatable<double> scaleTween =
+        isCurrent
+            ? ConstantTween<double>(_scaleFullyOpened)
+            : Tween<double>(
+              begin: _scaleStartTransition,
+              end: _scaleFullyOpened,
+            );
+    final Animatable<double> fadeTween = TweenSequence<double>(
+      <TweenSequenceItem<double>>[
+        TweenSequenceItem<double>(
+          tween: Tween<double>(begin: _opacityFullyOpened, end: _opacityStart),
+          weight: _weightForEndState,
         ),
-        weight: _weightForEndState,
-      ),
-      TweenSequenceItem<double>(
-        tween: Tween<double>(
-          begin: _opacityFullyOpened,
-          end: _opacityStart,
+        TweenSequenceItem<double>(
+          tween: Tween<double>(begin: _opacityFullyOpened, end: _opacityStart),
+          weight: _weightForStartState,
         ),
-        weight: _weightForStartState,
-      ),
-    ]);
+      ],
+    );
 
     return Transform.translate(
-      offset: Offset(
-        xShiftTween.animate(secondaryAnimation).value,
-        0,
-      ),
+      offset: Offset(xShiftTween.animate(secondaryAnimation).value, 0),
       child: Transform.scale(
         scale: scaleTween.animate(secondaryAnimation).value,
         child: Opacity(
@@ -176,36 +171,33 @@ class _PredictiveBackPageTransition extends StatelessWidget {
     final xShiftTween = Tween<double>(begin: 0, end: 1);
     final Animatable<double> scaleTween =
         TweenSequence<double>(<TweenSequenceItem<double>>[
-      TweenSequenceItem<double>(
-        tween: Tween<double>(begin: 0.98, end: 0.98),
-        weight: _weightForStartState,
-      ),
-      TweenSequenceItem<double>(
-        tween: Tween<double>(begin: 0.98, end: 1),
-        weight: _weightForEndState,
-      ),
-    ]);
+          TweenSequenceItem<double>(
+            tween: Tween<double>(begin: 0.98, end: 0.98),
+            weight: _weightForStartState,
+          ),
+          TweenSequenceItem<double>(
+            tween: Tween<double>(begin: 0.98, end: 1),
+            weight: _weightForEndState,
+          ),
+        ]);
     final Animatable<double> fadeTween =
         TweenSequence<double>(<TweenSequenceItem<double>>[
-      TweenSequenceItem<double>(
-        tween: Tween<double>(begin: 0, end: 0.05),
-        weight: 76,
-      ),
-      TweenSequenceItem<double>(
-        tween: Tween<double>(begin: 0.05, end: 0.95),
-        weight: 4,
-      ),
-      TweenSequenceItem<double>(
-        tween: Tween<double>(begin: 0.95, end: 1),
-        weight: _weightForEndState,
-      ),
-    ]);
+          TweenSequenceItem<double>(
+            tween: Tween<double>(begin: 0, end: 0.05),
+            weight: 76,
+          ),
+          TweenSequenceItem<double>(
+            tween: Tween<double>(begin: 0.05, end: 0.95),
+            weight: 4,
+          ),
+          TweenSequenceItem<double>(
+            tween: Tween<double>(begin: 0.95, end: 1),
+            weight: _weightForEndState,
+          ),
+        ]);
 
     return Transform.translate(
-      offset: Offset(
-        xShift - xShiftTween.animate(animation).value * xShift,
-        0,
-      ),
+      offset: Offset(xShift - xShiftTween.animate(animation).value * xShift, 0),
       child: Transform.scale(
         scale: scaleTween.animate(animation).value,
         child: Opacity(
@@ -218,12 +210,12 @@ class _PredictiveBackPageTransition extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => AnimatedBuilder(
-        animation: secondaryAnimation,
-        builder: _secondaryAnimatedBuilder,
-        child: AnimatedBuilder(
-          animation: animation,
-          builder: _primaryAnimatedBuilder,
-          child: child,
-        ),
-      );
+    animation: secondaryAnimation,
+    builder: _secondaryAnimatedBuilder,
+    child: AnimatedBuilder(
+      animation: animation,
+      builder: _primaryAnimatedBuilder,
+      child: child,
+    ),
+  );
 }

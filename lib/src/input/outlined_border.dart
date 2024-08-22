@@ -60,51 +60,50 @@ class OutlinedInputBorder extends InputBorder {
   OutlinedInputBorder copyWith({
     BorderSide? borderSide,
     BorderRadius? borderRadius,
-  }) =>
-      OutlinedInputBorder(
-        borderSide: borderSide ?? this.borderSide,
-        borderRadius: borderRadius ?? this.borderRadius,
-      );
+  }) => OutlinedInputBorder(
+    borderSide: borderSide ?? this.borderSide,
+    borderRadius: borderRadius ?? this.borderRadius,
+  );
 
   @override
   EdgeInsetsGeometry get dimensions => EdgeInsets.all(borderSide.width);
 
   @override
   OutlinedInputBorder scale(double t) => OutlinedInputBorder(
-        borderSide: borderSide.scale(t),
-        borderRadius: borderRadius * t,
+    borderSide: borderSide.scale(t),
+    borderRadius: borderRadius * t,
+  );
+
+  @override
+  ShapeBorder? lerpFrom(ShapeBorder? a, double t) =>
+      a is OutlinedInputBorder
+          ? OutlinedInputBorder(
+            borderSide: BorderSide.lerp(a.borderSide, borderSide, t),
+            borderRadius: BorderRadius.lerp(a.borderRadius, borderRadius, t)!,
+          )
+          : super.lerpFrom(a, t);
+
+  @override
+  ShapeBorder? lerpTo(ShapeBorder? b, double t) =>
+      b is OutlinedInputBorder
+          ? OutlinedInputBorder(
+            borderSide: BorderSide.lerp(borderSide, b.borderSide, t),
+            borderRadius: BorderRadius.lerp(borderRadius, b.borderRadius, t)!,
+          )
+          : super.lerpTo(b, t);
+
+  @override
+  Path getInnerPath(Rect rect, {TextDirection? textDirection}) =>
+      Path()..addRRect(
+        borderRadius
+            .resolve(textDirection)
+            .toRRect(rect)
+            .deflate(borderSide.width),
       );
 
   @override
-  ShapeBorder? lerpFrom(ShapeBorder? a, double t) => a is OutlinedInputBorder
-      ? OutlinedInputBorder(
-          borderSide: BorderSide.lerp(a.borderSide, borderSide, t),
-          borderRadius: BorderRadius.lerp(a.borderRadius, borderRadius, t)!,
-        )
-      : super.lerpFrom(a, t);
-
-  @override
-  ShapeBorder? lerpTo(ShapeBorder? b, double t) => b is OutlinedInputBorder
-      ? OutlinedInputBorder(
-          borderSide: BorderSide.lerp(borderSide, b.borderSide, t),
-          borderRadius: BorderRadius.lerp(borderRadius, b.borderRadius, t)!,
-        )
-      : super.lerpTo(b, t);
-
-  @override
-  Path getInnerPath(Rect rect, {TextDirection? textDirection}) => Path()
-    ..addRRect(
-      borderRadius
-          .resolve(textDirection)
-          .toRRect(rect)
-          .deflate(borderSide.width),
-    );
-
-  @override
-  Path getOuterPath(Rect rect, {TextDirection? textDirection}) => Path()
-    ..addRRect(
-      borderRadius.resolve(textDirection).toRRect(rect),
-    );
+  Path getOuterPath(Rect rect, {TextDirection? textDirection}) =>
+      Path()..addRRect(borderRadius.resolve(textDirection).toRRect(rect));
 
   @override
   void paint(

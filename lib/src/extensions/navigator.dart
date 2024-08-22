@@ -32,14 +32,13 @@ extension NavigatorStateX on NavigatorState {
     required WidgetBuilder builder,
     bool fullscreenDialog = false,
     RouteSettings? settings,
-  }) =>
-      push(
-        M3MaterialPageRoute<T>(
-          builder: builder,
-          settings: settings,
-          fullscreenDialog: fullscreenDialog,
-        ),
-      );
+  }) => push(
+    M3MaterialPageRoute<T>(
+      builder: builder,
+      settings: settings,
+      fullscreenDialog: fullscreenDialog,
+    ),
+  );
 
   /// Replace the current route of the navigator by pushing the given route and
   /// then disposing the previous route once the new route has finished
@@ -65,13 +64,12 @@ extension NavigatorStateX on NavigatorState {
     bool fullscreenDialog = false,
     RouteSettings? settings,
     TO? result,
-  }) =>
-      pushReplacement<T, TO>(
-        M3MaterialPageRoute<T>(
-          builder: builder,
-          settings: settings,
-          fullscreenDialog: fullscreenDialog,
-        ),
-        result: result,
-      );
+  }) => pushReplacement<T, TO>(
+    M3MaterialPageRoute<T>(
+      builder: builder,
+      settings: settings,
+      fullscreenDialog: fullscreenDialog,
+    ),
+    result: result,
+  );
 }

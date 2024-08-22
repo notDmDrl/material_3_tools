@@ -75,10 +75,7 @@ class InteractionStatesOverlay implements WidgetStateProperty<Color?> {
 @immutable
 class ForegroundStateOverlay implements WidgetStateProperty<Color?> {
   /// Creates Material 3 foreground interaction state overlay.
-  const ForegroundStateOverlay({
-    required this.color,
-    this.disabledColor,
-  });
+  const ForegroundStateOverlay({required this.color, this.disabledColor});
 
   /// Enabled color.
   ///
@@ -114,10 +111,7 @@ class ForegroundStateOverlay implements WidgetStateProperty<Color?> {
 @immutable
 class BackgroundStateOverlay implements WidgetStateProperty<Color?> {
   /// Creates Material 3 background interaction state overlay.
-  const BackgroundStateOverlay({
-    required this.color,
-    this.disabledColor,
-  });
+  const BackgroundStateOverlay({required this.color, this.disabledColor});
 
   /// Enabled color.
   ///

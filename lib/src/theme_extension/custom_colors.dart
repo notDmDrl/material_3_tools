@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../custom_color.dart';
+import '../custom_color.dart' show CustomColor;
 
 /// Defines a set of [CustomColor] to be defined inside [ThemeData.extensions].
 ///
@@ -38,7 +38,7 @@ import '../custom_color.dart';
 ///
 /// Accessing values:
 ///
-/// To directly get required color use [CustomColors.maybeColorOf]:
+/// To directly get required color use [CustomColors.of]:
 ///
 /// ```dart
 /// final color = CustomColors.of(context, AppCustomColors.red);
@@ -73,16 +73,11 @@ final class CustomColors extends ThemeExtension<CustomColors> {
 
   /// Creates a new map of [CustomColor]s.
   @override
-  CustomColors copyWith({
-    Map<Object, CustomColor>? colors,
-  }) =>
+  CustomColors copyWith({Map<Object, CustomColor>? colors}) =>
       CustomColors(colors ?? this.colors);
 
   @override
-  CustomColors lerp(
-    covariant ThemeExtension<CustomColors> other,
-    double t,
-  ) {
+  CustomColors lerp(covariant ThemeExtension<CustomColors> other, double t) {
     if (other is! CustomColors) {
       return this;
     }

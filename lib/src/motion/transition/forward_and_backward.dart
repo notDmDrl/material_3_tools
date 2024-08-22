@@ -27,9 +27,7 @@ final class ForwardAndBackwardTransitionsBuilder
     extends PageTransitionsBuilder {
   /// Constructs a page transition animation that matches the transition used in
   /// Material 3 and Android 12+
-  const ForwardAndBackwardTransitionsBuilder({
-    this.usePredictiveBack = false,
-  });
+  const ForwardAndBackwardTransitionsBuilder({this.usePredictiveBack = false});
 
   /// Whether to use the predictive back gesture on supported devices
   @experimental
@@ -51,28 +49,25 @@ final class ForwardAndBackwardTransitionsBuilder
       );
     }
 
-    return _PredictiveBackGestureDetector(
-      route: route,
-      builder: (context) {
-        // Only do a predictive back transition when the user is performing a
-        // pop gesture. Otherwise, for things like button presses or other
-        // programmatic navigation, fall back to ZoomPageTransitionsBuilder.
-        if (route.popGestureInProgress) {
-          return _PredictiveBackPageTransition(
-            animation: animation,
-            secondaryAnimation: secondaryAnimation,
-            getIsCurrent: () => route.isCurrent,
-            child: child,
-          );
-        }
-
-        return ForwardAndBackwardTransition(
+    return _PredictiveBackGestureDetector(route: route, builder: (context) {
+      // Only do a predictive back transition when the user is performing a
+      // pop gesture. Otherwise, for things like button presses or other
+      // programmatic navigation, fall back to ZoomPageTransitionsBuilder.
+      if (route.popGestureInProgress) {
+        return _PredictiveBackPageTransition(
           animation: animation,
           secondaryAnimation: secondaryAnimation,
+          getIsCurrent: () => route.isCurrent,
           child: child,
         );
-      },
-    );
+      }
+
+      return ForwardAndBackwardTransition(
+        animation: animation,
+        secondaryAnimation: secondaryAnimation,
+        child: child,
+      );
+    });
   }
 }
 
@@ -109,31 +104,25 @@ class ForwardAndBackwardTransition extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => DualTransitionBuilder(
-        animation: animation,
-        forwardBuilder: _EnterTransition.forward,
-        reverseBuilder: _ExitTransition.reverse,
-        child: DualTransitionBuilder(
-          animation: ReverseAnimation(secondaryAnimation),
-          forwardBuilder: _EnterTransition.reverse,
-          reverseBuilder: _ExitTransition.forward,
-          child: child,
-        ),
-      );
+    animation: animation,
+    forwardBuilder: _EnterTransition.forward,
+    reverseBuilder: _ExitTransition.reverse,
+    child: DualTransitionBuilder(
+      animation: ReverseAnimation(secondaryAnimation),
+      forwardBuilder: _EnterTransition.reverse,
+      reverseBuilder: _ExitTransition.forward,
+      child: child,
+    ),
+  );
 }
 
 @immutable
 class _EnterTransition extends StatelessWidget {
-  const _EnterTransition.forward(
-    BuildContext _,
-    this.animation,
-    this.child,
-  ) : reverse = false;
+  const _EnterTransition.forward(BuildContext _, this.animation, this.child)
+    : reverse = false;
 
-  const _EnterTransition.reverse(
-    BuildContext _,
-    this.animation,
-    this.child,
-  ) : reverse = true;
+  const _EnterTransition.reverse(BuildContext _, this.animation, this.child)
+    : reverse = true;
 
   final Animation<double> animation;
   final Widget? child;
@@ -154,10 +143,11 @@ class _EnterTransition extends StatelessWidget {
       opacity: _fadeInTransition.animate(animation),
       child: AnimatedBuilder(
         animation: animation,
-        builder: (context, child) => Transform.translate(
-          offset: slideInTransition.evaluate(animation),
-          child: child,
-        ),
+        builder:
+            (context, child) => Transform.translate(
+              offset: slideInTransition.evaluate(animation),
+              child: child,
+            ),
         child: child,
       ),
     );
@@ -166,17 +156,11 @@ class _EnterTransition extends StatelessWidget {
 
 @immutable
 class _ExitTransition extends StatelessWidget {
-  const _ExitTransition.forward(
-    BuildContext _,
-    this.animation,
-    this.child,
-  ) : reverse = false;
+  const _ExitTransition.forward(BuildContext _, this.animation, this.child)
+    : reverse = false;
 
-  const _ExitTransition.reverse(
-    BuildContext _,
-    this.animation,
-    this.child,
-  ) : reverse = true;
+  const _ExitTransition.reverse(BuildContext _, this.animation, this.child)
+    : reverse = true;
 
   final Animation<double> animation;
   final bool reverse;
@@ -201,10 +185,11 @@ class _ExitTransition extends StatelessWidget {
         color: fillColor,
         child: AnimatedBuilder(
           animation: animation,
-          builder: (context, child) => Transform.translate(
-            offset: slideOutTransition.evaluate(animation),
-            child: child,
-          ),
+          builder:
+              (context, child) => Transform.translate(
+                offset: slideOutTransition.evaluate(animation),
+                child: child,
+              ),
           child: child,
         ),
       ),

@@ -72,23 +72,23 @@ base class M3ButtonStyle extends ButtonStyle {
     super.tapTargetSize = MaterialTapTargetSize.shrinkWrap,
     super.visualDensity,
     super.splashFactory = InkSparkle.splashFactory,
-  })  : _textStyle = textStyle,
-        _foregroundColor = foregroundColor,
-        _disabledColor = disabledColor,
-        _backgroundColor = backgroundColor,
-        _shadowColor = shadowColor,
-        _padding = padding,
-        _minimumSize = minimumSize,
-        _fixedSize = fixedSize,
-        _shape = shape,
-        _maximumSize = maximumSize,
-        _mouseCursor = mouseCursor,
-        super(
-          animationDuration: kThemeChangeDuration,
-          enableFeedback: true,
-          alignment: Alignment.center,
-          surfaceTintColor: const WidgetStatePropertyAll(Colors.transparent),
-        );
+  }) : _textStyle = textStyle,
+       _foregroundColor = foregroundColor,
+       _disabledColor = disabledColor,
+       _backgroundColor = backgroundColor,
+       _shadowColor = shadowColor,
+       _padding = padding,
+       _minimumSize = minimumSize,
+       _fixedSize = fixedSize,
+       _shape = shape,
+       _maximumSize = maximumSize,
+       _mouseCursor = mouseCursor,
+       super(
+         animationDuration: kThemeChangeDuration,
+         enableFeedback: true,
+         alignment: Alignment.center,
+         surfaceTintColor: const WidgetStatePropertyAll(Colors.transparent),
+       );
 
   /// Padding values for [ElevatedButton], [FilledButton] and [OutlinedButton].
   ///
@@ -107,20 +107,25 @@ base class M3ButtonStyle extends ButtonStyle {
   /// * [ElevatedButton] - <https://m3.material.io/components/buttons/specs#1f1b4b99-9a1c-4f7e-b713-e9c286c771e0>;
   /// * [FilledButton] - <https://m3.material.io/components/buttons/specs#0697c92a-54ba-4921-b28a-0f4abeea0a85>;
   /// * [OutlinedButton] - <https://m3.material.io/components/buttons/specs#a3fc4f33-447f-45e0-93a8-35d538e0faa6>
-  static const EdgeInsets iconLayoutPadding =
-      EdgeInsets.only(left: 16, right: 24);
+  static const EdgeInsets iconLayoutPadding = EdgeInsets.only(
+    left: 16,
+    right: 24,
+  );
 
   /// Padding values for [TextButton] taken from
   /// <https://m3.material.io/components/buttons/specs#bff80ee9-28fb-41a0-a671-0ab29ffc04d5>
-  static const EdgeInsets textButtonLayoutPadding =
-      EdgeInsets.symmetric(horizontal: 12);
+  static const EdgeInsets textButtonLayoutPadding = EdgeInsets.symmetric(
+    horizontal: 12,
+  );
 
   /// Padding values for [TextButton.icon] taken from
   /// <https://m3.material.io/components/buttons/specs#bff80ee9-28fb-41a0-a671-0ab29ffc04d5>
-  static const EdgeInsets textButtonIconLayoutPadding =
-      EdgeInsets.only(left: 12, right: 16);
+  static const EdgeInsets textButtonIconLayoutPadding = EdgeInsets.only(
+    left: 12,
+    right: 16,
+  );
 
-  /// Helper method used to scale [M3ButtonStyle].**padding values.
+  /// Helper method used to scale [M3ButtonStyle].**Padding values.
   static EdgeInsetsGeometry scaledPaddingOf(
     BuildContext context,
     EdgeInsets padding,
@@ -157,18 +162,19 @@ base class M3ButtonStyle extends ButtonStyle {
       ButtonStyleButton.allOrNull(_textStyle);
 
   @override
-  WidgetStateProperty<Color?>? get backgroundColor => this is M3TextButtonStyle
-      ? null
-      : BackgroundStateOverlay(
-          color: _backgroundColor,
-          disabledColor: _disabledColor,
-        );
+  WidgetStateProperty<Color?>? get backgroundColor =>
+      this is M3TextButtonStyle
+          ? null
+          : BackgroundStateOverlay(
+            color: _backgroundColor,
+            disabledColor: _disabledColor,
+          );
 
   @override
   WidgetStateProperty<Color?> get foregroundColor => ForegroundStateOverlay(
-        color: _foregroundColor,
-        disabledColor: _disabledColor,
-      );
+    color: _foregroundColor,
+    disabledColor: _disabledColor,
+  );
 
   @override
   WidgetStateProperty<Color?> get overlayColor =>

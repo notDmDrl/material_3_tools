@@ -31,19 +31,19 @@ final class TopLevelTransition extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => PageTransitionSwitcher(
-        transitionBuilder: (child, animation, secondaryAnimation) {
-          return _ZoomedFadeInFadeOut(
-            listenable: animation,
-            applyScaleTransition: applyScaleTransition,
-            child: _ZoomedFadeInFadeOut(
-              listenable: ReverseAnimation(secondaryAnimation),
-              applyScaleTransition: applyScaleTransition,
-              child: child,
-            ),
-          );
-        },
-        child: child,
+    transitionBuilder: (child, animation, secondaryAnimation) {
+      return _ZoomedFadeInFadeOut(
+        listenable: animation,
+        applyScaleTransition: applyScaleTransition,
+        child: _ZoomedFadeInFadeOut(
+          listenable: ReverseAnimation(secondaryAnimation),
+          applyScaleTransition: applyScaleTransition,
+          child: child,
+        ),
       );
+    },
+    child: child,
+  );
 }
 
 @immutable
@@ -60,10 +60,7 @@ class _ZoomedFadeInFadeOut extends AnimatedWidget {
   static final _inCurve = CurveTween(curve: MaterialEasing.legacy);
 
   static final _scaleIn = TweenSequence<double>([
-    TweenSequenceItem(
-      tween: ConstantTween(0.92),
-      weight: 6 / 20,
-    ),
+    TweenSequenceItem(tween: ConstantTween(0.92), weight: 6 / 20),
     TweenSequenceItem(
       tween: Tween<double>(begin: 0.92, end: 1).chain(_inCurve),
       weight: 14 / 20,
@@ -71,10 +68,7 @@ class _ZoomedFadeInFadeOut extends AnimatedWidget {
   ]);
 
   static final _fadeInOpacity = TweenSequence<double>([
-    TweenSequenceItem(
-      tween: ConstantTween(0),
-      weight: 6 / 20,
-    ),
+    TweenSequenceItem(tween: ConstantTween(0), weight: 6 / 20),
     TweenSequenceItem(
       tween: Tween<double>(begin: 0, end: 1).chain(_inCurve),
       weight: 14 / 20,
@@ -107,10 +101,7 @@ class _ZoomedFadeInFadeOut extends AnimatedWidget {
       tween: Tween<double>(begin: 1, end: 0).chain(_outCurve),
       weight: 6 / 20,
     ),
-    TweenSequenceItem(
-      tween: ConstantTween(0),
-      weight: 14 / 20,
-    ),
+    TweenSequenceItem(tween: ConstantTween(0), weight: 14 / 20),
   ]);
 
   static FadeTransition _reverse(
@@ -118,20 +109,18 @@ class _ZoomedFadeInFadeOut extends AnimatedWidget {
     Animation<double> animation,
     Widget? child,
   ) =>
-      FadeTransition(
-        opacity: _fadeOutOpacity.animate(animation),
-        child: child,
-      );
+      FadeTransition(opacity: _fadeOutOpacity.animate(animation), child: child);
 
   @override
   Widget build(BuildContext context) => DualTransitionBuilder(
-        animation: listenable as Animation<double>,
-        forwardBuilder: (_, animation, child) => _forward(
+    animation: listenable as Animation<double>,
+    forwardBuilder:
+        (_, animation, child) => _forward(
           animation,
           child,
           applyScaleTransition: applyScaleTransition,
         ),
-        reverseBuilder: _reverse,
-        child: child,
-      );
+    reverseBuilder: _reverse,
+    child: child,
+  );
 }
