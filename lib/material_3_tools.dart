@@ -32,3 +32,4 @@ export 'src/page_route.dart';
 export 'src/selectable_icon.dart';
 export 'src/shape.dart';
 export 'src/theme_extension/custom_colors.dart';
+export 'src/typography.dart';

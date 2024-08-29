@@ -1,6 +1,6 @@
-import 'package:flutter/rendering.dart' show BorderRadius, Radius;
+import 'package:flutter/rendering.dart' show BorderRadiusDirectional, Radius;
 
-/// [BorderRadius] constants which represent Material 3 [shape system](https://m3.material.io/styles/shape/overview).
+/// [BorderRadiusDirectional] constants which represent Material 3 [shape system](https://m3.material.io/styles/shape/overview).
 ///
 /// See also:
 ///
@@ -8,236 +8,55 @@ import 'package:flutter/rendering.dart' show BorderRadius, Radius;
 /// <https://m3.material.io/styles/shape/shape-scale-tokens>
 abstract final class Shapes {
   /// Baseline shape with all corners having `radius` of zero.
-  static const BorderRadius none = BorderRadius.zero;
+  static const BorderRadiusDirectional none = BorderRadiusDirectional.zero;
 
   /// Baseline shape with all corners having `radius` of 4.0.
-  static const BorderRadius extraSmall = BorderRadius.all(
+  static const BorderRadiusDirectional extraSmall = BorderRadiusDirectional.all(
     CornerSize.extraSmall,
   );
 
-  /// Baseline shape with top corners having `radius` of 4.0 and bottom corners
-  /// having `radius` of 0.0.
-  static const BorderRadius extraSmallTop = BorderRadius.vertical(
-    top: CornerSize.extraSmall,
-  );
-
-  /// Baseline shape with bottom corners having `radius` of 4.0 and top corners
-  /// having `radius` of 0.0.
-  static const BorderRadius extraSmallBottom = BorderRadius.vertical(
-    bottom: CornerSize.extraSmall,
-  );
-
-  /// Baseline shape with left corners having `radius` of 4.0 and right corners
-  /// having `radius` of 0.0.
-  static const BorderRadius extraSmallLeft = BorderRadius.horizontal(
-    left: CornerSize.extraSmall,
-  );
-
-  /// Baseline shape with right corners having `radius` of 4.0 and left corners
-  /// having `radius` of 0.0.
-  static const BorderRadius extraSmallRight = BorderRadius.horizontal(
-    right: CornerSize.extraSmall,
-  );
-
   /// Baseline shape with all corners having `radius` of 8.0.
-  static const BorderRadius small = BorderRadius.all(CornerSize.small);
-
-  /// Baseline shape with top corners having `radius` of 8.0 and bottom corners
-  /// having `radius` of 0.0.
-  static const BorderRadius smallTop = BorderRadius.vertical(
-    top: CornerSize.small,
-  );
-
-  /// Baseline shape with bottom corners having `radius` of 8.0 and top corners
-  /// having `radius` of 0.0.
-  static const BorderRadius smallBottom = BorderRadius.vertical(
-    bottom: CornerSize.small,
-  );
-
-  /// Baseline shape with left corners having `radius` of 8.0 and right corners
-  /// having `radius` of 0.0.
-  static const BorderRadius smallLeft = BorderRadius.horizontal(
-    left: CornerSize.small,
-  );
-
-  /// Baseline shape with right corners having `radius` of 8.0 and left corners
-  /// having `radius` of 0.0.
-  static const BorderRadius smallRight = BorderRadius.horizontal(
-    right: CornerSize.small,
+  static const BorderRadiusDirectional small = BorderRadiusDirectional.all(
+    CornerSize.small,
   );
 
   /// Baseline shape with all corners having `radius` of 12.0.
-  static const BorderRadius medium = BorderRadius.all(CornerSize.medium);
-
-  /// Baseline shape with top corners having `radius` of 12.0 and bottom corners
-  /// having `radius` of 0.0.
-  static const BorderRadius mediumTop = BorderRadius.vertical(
-    top: CornerSize.medium,
-  );
-
-  /// Baseline shape with bottom corners having `radius` of 12.0 and top corners
-  /// having `radius` of 0.0.
-  static const BorderRadius mediumBottom = BorderRadius.vertical(
-    bottom: CornerSize.medium,
-  );
-
-  /// Baseline shape with left corners having `radius` of 12.0 and right corners
-  /// having `radius` of 0.0.
-  static const BorderRadius mediumLeft = BorderRadius.horizontal(
-    left: CornerSize.medium,
-  );
-
-  /// Baseline shape with right corners having `radius` of 12.0 and left corners
-  /// having `radius` of 0.0.
-  static const BorderRadius mediumRight = BorderRadius.horizontal(
-    right: CornerSize.medium,
+  static const BorderRadiusDirectional medium = BorderRadiusDirectional.all(
+    CornerSize.medium,
   );
 
   /// Baseline shape with all corners having `radius` of 16.0.
-  static const BorderRadius large = BorderRadius.all(CornerSize.large);
-
-  /// Baseline shape with top corners having `radius` of 16.0 and bottom corners
-  /// having `radius` of 0.0.
-  static const BorderRadius largeTop = BorderRadius.vertical(
-    top: CornerSize.large,
-  );
-
-  /// Baseline shape with bottom corners having `radius` of 16.0 and top corners
-  /// having `radius` of 0.0.
-  static const BorderRadius largeBottom = BorderRadius.vertical(
-    bottom: CornerSize.large,
-  );
-
-  /// Baseline shape with left corners having `radius` of 16.0 and right corners
-  /// having `radius` of 0.0.
-  static const BorderRadius largeLeft = BorderRadius.horizontal(
-    left: CornerSize.large,
-  );
-
-  /// Baseline shape with right corners having `radius` of 16.0 and left corners
-  /// having `radius` of 0.0.
-  static const BorderRadius largeRight = BorderRadius.horizontal(
-    right: CornerSize.large,
+  static const BorderRadiusDirectional large = BorderRadiusDirectional.all(
+    CornerSize.large,
   );
 
   /// Baseline shape with all corners having `radius` of 20.0.
-  static const BorderRadius largeIncreased = BorderRadius.all(
+  static const BorderRadiusDirectional largeIncreased =
+      BorderRadiusDirectional.all(
     CornerSize.largeIncreased,
   );
 
-  /// Baseline shape with top corners having `radius` of 20.0 and bottom corners
-  /// having `radius` of 0.0.
-  static const BorderRadius largeIncreasedTop = BorderRadius.vertical(
-    top: CornerSize.largeIncreased,
-  );
-
-  /// Baseline shape with bottom corners having `radius` of 20.0 and top corners
-  /// having `radius` of 0.0.
-  static const BorderRadius largeIncreasedBottom = BorderRadius.vertical(
-    bottom: CornerSize.largeIncreased,
-  );
-
-  /// Baseline shape with left corners having `radius` of 20.0 and right corners
-  /// having `radius` of 0.0.
-  static const BorderRadius largeIncreasedLeft = BorderRadius.horizontal(
-    left: CornerSize.largeIncreased,
-  );
-
-  /// Baseline shape with right corners having `radius` of 20.0 and left corners
-  /// having `radius` of 0.0.
-  static const BorderRadius largeIncreasedRight = BorderRadius.horizontal(
-    right: CornerSize.largeIncreased,
-  );
-
   /// Baseline shape with all corners having `radius` of 28.0.
-  static const BorderRadius extraLarge = BorderRadius.all(
+  static const BorderRadiusDirectional extraLarge = BorderRadiusDirectional.all(
     CornerSize.extraLarge,
   );
 
-  /// Baseline shape with top corners having `radius` of 28.0 and bottom corners
-  /// having `radius` of 0.0.
-  static const BorderRadius extraLargeTop = BorderRadius.vertical(
-    top: CornerSize.extraLarge,
-  );
-
-  /// Baseline shape with bottom corners having `radius` of 28.0 and top corners
-  /// having `radius` of 0.0.
-  static const BorderRadius extraLargeBottom = BorderRadius.vertical(
-    bottom: CornerSize.extraLarge,
-  );
-
-  /// Baseline shape with left corners having `radius` of 28.0 and right corners
-  /// having `radius` of 0.0.
-  static const BorderRadius extraLargeLeft = BorderRadius.horizontal(
-    left: CornerSize.extraLarge,
-  );
-
-  /// Baseline shape with right corners having `radius` of 28.0 and left corners
-  /// having `radius` of 0.0.
-  static const BorderRadius extraLargeRight = BorderRadius.horizontal(
-    right: CornerSize.extraLarge,
-  );
-
   /// Baseline shape with all corners having `radius` of 32.0.
-  static const BorderRadius extraLargeIncreased = BorderRadius.all(
+  static const BorderRadiusDirectional extraLargeIncreased =
+      BorderRadiusDirectional.all(
     CornerSize.extraLargeIncreased,
   );
 
-  /// Baseline shape with top corners having `radius` of 32.0 and bottom corners
-  /// having `radius` of 0.0.
-  static const BorderRadius extraLargeIncreasedTop = BorderRadius.vertical(
-    top: CornerSize.extraLargeIncreased,
-  );
-
-  /// Baseline shape with bottom corners having `radius` of 32.0 and top corners
-  /// having `radius` of 0.0.
-  static const BorderRadius extraLargeIncreasedBottom = BorderRadius.vertical(
-    bottom: CornerSize.extraLargeIncreased,
-  );
-
-  /// Baseline shape with left corners having `radius` of 32.0 and right corners
-  /// having `radius` of 0.0.
-  static const BorderRadius extraLargeIncreasedLeft = BorderRadius.horizontal(
-    left: CornerSize.extraLargeIncreased,
-  );
-
-  /// Baseline shape with right corners having `radius` of 32.0 and left corners
-  /// having `radius` of 0.0.
-  static const BorderRadius extraLargeIncreasedRight = BorderRadius.horizontal(
-    right: CornerSize.extraLargeIncreased,
-  );
-
   /// Baseline shape with all corners having `radius` of 48.0.
-  static const BorderRadius extraExtraLarge = BorderRadius.all(
+  static const BorderRadiusDirectional extraExtraLarge =
+      BorderRadiusDirectional.all(
     CornerSize.extraExtraLarge,
   );
 
-  /// Baseline shape with top corners having `radius` of 48.0 and bottom corners
-  /// having `radius` of 0.0.
-  static const BorderRadius extraExtraLargeTop = BorderRadius.vertical(
-    top: CornerSize.extraExtraLarge,
-  );
-
-  /// Baseline shape with bottom corners having `radius` of 48.0 and top corners
-  /// having `radius` of 0.0.
-  static const BorderRadius extraExtraLargeBottom = BorderRadius.vertical(
-    bottom: CornerSize.extraExtraLarge,
-  );
-
-  /// Baseline shape with left corners having `radius` of 48.0 and right corners
-  /// having `radius` of 0.0.
-  static const BorderRadius extraExtraLargeLeft = BorderRadius.horizontal(
-    left: CornerSize.extraExtraLarge,
-  );
-
-  /// Baseline shape with right corners having `radius` of 48.0 and left corners
-  /// having `radius` of 0.0.
-  static const BorderRadius extraExtraLargeRight = BorderRadius.horizontal(
-    right: CornerSize.extraExtraLarge,
-  );
-
   /// Baseline shape with all corners having `radius` of 90.0.
-  static const BorderRadius full = BorderRadius.all(CornerSize.full);
+  static const BorderRadiusDirectional full = BorderRadiusDirectional.all(
+    CornerSize.full,
+  );
 }
 
 /// [Radius.circular] constants which represent Material 3 [shape system](https://m3.material.io/styles/shape/overview).

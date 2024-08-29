@@ -24,8 +24,8 @@ final class M3MaterialPageRoute<T> extends PageRoute<T>
     required this.builder,
     super.settings,
     super.fullscreenDialog,
-  }) : maintainState = true,
-       super(barrierDismissible: false, allowSnapshotting: true);
+  })  : maintainState = true,
+        super(barrierDismissible: false, allowSnapshotting: true);
 
   /// Builds the primary contents of the route.
   final WidgetBuilder builder;
@@ -63,14 +63,17 @@ mixin _M3MaterialRouteTransitionMixin<T> on PageRoute<T> {
   @override
   bool canTransitionTo(
     TransitionRoute<dynamic> nextRoute,
-  ) => switch (nextRoute) {
-    _M3MaterialRouteTransitionMixin(:final fullscreenDialog) =>
-      !fullscreenDialog,
-    MaterialRouteTransitionMixin(:final fullscreenDialog) => !fullscreenDialog,
-    CupertinoRouteTransitionMixin(:final fullscreenDialog) => !fullscreenDialog,
-    PopupRoute() => false,
-    _ => true,
-  };
+  ) =>
+      switch (nextRoute) {
+        _M3MaterialRouteTransitionMixin(:final fullscreenDialog) =>
+          !fullscreenDialog,
+        MaterialRouteTransitionMixin(:final fullscreenDialog) =>
+          !fullscreenDialog,
+        CupertinoRouteTransitionMixin(:final fullscreenDialog) =>
+          !fullscreenDialog,
+        PopupRoute() => false,
+        _ => true,
+      };
 
   @override
   Widget buildPage(
@@ -87,14 +90,16 @@ mixin _M3MaterialRouteTransitionMixin<T> on PageRoute<T> {
     );
   }
 
-  static const _kTransitionsTheme = PageTransitionsTheme(builders: {
-    TargetPlatform.android: ForwardAndBackwardTransitionsBuilder(),
-    TargetPlatform.windows: ForwardAndBackwardTransitionsBuilder(),
-    TargetPlatform.linux: ForwardAndBackwardTransitionsBuilder(),
-    TargetPlatform.fuchsia: ForwardAndBackwardTransitionsBuilder(),
-    TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
-    TargetPlatform.macOS: CupertinoPageTransitionsBuilder(),
-  });
+  static const _kTransitionsTheme = PageTransitionsTheme(
+    builders: {
+      TargetPlatform.android: ForwardAndBackwardTransitionsBuilder(),
+      TargetPlatform.windows: ForwardAndBackwardTransitionsBuilder(),
+      TargetPlatform.linux: ForwardAndBackwardTransitionsBuilder(),
+      TargetPlatform.fuchsia: ForwardAndBackwardTransitionsBuilder(),
+      TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
+      TargetPlatform.macOS: CupertinoPageTransitionsBuilder(),
+    },
+  );
 
   @override
   Widget buildTransitions(
@@ -102,11 +107,12 @@ mixin _M3MaterialRouteTransitionMixin<T> on PageRoute<T> {
     Animation<double> animation,
     Animation<double> secondaryAnimation,
     Widget child,
-  ) => _kTransitionsTheme.buildTransitions<T>(
-    this,
-    context,
-    animation,
-    secondaryAnimation,
-    child,
-  );
+  ) =>
+      _kTransitionsTheme.buildTransitions<T>(
+        this,
+        context,
+        animation,
+        secondaryAnimation,
+        child,
+      );
 }

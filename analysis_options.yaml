@@ -10,3 +10,5 @@ linter:
     unnecessary_to_list_in_spreads: true
     unnecessary_null_aware_operator_on_extension_on_nullable: true
     depend_on_referenced_packages: false
+    use_truncating_division: true
+    omit_obvious_local_variable_types: true

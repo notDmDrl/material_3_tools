@@ -6,7 +6,7 @@ import 'package:meta/meta.dart';
 import 'page_route.dart';
 
 // Copied from [MaterialApp] file
-const TextStyle _errorTextStyle = TextStyle(
+const TextStyle _kErrorTextStyle = TextStyle(
   color: Color(0xD0FF0000),
   fontFamily: 'monospace',
   fontSize: 48,
@@ -35,14 +35,13 @@ class M3MaterialApp extends StatefulWidget {
     this.navigatorKey,
     this.scaffoldMessengerKey,
     this.home,
-    Map<String, WidgetBuilder> this.routes = const <String, WidgetBuilder>{},
+    this.routes = const <String, WidgetBuilder>{},
     this.initialRoute,
     this.onGenerateRoute,
     this.onGenerateInitialRoutes,
     this.onUnknownRoute,
     this.onNavigationNotification,
-    List<NavigatorObserver> this.navigatorObservers =
-        const <NavigatorObserver>[],
+    this.navigatorObservers = const <NavigatorObserver>[],
     this.builder,
     this.title = '',
     this.onGenerateTitle,
@@ -82,7 +81,7 @@ class M3MaterialApp extends StatefulWidget {
   final Widget? home;
 
   /// See [MaterialApp.routes].
-  final Map<String, WidgetBuilder>? routes;
+  final Map<String, WidgetBuilder> routes;
 
   /// See [MaterialApp.initialRoute].
   final String? initialRoute;
@@ -98,10 +97,10 @@ class M3MaterialApp extends StatefulWidget {
 
   /// See [MaterialApp.onNavigationNotification].
   final NotificationListenerCallback<NavigationNotification>?
-  onNavigationNotification;
+      onNavigationNotification;
 
   /// See [MaterialApp.navigatorObservers].
-  final List<NavigatorObserver>? navigatorObservers;
+  final List<NavigatorObserver> navigatorObservers;
 
   /// See [MaterialApp.builder].
   final TransitionBuilder? builder;
@@ -189,11 +188,11 @@ class M3MaterialApp extends StatefulWidget {
 
   /// The [HeroController] used for Material page transitions.
   ///
-  /// Used by the [MaterialApp].
+  /// Used by the [M3MaterialApp].
   static HeroController createMaterialHeroController() => HeroController(
-    createRectTween:
-        (begin, end) => MaterialRectArcTween(begin: begin, end: end),
-  );
+        createRectTween: (begin, end) =>
+            MaterialRectArcTween(begin: begin, end: end),
+      );
 }
 
 class _M3MaterialAppState extends State<M3MaterialApp> {
@@ -212,23 +211,23 @@ class _M3MaterialAppState extends State<M3MaterialApp> {
     super.dispose();
   }
 
-  Iterable<LocalizationsDelegate<dynamic>> get _localizationsDelegates {
-    return <LocalizationsDelegate<dynamic>>[
-      if (widget.localizationsDelegates != null)
-        ...widget.localizationsDelegates!,
-      DefaultMaterialLocalizations.delegate,
-      DefaultCupertinoLocalizations.delegate,
-    ];
-  }
+  Iterable<LocalizationsDelegate<dynamic>> get _localizationsDelegates =>
+      <LocalizationsDelegate<dynamic>>[
+        if (widget.localizationsDelegates != null)
+          ...widget.localizationsDelegates!,
+        DefaultMaterialLocalizations.delegate,
+        DefaultCupertinoLocalizations.delegate,
+      ];
 
-  Widget _inspectorSelectButtonBuilder(
-    BuildContext context,
+  static Widget _inspectorSelectButtonBuilder(
+    BuildContext _,
     VoidCallback onPressed,
-  ) => FloatingActionButton(
-    onPressed: onPressed,
-    mini: true,
-    child: const Icon(Icons.search),
-  );
+  ) =>
+      FloatingActionButton(
+        onPressed: onPressed,
+        mini: true,
+        child: const Icon(Icons.search),
+      );
 
   ThemeData _themeBuilder(BuildContext context) {
     final platformBrightness = MediaQuery.platformBrightnessOf(context);
@@ -236,8 +235,7 @@ class _M3MaterialAppState extends State<M3MaterialApp> {
 
     final mode = widget.themeMode ?? ThemeMode.system;
 
-    final useDarkTheme =
-        mode == ThemeMode.dark ||
+    final useDarkTheme = mode == ThemeMode.dark ||
         (mode == ThemeMode.system && platformBrightness == Brightness.dark);
 
     ThemeData? theme;
@@ -255,8 +253,7 @@ class _M3MaterialAppState extends State<M3MaterialApp> {
 
   Widget _materialBuilder(BuildContext context, Widget? child) {
     final theme = _themeBuilder(context);
-    final effectiveSelectionColor =
-        theme.textSelectionTheme.selectionColor ??
+    final effectiveSelectionColor = theme.textSelectionTheme.selectionColor ??
         theme.colorScheme.primary.withOpacity(0.40);
     final effectiveCursorColor =
         theme.textSelectionTheme.cursorColor ?? theme.colorScheme.primary;
@@ -271,8 +268,7 @@ class _M3MaterialAppState extends State<M3MaterialApp> {
       }
       childWidget = AnimatedTheme(
         data: theme,
-        duration:
-            widget.themeAnimationStyle?.duration ??
+        duration: widget.themeAnimationStyle?.duration ??
             widget.themeAnimationDuration,
         curve: widget.themeAnimationStyle?.curve ?? widget.themeAnimationCurve,
         child: childWidget,
@@ -291,19 +287,31 @@ class _M3MaterialAppState extends State<M3MaterialApp> {
     );
   }
 
-  Widget _buildWidgetApp(BuildContext context) {
+  KeyEventResult onKeyEvent(FocusNode node, KeyEvent event) {
+    if ((event is! KeyDownEvent && event is! KeyRepeatEvent) ||
+        event.logicalKey != LogicalKeyboardKey.escape) {
+      return KeyEventResult.ignored;
+    }
+    return Tooltip.dismissAllToolTips()
+        ? KeyEventResult.handled
+        : KeyEventResult.ignored;
+  }
+
+  @override
+  Widget build(BuildContext context) {
     final materialColor =
         widget.color ?? widget.theme?.primaryColor ?? Colors.blue;
 
-    return WidgetsApp(
+    Widget result = WidgetsApp(
       key: GlobalObjectKey(this),
       navigatorKey: widget.navigatorKey,
-      navigatorObservers: widget.navigatorObservers!,
-      pageRouteBuilder:
-          <T>(settings, builder) =>
-              M3MaterialPageRoute<T>(settings: settings, builder: builder),
+      navigatorObservers: widget.navigatorObservers,
+      pageRouteBuilder: <T>(settings, builder) => M3MaterialPageRoute<T>(
+        settings: settings,
+        builder: builder,
+      ),
       home: widget.home,
-      routes: widget.routes!,
+      routes: widget.routes,
       initialRoute: widget.initialRoute,
       onGenerateRoute: widget.onGenerateRoute,
       onGenerateInitialRoutes: widget.onGenerateInitialRoutes,
@@ -312,7 +320,7 @@ class _M3MaterialAppState extends State<M3MaterialApp> {
       builder: _materialBuilder,
       title: widget.title,
       onGenerateTitle: widget.onGenerateTitle,
-      textStyle: _errorTextStyle,
+      textStyle: _kErrorTextStyle,
       color: materialColor,
       locale: widget.locale,
       localizationsDelegates: _localizationsDelegates,
@@ -327,35 +335,27 @@ class _M3MaterialAppState extends State<M3MaterialApp> {
       actions: widget.actions,
       restorationScopeId: widget.restorationScopeId,
     );
-  }
 
-  @override
-  Widget build(BuildContext context) {
-    var result = _buildWidgetApp(context);
-    result = Focus(canRequestFocus: false, onKeyEvent: (
-      FocusNode node,
-      KeyEvent event,
-    ) {
-      if ((event is! KeyDownEvent && event is! KeyRepeatEvent) ||
-          event.logicalKey != LogicalKeyboardKey.escape) {
-        return KeyEventResult.ignored;
-      }
-      return Tooltip.dismissAllToolTips()
-          ? KeyEventResult.handled
-          : KeyEventResult.ignored;
-    }, child: result);
+    result = Focus(
+      canRequestFocus: false,
+      onKeyEvent: onKeyEvent,
+      child: result,
+    );
 
-    assert(() {
-      if (widget.debugShowMaterialGrid) {
-        result = GridPaper(
-          color: const Color(0xE0F9BBE0),
-          interval: 8,
-          subdivisions: 1,
-          child: result,
-        );
-      }
-      return true;
-    }(), 'Shows material grid in debug mode');
+    assert(
+      () {
+        if (widget.debugShowMaterialGrid) {
+          result = GridPaper(
+            color: const Color(0xE0F9BBE0),
+            interval: 8,
+            subdivisions: 1,
+            child: result,
+          );
+        }
+        return true;
+      }(),
+      'Shows material grid in debug mode',
+    );
 
     return ScrollConfiguration(
       behavior: widget.scrollBehavior ?? const MaterialScrollBehavior(),
