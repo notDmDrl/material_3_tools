@@ -72,23 +72,24 @@ base class M3ButtonStyle extends ButtonStyle {
     super.tapTargetSize = MaterialTapTargetSize.shrinkWrap,
     super.visualDensity,
     super.splashFactory = InkSparkle.splashFactory,
-  }) : _textStyle = textStyle,
-       _foregroundColor = foregroundColor,
-       _disabledColor = disabledColor,
-       _backgroundColor = backgroundColor,
-       _shadowColor = shadowColor,
-       _padding = padding,
-       _minimumSize = minimumSize,
-       _fixedSize = fixedSize,
-       _shape = shape,
-       _maximumSize = maximumSize,
-       _mouseCursor = mouseCursor,
-       super(
-         animationDuration: kThemeChangeDuration,
-         enableFeedback: true,
-         alignment: Alignment.center,
-         surfaceTintColor: const WidgetStatePropertyAll(Colors.transparent),
-       );
+    super.iconSize = const WidgetStatePropertyAll(18),
+  })  : _textStyle = textStyle,
+        _foregroundColor = foregroundColor,
+        _disabledColor = disabledColor,
+        _backgroundColor = backgroundColor,
+        _shadowColor = shadowColor,
+        _padding = padding,
+        _minimumSize = minimumSize,
+        _fixedSize = fixedSize,
+        _shape = shape,
+        _maximumSize = maximumSize,
+        _mouseCursor = mouseCursor,
+        super(
+          animationDuration: kThemeChangeDuration,
+          enableFeedback: true,
+          alignment: Alignment.center,
+          surfaceTintColor: const WidgetStatePropertyAll(Colors.transparent),
+        );
 
   /// Padding values for [ElevatedButton], [FilledButton] and [OutlinedButton].
   ///
@@ -162,19 +163,18 @@ base class M3ButtonStyle extends ButtonStyle {
       ButtonStyleButton.allOrNull(_textStyle);
 
   @override
-  WidgetStateProperty<Color?>? get backgroundColor =>
-      this is M3TextButtonStyle
-          ? null
-          : BackgroundStateOverlay(
-            color: _backgroundColor,
-            disabledColor: _disabledColor,
-          );
+  WidgetStateProperty<Color?>? get backgroundColor => this is M3TextButtonStyle
+      ? null
+      : BackgroundStateOverlay(
+          color: _backgroundColor,
+          disabledColor: _disabledColor,
+        );
 
   @override
   WidgetStateProperty<Color?> get foregroundColor => ForegroundStateOverlay(
-    color: _foregroundColor,
-    disabledColor: _disabledColor,
-  );
+        color: _foregroundColor,
+        disabledColor: _disabledColor,
+      );
 
   @override
   WidgetStateProperty<Color?> get overlayColor =>
@@ -207,4 +207,7 @@ base class M3ButtonStyle extends ButtonStyle {
   @override
   WidgetStateProperty<MouseCursor?>? get mouseCursor =>
       ButtonStyleButton.allOrNull(_mouseCursor);
+
+  @override
+  WidgetStateProperty<Color?>? get iconColor => foregroundColor;
 }

@@ -34,7 +34,7 @@ class OutlinedInputBorder extends InputBorder {
   /// [copyWith], based on the current theme and [InputDecorator.isFocused].
   ///
   /// The [borderRadius] parameter defaults to a value where all four corners
-  /// have a circular radius of 4.0. The corner radii must be circular, i.e.
+  /// have a circular radius of 16.0. The corner radii must be circular, i.e.
   /// their [Radius.x] and [Radius.y] values must be the same.
   const OutlinedInputBorder({
     super.borderSide = BorderSide.none,

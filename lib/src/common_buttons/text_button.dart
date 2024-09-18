@@ -37,5 +37,6 @@ final class M3TextButtonStyle extends M3ButtonStyle {
     super.tapTargetSize,
     super.visualDensity,
     super.splashFactory = InkSparkle.splashFactory,
+    super.iconSize,
   });
 }

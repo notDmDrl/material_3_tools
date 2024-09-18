@@ -39,5 +39,6 @@ final class M3FilledButtonStyle extends M3ButtonStyle {
     super.tapTargetSize,
     super.visualDensity,
     super.splashFactory,
+    super.iconSize,
   });
 }

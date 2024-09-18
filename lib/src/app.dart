@@ -254,7 +254,7 @@ class _M3MaterialAppState extends State<M3MaterialApp> {
   Widget _materialBuilder(BuildContext context, Widget? child) {
     final theme = _themeBuilder(context);
     final effectiveSelectionColor = theme.textSelectionTheme.selectionColor ??
-        theme.colorScheme.primary.withOpacity(0.40);
+        theme.colorScheme.primary.withValues(alpha: 0.40);
     final effectiveCursorColor =
         theme.textSelectionTheme.cursorColor ?? theme.colorScheme.primary;
 

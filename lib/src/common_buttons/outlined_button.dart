@@ -39,5 +39,6 @@ final class M3OutlinedButtonStyle extends M3ButtonStyle {
     super.tapTargetSize,
     super.visualDensity,
     super.splashFactory = InkSparkle.splashFactory,
+    super.iconSize,
   });
 }

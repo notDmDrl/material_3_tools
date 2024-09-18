@@ -42,23 +42,16 @@ class InteractionStatesOverlay implements WidgetStateProperty<Color?> {
   /// Usually is [ColorScheme.primary].
   final Color? color;
 
-  @override
-  Color? resolve(Set<WidgetState> states) {
-    if (states.contains(WidgetState.hovered)) {
-      return color?.withOpacity(_kHoverOpacity);
-    }
-    if (states.contains(WidgetState.focused)) {
-      return color?.withOpacity(_kFocusOpacity);
-    }
-    if (states.contains(WidgetState.pressed)) {
-      return color?.withOpacity(_kPressedOpacity);
-    }
-    if (states.contains(WidgetState.dragged)) {
-      return color?.withOpacity(_kDraggedOpacity);
-    }
+  WidgetStateProperty<Color?> get _mapper => WidgetStateProperty.fromMap({
+        WidgetState.hovered: color?.withValues(alpha: _kHoverOpacity),
+        WidgetState.focused: color?.withValues(alpha: _kFocusOpacity),
+        WidgetState.pressed: color?.withValues(alpha: _kPressedOpacity),
+        WidgetState.dragged: color?.withValues(alpha: _kDraggedOpacity),
+        WidgetState.any: null,
+      });
 
-    return null;
-  }
+  @override
+  Color? resolve(Set<WidgetState> states) => _mapper.resolve(states);
 }
 
 /// Defines foreground colors in enabled and disabled states.
@@ -87,14 +80,15 @@ class ForegroundStateOverlay implements WidgetStateProperty<Color?> {
   /// If null [color] will be used.
   final Color? disabledColor;
 
-  @override
-  Color? resolve(Set<WidgetState> states) {
-    if (states.contains(WidgetState.disabled)) {
-      return (disabledColor ?? color)?.withOpacity(_kDisabledForegroundOpacity);
-    }
+  WidgetStateProperty<Color?> get _mapper => WidgetStateProperty.fromMap({
+        WidgetState.disabled: (disabledColor ?? color)?.withValues(
+          alpha: _kDisabledForegroundOpacity,
+        ),
+        WidgetState.any: color,
+      });
 
-    return color;
-  }
+  @override
+  Color? resolve(Set<WidgetState> states) => _mapper.resolve(states);
 }
 
 /// Defines background colors in enabled and disabled states.
@@ -123,14 +117,15 @@ class BackgroundStateOverlay implements WidgetStateProperty<Color?> {
   /// If null [color] will be used.
   final Color? disabledColor;
 
-  @override
-  Color? resolve(Set<WidgetState> states) {
-    if (states.contains(WidgetState.disabled)) {
-      return (disabledColor ?? color)?.withOpacity(_kDisabledContainerOpacity);
-    }
+  WidgetStateProperty<Color?> get _mapper => WidgetStateProperty.fromMap({
+        WidgetState.disabled: (disabledColor ?? color)?.withValues(
+          alpha: _kDisabledContainerOpacity,
+        ),
+        WidgetState.any: color,
+      });
 
-    return color;
-  }
+  @override
+  Color? resolve(Set<WidgetState> states) => _mapper.resolve(states);
 }
 
 /// Defines border sides in enabled, disabled and focused states.
@@ -169,19 +164,18 @@ class OutlineStateOverlay implements WidgetStateProperty<BorderSide> {
   /// If null [color] will be used.
   final Color? focusedColor;
 
-  @override
-  BorderSide resolve(Set<WidgetState> states) {
-    if (states.contains(WidgetState.disabled)) {
-      return BorderSide(
-        color: (disabledColor ?? color).withOpacity(_kDisabledContainerOpacity),
-      );
-    }
-    if (states.contains(WidgetState.focused)) {
-      return BorderSide(color: focusedColor ?? color);
-    }
+  WidgetStateProperty<Color> get _mapper => WidgetStateProperty.fromMap({
+        WidgetState.disabled: (disabledColor ?? color).withValues(
+          alpha: _kDisabledContainerOpacity,
+        ),
+        WidgetState.focused: focusedColor ?? color,
+        WidgetState.any: color,
+      });
 
-    return BorderSide(color: color);
-  }
+  @override
+  BorderSide resolve(Set<WidgetState> states) => BorderSide(
+        color: _mapper.resolve(states),
+      );
 }
 
 /// Defines elevation states for [ElevatedButton].
@@ -190,13 +184,14 @@ class ElevatedButtonElevation implements WidgetStateProperty<double> {
   /// Creates Material 3 elevated button elevation state.
   const ElevatedButtonElevation();
 
-  @override
-  double resolve(Set<WidgetState> states) {
-    if (states.contains(WidgetState.disabled)) return 0;
-    if (states.contains(WidgetState.hovered)) return 3;
+  static const _mapper = WidgetStateProperty<double>.fromMap({
+    WidgetState.disabled: 0,
+    WidgetState.hovered: 3,
+    WidgetState.any: 1,
+  });
 
-    return 1;
-  }
+  @override
+  double resolve(Set<WidgetState> states) => _mapper.resolve(states);
 }
 
 /// Defines elevation states for [FilledButton] and [FilledButton.tonal].
@@ -205,11 +200,12 @@ class FilledButtonElevation implements WidgetStateProperty<double> {
   /// Creates Material 3 filled button elevation state.
   const FilledButtonElevation();
 
-  @override
-  double resolve(Set<WidgetState> states) {
-    if (states.contains(WidgetState.hovered)) return 1;
-    if (states.contains(WidgetState.dragged)) return 6;
+  static const _mapper = WidgetStateProperty<double>.fromMap({
+    WidgetState.hovered: 1,
+    WidgetState.dragged: 6,
+    WidgetState.any: 1,
+  });
 
-    return 0;
-  }
+  @override
+  double resolve(Set<WidgetState> states) => _mapper.resolve(states);
 }
