@@ -145,7 +145,7 @@ base class M3ButtonStyle extends ButtonStyle {
     );
   }
 
-  // Private fields for creating [ButtonStyleButton.allOrNull].
+  // Private fields for creating [WidgetStatePropertyAll].
   final TextStyle? _textStyle;
   final Color? _foregroundColor;
   final Color? _disabledColor;
@@ -159,8 +159,8 @@ base class M3ButtonStyle extends ButtonStyle {
   final MouseCursor? _mouseCursor;
 
   @override
-  WidgetStateProperty<TextStyle?>? get textStyle =>
-      ButtonStyleButton.allOrNull(_textStyle);
+  WidgetStateProperty<TextStyle?> get textStyle =>
+      WidgetStatePropertyAll(_textStyle);
 
   @override
   WidgetStateProperty<Color?>? get backgroundColor => this is M3TextButtonStyle
@@ -181,33 +181,33 @@ base class M3ButtonStyle extends ButtonStyle {
       InteractionStatesOverlay(_foregroundColor);
 
   @override
-  WidgetStateProperty<Color?>? get shadowColor =>
-      ButtonStyleButton.allOrNull(_shadowColor);
+  WidgetStateProperty<Color?> get shadowColor =>
+      WidgetStatePropertyAll<Color?>(_shadowColor);
 
   @override
-  WidgetStateProperty<EdgeInsetsGeometry?>? get padding =>
-      ButtonStyleButton.allOrNull(_padding);
+  WidgetStateProperty<EdgeInsetsGeometry?> get padding =>
+      WidgetStatePropertyAll<EdgeInsetsGeometry?>(_padding);
 
   @override
-  WidgetStateProperty<Size?>? get minimumSize =>
-      ButtonStyleButton.allOrNull(_minimumSize);
+  WidgetStateProperty<Size?> get minimumSize =>
+      WidgetStatePropertyAll<Size?>(_minimumSize);
 
   @override
-  WidgetStateProperty<Size?>? get fixedSize =>
-      ButtonStyleButton.allOrNull(_fixedSize);
+  WidgetStateProperty<Size?> get fixedSize =>
+      WidgetStatePropertyAll<Size?>(_fixedSize);
 
   @override
-  WidgetStateProperty<Size?>? get maximumSize =>
-      ButtonStyleButton.allOrNull(_maximumSize);
+  WidgetStateProperty<Size?> get maximumSize =>
+      WidgetStatePropertyAll<Size?>(_maximumSize);
 
   @override
-  WidgetStateProperty<OutlinedBorder?>? get shape =>
-      ButtonStyleButton.allOrNull(_shape);
+  WidgetStateProperty<OutlinedBorder?> get shape =>
+      WidgetStatePropertyAll(_shape);
 
   @override
-  WidgetStateProperty<MouseCursor?>? get mouseCursor =>
-      ButtonStyleButton.allOrNull(_mouseCursor);
+  WidgetStateProperty<MouseCursor?> get mouseCursor =>
+      WidgetStatePropertyAll(_mouseCursor);
 
   @override
-  WidgetStateProperty<Color?>? get iconColor => foregroundColor;
+  WidgetStateProperty<Color?> get iconColor => foregroundColor;
 }

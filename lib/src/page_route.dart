@@ -38,6 +38,9 @@ final class M3MaterialPageRoute<T> extends PageRoute<T>
 
   @override
   String get debugLabel => '${super.debugLabel}(${settings.name})';
+
+  /// A default transition duration for M3 page transition.
+  static const kTransitionDuration = Durations.long1;
 }
 
 /// A mixin that provides platform-adaptive M3 transitions for a [PageRoute].
@@ -52,7 +55,7 @@ mixin _M3MaterialRouteTransitionMixin<T> on PageRoute<T> {
   Widget buildContent(BuildContext context);
 
   @override
-  Duration get transitionDuration => Durations.medium4;
+  Duration get transitionDuration => M3MaterialPageRoute.kTransitionDuration;
 
   @override
   Color? get barrierColor => null;
