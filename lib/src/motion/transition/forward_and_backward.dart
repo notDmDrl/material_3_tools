@@ -155,7 +155,7 @@ class _EnterTransition extends StatelessWidget {
             child: child,
           );
 
-          if (shouldHideBackground) {
+          if (!shouldHideBackground) {
             return ColoredBox(
               color: fillColor,
               child: transform,
