@@ -1,12 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:material_3_tools/src/page_route.dart';
 
-// We lose ability to have it in const context but the animation duration is
-// synchronized with route duration.
-final _kAnimationDuration =
-    M3MaterialPageRoute.kTransitionDuration.inMilliseconds;
-const int _kFadeDuration = 83;
-const double _kSlideDeltaX = 96;
+import '../easing.dart';
 
 /// Used by [PageTransitionsTheme] to define a horizontal slide and fade
 /// [MaterialPageRoute] page transition animation that looks like the default
@@ -103,67 +97,25 @@ class _EnterTransition extends StatelessWidget {
   final Widget? child;
   final bool reverse;
 
-  static const int _kFadeInStartOffset = 50;
-  static final double _fadeInBegin = _kFadeInStartOffset / _kAnimationDuration;
-  static final double _fadeInEnd =
-      (_kFadeInStartOffset + _kFadeDuration) / _kAnimationDuration;
-
   static final Animatable<double> _fadeInTransition = CurveTween(
-    curve: Interval(_fadeInBegin, _fadeInEnd),
-  );
-
-  static final Animatable<Offset> _slideInTransition = Tween<Offset>(
-    begin: const Offset(_kSlideDeltaX, 0),
-    end: Offset.zero,
-  ).chain(CurveTween(curve: Curves.easeInOutCubicEmphasized));
+    curve: MaterialEasing.standardDecelerate,
+  ).chain(CurveTween(curve: const Interval(0.3, 1)));
 
   @override
   Widget build(BuildContext context) {
-    final fillColor = Theme.of(context).canvasColor;
-    final fadeAnimation = switch (reverse) {
-      true => kAlwaysCompleteAnimation,
-      false => _fadeInTransition.animate(animation),
-    };
-    var offsetScaleFactor = reverse ? -1.0 : 1.0;
-    if (Directionality.of(context) == TextDirection.rtl) {
-      offsetScaleFactor *= -1.0;
-    }
+    final slideInTransition = Tween<Offset>(
+      begin: Offset(!reverse ? 30.0 : -30.0, 0),
+      end: Offset.zero,
+    ).chain(CurveTween(curve: MaterialEasing.standard));
 
     return FadeTransition(
-      opacity: fadeAnimation,
+      opacity: _fadeInTransition.animate(animation),
       child: AnimatedBuilder(
         animation: animation,
-        builder: (context, child) {
-          // Both enter and exit transitions paint a background, to fade in and
-          // out the old page, and to prevent the old page sliding in and out
-          // from leaking the content below.
-          //
-          // When the exit transition fades out the new page, the background
-          // painted by the transition also fades out, which should reveal the
-          // old page below. However, the background painted by the *enter*
-          // transition does not fade out, due to how DualTransitionBuilder
-          // works. When a page is being popped off, this background will
-          // obscure the old page, until the navigator removes the new page
-          // after the transition ended.
-          //
-          // Hide the background after the enter transition has completed to
-          // avoid this.
-          final shouldHideBackground = animation.isCompleted;
-
-          final transform = Transform.translate(
-            offset: _slideInTransition.evaluate(animation) * offsetScaleFactor,
-            child: child,
-          );
-
-          if (!shouldHideBackground) {
-            return ColoredBox(
-              color: fillColor,
-              child: transform,
-            );
-          }
-
-          return transform;
-        },
+        builder: (context, child) => Transform.translate(
+          offset: slideInTransition.evaluate(animation),
+          child: child,
+        ),
         child: child,
       ),
     );
@@ -182,42 +134,27 @@ class _ExitTransition extends StatelessWidget {
   final bool reverse;
   final Widget? child;
 
-  static const int _fadeOutStartOffset = 35;
-  static final double _fadeOutBegin = _fadeOutStartOffset / _kAnimationDuration;
-  static final double _fadeOutEnd =
-      (_fadeOutStartOffset + _kFadeDuration) / _kAnimationDuration;
-
-  static final Animatable<double> _fadeOutTransition =
-      Tween<double>(begin: 1, end: 0).chain(
-    CurveTween(curve: Interval(_fadeOutBegin, _fadeOutEnd)),
-  );
-
-  static final Animatable<Offset> _slideOutTransition = Tween<Offset>(
-    begin: Offset.zero,
-    end: const Offset(-_kSlideDeltaX, 0),
-  ).chain(CurveTween(curve: Curves.easeInOutCubicEmphasized));
+  static final Animatable<double> _fadeOutTransition = _FlippedCurveTween(
+    curve: MaterialEasing.standardAccelerate,
+  ).chain(CurveTween(curve: const Interval(0, 0.3)));
 
   @override
   Widget build(BuildContext context) {
+    final slideOutTransition = Tween<Offset>(
+      begin: Offset.zero,
+      end: Offset(!reverse ? -30.0 : 30.0, 0),
+    ).chain(CurveTween(curve: MaterialEasing.standard));
+
     final fillColor = Theme.of(context).canvasColor;
 
-    final fadeAnimation = switch (reverse) {
-      true => kAlwaysCompleteAnimation,
-      false => _fadeOutTransition.animate(animation),
-    };
-    var offsetScaleFactor = reverse ? -1.0 : 1.0;
-    if (Directionality.of(context) == TextDirection.rtl) {
-      offsetScaleFactor *= -1.0;
-    }
-
     return FadeTransition(
-      opacity: fadeAnimation,
+      opacity: _fadeOutTransition.animate(animation),
       child: ColoredBox(
         color: fillColor,
         child: AnimatedBuilder(
           animation: animation,
           builder: (context, child) => Transform.translate(
-            offset: _slideOutTransition.evaluate(animation) * offsetScaleFactor,
+            offset: slideOutTransition.evaluate(animation),
             child: child,
           ),
           child: child,
@@ -225,4 +162,19 @@ class _ExitTransition extends StatelessWidget {
       ),
     );
   }
+}
+
+/// Enables creating a flipped [CurveTween].
+///
+/// This creates a [CurveTween] that evaluates to a result that flips the
+/// tween vertically.
+///
+/// This tween sequence assumes that the evaluated result has to be a double
+/// between 0.0 and 1.0.
+class _FlippedCurveTween extends CurveTween {
+  /// Creates a vertically flipped [CurveTween].
+  _FlippedCurveTween({required super.curve});
+
+  @override
+  double transform(double t) => 1.0 - super.transform(t);
 }
