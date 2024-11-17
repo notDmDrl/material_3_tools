@@ -25,6 +25,16 @@ final class M3MaterialPageRoute<T> extends PageRoute<T>
     super.settings,
     super.fullscreenDialog,
   })  : maintainState = true,
+        transitionDuration = Durations.medium2,
+        super(barrierDismissible: false, allowSnapshotting: true);
+
+  /// Creates a [M3MaterialPageRoute] with a long 800ms duration transition.
+  M3MaterialPageRoute.long({
+    required this.builder,
+    super.settings,
+    super.fullscreenDialog,
+  })  : maintainState = true,
+        transitionDuration = Durations.extralong2,
         super(barrierDismissible: false, allowSnapshotting: true);
 
   /// Builds the primary contents of the route.
@@ -39,13 +49,13 @@ final class M3MaterialPageRoute<T> extends PageRoute<T>
   @override
   String get debugLabel => '${super.debugLabel}(${settings.name})';
 
-  /// A default transition duration for M3 page transition.
-  static const kTransitionDuration = Durations.long1;
+  @override
+  final Duration transitionDuration;
 }
 
 /// A mixin that provides platform-adaptive M3 transitions for a [PageRoute].
 ///
-/// For Android, the transition is [ForwardAndBackwardTransition].
+/// For Android, the transition is [ForwardAndBackwardTransitionsBuilder].
 ///
 /// For iOS, the transition is the one provided by
 /// [CupertinoPageTransitionsBuilder].
@@ -53,9 +63,6 @@ mixin _M3MaterialRouteTransitionMixin<T> on PageRoute<T> {
   /// Builds the primary contents of the route.
   @protected
   Widget buildContent(BuildContext context);
-
-  @override
-  Duration get transitionDuration => M3MaterialPageRoute.kTransitionDuration;
 
   @override
   Color? get barrierColor => null;
@@ -110,12 +117,16 @@ mixin _M3MaterialRouteTransitionMixin<T> on PageRoute<T> {
     Animation<double> animation,
     Animation<double> secondaryAnimation,
     Widget child,
-  ) =>
-      _kTransitionsTheme.buildTransitions<T>(
-        this,
-        context,
-        animation,
-        secondaryAnimation,
-        child,
-      );
+  ) {
+    controller?.duration = transitionDuration;
+    controller?.reverseDuration = transitionDuration;
+
+    return _kTransitionsTheme.buildTransitions<T>(
+      this,
+      context,
+      animation,
+      secondaryAnimation,
+      child,
+    );
+  }
 }
