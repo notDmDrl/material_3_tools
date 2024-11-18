@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart' show CupertinoRouteTransitionMixin;
 import 'package:flutter/material.dart';
 
 import 'motion/transition/forward_and_backward.dart';
@@ -19,13 +18,13 @@ import 'motion/transition/forward_and_backward.dart';
 /// [MaterialPageRoute] - the default material modal route.
 final class M3MaterialPageRoute<T> extends PageRoute<T>
     with _M3MaterialRouteTransitionMixin<T> {
-  /// Creates a [M3MaterialPageRoute].
+  /// Creates a [M3MaterialPageRoute] with short 300ms duration transition.
   M3MaterialPageRoute({
     required this.builder,
     super.settings,
     super.fullscreenDialog,
   })  : maintainState = true,
-        transitionDuration = Durations.medium2,
+        materialTransitionDuration = Durations.medium2,
         super(barrierDismissible: false, allowSnapshotting: true);
 
   /// Creates a [M3MaterialPageRoute] with a long 800ms duration transition.
@@ -34,7 +33,7 @@ final class M3MaterialPageRoute<T> extends PageRoute<T>
     super.settings,
     super.fullscreenDialog,
   })  : maintainState = true,
-        transitionDuration = Durations.extralong2,
+        materialTransitionDuration = Durations.extralong2,
         super(barrierDismissible: false, allowSnapshotting: true);
 
   /// Builds the primary contents of the route.
@@ -50,7 +49,7 @@ final class M3MaterialPageRoute<T> extends PageRoute<T>
   String get debugLabel => '${super.debugLabel}(${settings.name})';
 
   @override
-  final Duration transitionDuration;
+  final Duration materialTransitionDuration;
 }
 
 /// A mixin that provides platform-adaptive M3 transitions for a [PageRoute].
@@ -64,6 +63,13 @@ mixin _M3MaterialRouteTransitionMixin<T> on PageRoute<T> {
   @protected
   Widget buildContent(BuildContext context);
 
+  /// Duration for ForwardAndBackwardTransitionsBuilder;
+  @protected
+  Duration get materialTransitionDuration;
+
+  @override
+  Duration get transitionDuration => _getTransitionDuration(navigator!.context);
+
   @override
   Color? get barrierColor => null;
 
@@ -71,19 +77,40 @@ mixin _M3MaterialRouteTransitionMixin<T> on PageRoute<T> {
   String? get barrierLabel => null;
 
   @override
-  bool canTransitionTo(
-    TransitionRoute<dynamic> nextRoute,
-  ) =>
-      switch (nextRoute) {
-        _M3MaterialRouteTransitionMixin(:final fullscreenDialog) =>
-          !fullscreenDialog,
-        MaterialRouteTransitionMixin(:final fullscreenDialog) =>
-          !fullscreenDialog,
-        CupertinoRouteTransitionMixin(:final fullscreenDialog) =>
-          !fullscreenDialog,
-        PopupRoute() => false,
-        _ => true,
-      };
+  DelegatedTransitionBuilder? get delegatedTransition => _delegatedTransition;
+
+  static Widget? _delegatedTransition(
+    BuildContext context,
+    Animation<double> animation,
+    Animation<double> secondaryAnimation,
+    bool allowSnapshotting,
+    Widget? child,
+  ) {
+    final theme = Theme.of(context).pageTransitionsTheme;
+    final platform = Theme.of(context).platform;
+    final themeDelegatedTransition = theme.delegatedTransition(platform);
+
+    return themeDelegatedTransition?.call(
+      context,
+      animation,
+      secondaryAnimation,
+      allowSnapshotting,
+      child,
+    );
+  }
+
+  @override
+  bool canTransitionTo(TransitionRoute<dynamic> nextRoute) {
+    final nextRouteIsNotFullscreen =
+        (nextRoute is! PageRoute<T>) || !nextRoute.fullscreenDialog;
+
+    final nextRouteHasDelegatedTransition =
+        nextRoute is ModalRoute<T> && nextRoute.delegatedTransition != null;
+
+    return nextRouteIsNotFullscreen &&
+        ((nextRoute is _M3MaterialRouteTransitionMixin) ||
+            nextRouteHasDelegatedTransition);
+  }
 
   @override
   Widget buildPage(
@@ -100,16 +127,14 @@ mixin _M3MaterialRouteTransitionMixin<T> on PageRoute<T> {
     );
   }
 
-  static const _kTransitionsTheme = PageTransitionsTheme(
-    builders: {
-      TargetPlatform.android: ForwardAndBackwardTransitionsBuilder(),
-      TargetPlatform.windows: ForwardAndBackwardTransitionsBuilder(),
-      TargetPlatform.linux: ForwardAndBackwardTransitionsBuilder(),
-      TargetPlatform.fuchsia: ForwardAndBackwardTransitionsBuilder(),
-      TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
-      TargetPlatform.macOS: CupertinoPageTransitionsBuilder(),
-    },
-  );
+  // This always assumes CupertinoPageTransitionsBuilder's default duration.
+  Duration _getTransitionDuration(BuildContext context) =>
+      switch (Theme.of(context).platform) {
+        TargetPlatform.iOS ||
+        TargetPlatform.macOS =>
+          const Duration(milliseconds: 500),
+        _ => materialTransitionDuration,
+      };
 
   @override
   Widget buildTransitions(
@@ -118,10 +143,13 @@ mixin _M3MaterialRouteTransitionMixin<T> on PageRoute<T> {
     Animation<double> secondaryAnimation,
     Widget child,
   ) {
-    controller?.duration = transitionDuration;
-    controller?.reverseDuration = transitionDuration;
+    final theme = Theme.of(context).pageTransitionsTheme;
 
-    return _kTransitionsTheme.buildTransitions<T>(
+    final duration = _getTransitionDuration(context);
+    controller?.duration = duration;
+    controller?.reverseDuration = reverseTransitionDuration;
+
+    return theme.buildTransitions<T>(
       this,
       context,
       animation,

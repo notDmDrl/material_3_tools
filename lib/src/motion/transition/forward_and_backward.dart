@@ -33,7 +33,6 @@ final class ForwardAndBackwardTransitionsBuilder
       ) =>
           _DelegatedTransition(
             animation: animation,
-            secondaryAnimation: secondaryAnimation,
             child: child!,
           );
 
@@ -147,8 +146,7 @@ class _ForwardAndBackwardTransition extends StatelessWidget {
           ),
         ),
         child: _DelegatedTransition(
-          animation: animation,
-          secondaryAnimation: secondaryAnimation,
+          animation: secondaryAnimation,
           child: child,
         ),
       );
@@ -158,25 +156,24 @@ class _ForwardAndBackwardTransition extends StatelessWidget {
 class _DelegatedTransition extends StatelessWidget {
   const _DelegatedTransition({
     required this.animation,
-    required this.secondaryAnimation,
     required this.child,
   });
 
-  /// The animation that drives the [child]'s entrance and exit.
-  final Animation<double> animation;
-
   /// The animation that transitions [child] when new content is pushed on top
   /// of it.
-  final Animation<double> secondaryAnimation;
+  final Animation<double> animation;
 
   /// The widget below this widget in the tree.
   final Widget child;
 
   @override
   Widget build(BuildContext context) => DualTransitionBuilder(
-        animation: ReverseAnimation(secondaryAnimation),
-        forwardBuilder: (context, animation, child) {
-          child = FadeTransition(
+        animation: ReverseAnimation(animation),
+        forwardBuilder: (context, animation, child) => ColoredBox(
+          color: animation.isAnimating
+              ? Theme.of(context).canvasColor
+              : Colors.transparent,
+          child: FadeTransition(
             opacity: ForwardAndBackwardTransitionsBuilder._fadeInTransition
                 .animate(animation),
             child: SlideTransition(
@@ -185,19 +182,13 @@ class _DelegatedTransition extends StatelessWidget {
                   .animate(animation),
               child: child,
             ),
-          );
-
-          if (animation.isAnimating) {
-            return ColoredBox(
-              color: Theme.of(context).canvasColor,
-              child: child,
-            );
-          }
-
-          return child;
-        },
-        reverseBuilder: (context, animation, child) {
-          child = FadeTransition(
+          ),
+        ),
+        reverseBuilder: (context, animation, child) => ColoredBox(
+          color: animation.isAnimating
+              ? Theme.of(context).canvasColor
+              : Colors.transparent,
+          child: FadeTransition(
             opacity: ForwardAndBackwardTransitionsBuilder._fadeOutTransition
                 .animate(animation),
             child: SlideTransition(
@@ -206,17 +197,8 @@ class _DelegatedTransition extends StatelessWidget {
                   .animate(animation),
               child: child,
             ),
-          );
-
-          if (animation.isAnimating) {
-            return ColoredBox(
-              color: Theme.of(context).canvasColor,
-              child: child,
-            );
-          }
-
-          return child;
-        },
+          ),
+        ),
         child: child,
       );
 }
