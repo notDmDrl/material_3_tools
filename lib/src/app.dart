@@ -97,7 +97,7 @@ class M3MaterialApp extends StatefulWidget {
 
   /// See [MaterialApp.onNavigationNotification].
   final NotificationListenerCallback<NavigationNotification>?
-      onNavigationNotification;
+  onNavigationNotification;
 
   /// See [MaterialApp.navigatorObservers].
   final List<NavigatorObserver> navigatorObservers;
@@ -190,9 +190,9 @@ class M3MaterialApp extends StatefulWidget {
   ///
   /// Used by the [M3MaterialApp].
   static HeroController createMaterialHeroController() => HeroController(
-        createRectTween: (begin, end) =>
-            MaterialRectArcTween(begin: begin, end: end),
-      );
+    createRectTween:
+        (begin, end) => MaterialRectArcTween(begin: begin, end: end),
+  );
 }
 
 class _M3MaterialAppState extends State<M3MaterialApp> {
@@ -219,23 +219,16 @@ class _M3MaterialAppState extends State<M3MaterialApp> {
         DefaultCupertinoLocalizations.delegate,
       ];
 
-  static Widget _inspectorSelectButtonBuilder(
-    BuildContext _,
-    VoidCallback onPressed,
-  ) =>
-      FloatingActionButton(
-        onPressed: onPressed,
-        mini: true,
-        child: const Icon(Icons.search),
-      );
-
   ThemeData _themeBuilder(BuildContext context) {
-    final platformBrightness = MediaQuery.platformBrightnessOf(context);
-    final highContrast = MediaQuery.highContrastOf(context);
+    final Brightness platformBrightness = MediaQuery.platformBrightnessOf(
+      context,
+    );
+    final bool highContrast = MediaQuery.highContrastOf(context);
 
-    final mode = widget.themeMode ?? ThemeMode.system;
+    final ThemeMode mode = widget.themeMode ?? ThemeMode.system;
 
-    final useDarkTheme = mode == ThemeMode.dark ||
+    final bool useDarkTheme =
+        mode == ThemeMode.dark ||
         (mode == ThemeMode.system && platformBrightness == Brightness.dark);
 
     ThemeData? theme;
@@ -252,13 +245,14 @@ class _M3MaterialAppState extends State<M3MaterialApp> {
   }
 
   Widget _materialBuilder(BuildContext context, Widget? child) {
-    final theme = _themeBuilder(context);
-    final effectiveSelectionColor = theme.textSelectionTheme.selectionColor ??
+    final ThemeData theme = _themeBuilder(context);
+    final Color effectiveSelectionColor =
+        theme.textSelectionTheme.selectionColor ??
         theme.colorScheme.primary.withValues(alpha: 0.40);
-    final effectiveCursorColor =
+    final Color effectiveCursorColor =
         theme.textSelectionTheme.cursorColor ?? theme.colorScheme.primary;
 
-    var childWidget = child ?? const SizedBox.shrink();
+    Widget childWidget = child ?? const SizedBox.shrink();
 
     if (widget.themeAnimationStyle != AnimationStyle.noAnimation) {
       if (widget.builder != null) {
@@ -268,7 +262,8 @@ class _M3MaterialAppState extends State<M3MaterialApp> {
       }
       childWidget = AnimatedTheme(
         data: theme,
-        duration: widget.themeAnimationStyle?.duration ??
+        duration:
+            widget.themeAnimationStyle?.duration ??
             widget.themeAnimationDuration,
         curve: widget.themeAnimationStyle?.curve ?? widget.themeAnimationCurve,
         child: childWidget,
@@ -299,17 +294,16 @@ class _M3MaterialAppState extends State<M3MaterialApp> {
 
   @override
   Widget build(BuildContext context) {
-    final materialColor =
+    final Color materialColor =
         widget.color ?? widget.theme?.primaryColor ?? Colors.blue;
 
     Widget result = WidgetsApp(
       key: GlobalObjectKey(this),
       navigatorKey: widget.navigatorKey,
       navigatorObservers: widget.navigatorObservers,
-      pageRouteBuilder: <T>(settings, builder) => M3MaterialPageRoute<T>(
-        settings: settings,
-        builder: builder,
-      ),
+      pageRouteBuilder:
+          <T>(settings, builder) =>
+              M3MaterialPageRoute<T>(settings: settings, builder: builder),
       home: widget.home,
       routes: widget.routes,
       initialRoute: widget.initialRoute,
@@ -330,7 +324,6 @@ class _M3MaterialAppState extends State<M3MaterialApp> {
       showPerformanceOverlay: widget.showPerformanceOverlay,
       showSemanticsDebugger: widget.showSemanticsDebugger,
       debugShowCheckedModeBanner: widget.debugShowCheckedModeBanner,
-      inspectorSelectButtonBuilder: _inspectorSelectButtonBuilder,
       shortcuts: widget.shortcuts,
       actions: widget.actions,
       restorationScopeId: widget.restorationScopeId,
@@ -342,20 +335,17 @@ class _M3MaterialAppState extends State<M3MaterialApp> {
       child: result,
     );
 
-    assert(
-      () {
-        if (widget.debugShowMaterialGrid) {
-          result = GridPaper(
-            color: const Color(0xE0F9BBE0),
-            interval: 8,
-            subdivisions: 1,
-            child: result,
-          );
-        }
-        return true;
-      }(),
-      'Shows material grid in debug mode',
-    );
+    assert(() {
+      if (widget.debugShowMaterialGrid) {
+        result = GridPaper(
+          color: const Color(0xE0F9BBE0),
+          interval: 8,
+          subdivisions: 1,
+          child: result,
+        );
+      }
+      return true;
+    }(), 'Shows material grid in debug mode');
 
     return ScrollConfiguration(
       behavior: widget.scrollBehavior ?? const MaterialScrollBehavior(),

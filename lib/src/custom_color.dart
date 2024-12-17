@@ -11,7 +11,9 @@ import 'package:material_color_utilities/material_color_utilities.dart';
 Color harmonizedColor(Color source, Color? harmonizationColor) {
   if (harmonizationColor == null || source == harmonizationColor) return source;
 
-  return Color(Blend.harmonize(source.value, harmonizationColor.value));
+  return Color(
+    Blend.harmonize(source.toARGB32(), harmonizationColor.toARGB32()),
+  );
 }
 
 /// A set of 4 colors based on the [Material 3 Custom colors spec](https://m3.material.io/styles/color/advanced/define-new-colors#f13116d1-3023-44b9-b0b5-2ee07dc1af5f)
@@ -46,12 +48,13 @@ final class CustomColor {
     DynamicSchemeVariant schemeVariant = DynamicSchemeVariant.tonalSpot,
     Color? harmonizationColor,
   }) {
-    final color = harmonizedColor(sourceColor, harmonizationColor).value;
+    final int color =
+        harmonizedColor(sourceColor, harmonizationColor).toARGB32();
 
     final isDark = brightness == Brightness.dark;
-    final sourceColorHct = Hct.fromInt(color);
+    final Hct sourceColorHct = Hct.fromInt(color);
 
-    final scheme = switch (schemeVariant) {
+    final DynamicScheme scheme = switch (schemeVariant) {
       DynamicSchemeVariant.tonalSpot => SchemeTonalSpot(
         sourceColorHct: sourceColorHct,
         isDark: isDark,

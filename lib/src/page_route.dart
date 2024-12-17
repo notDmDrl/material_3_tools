@@ -23,18 +23,18 @@ final class M3MaterialPageRoute<T> extends PageRoute<T>
     required this.builder,
     super.settings,
     super.fullscreenDialog,
-  })  : maintainState = true,
-        materialTransitionDuration = Durations.medium2,
-        super(barrierDismissible: false, allowSnapshotting: true);
+  }) : maintainState = true,
+       materialTransitionDuration = Durations.medium2,
+       super(barrierDismissible: false, allowSnapshotting: true);
 
   /// Creates a [M3MaterialPageRoute] with a long 800ms duration transition.
   M3MaterialPageRoute.long({
     required this.builder,
     super.settings,
     super.fullscreenDialog,
-  })  : maintainState = true,
-        materialTransitionDuration = Durations.extralong2,
-        super(barrierDismissible: false, allowSnapshotting: true);
+  }) : maintainState = true,
+       materialTransitionDuration = Durations.extralong2,
+       super(barrierDismissible: false, allowSnapshotting: true);
 
   /// Builds the primary contents of the route.
   final WidgetBuilder builder;
@@ -71,6 +71,9 @@ mixin _M3MaterialRouteTransitionMixin<T> on PageRoute<T> {
   Duration get transitionDuration => _getTransitionDuration(navigator!.context);
 
   @override
+  Duration get reverseTransitionDuration => transitionDuration;
+
+  @override
   Color? get barrierColor => null;
 
   @override
@@ -86,9 +89,10 @@ mixin _M3MaterialRouteTransitionMixin<T> on PageRoute<T> {
     bool allowSnapshotting,
     Widget? child,
   ) {
-    final theme = Theme.of(context).pageTransitionsTheme;
-    final platform = Theme.of(context).platform;
-    final themeDelegatedTransition = theme.delegatedTransition(platform);
+    final PageTransitionsTheme theme = Theme.of(context).pageTransitionsTheme;
+    final TargetPlatform platform = Theme.of(context).platform;
+    final DelegatedTransitionBuilder? themeDelegatedTransition = theme
+        .delegatedTransition(platform);
 
     return themeDelegatedTransition?.call(
       context,
@@ -101,10 +105,10 @@ mixin _M3MaterialRouteTransitionMixin<T> on PageRoute<T> {
 
   @override
   bool canTransitionTo(TransitionRoute<dynamic> nextRoute) {
-    final nextRouteIsNotFullscreen =
+    final bool nextRouteIsNotFullscreen =
         (nextRoute is! PageRoute<T>) || !nextRoute.fullscreenDialog;
 
-    final nextRouteHasDelegatedTransition =
+    final bool nextRouteHasDelegatedTransition =
         nextRoute is ModalRoute<T> && nextRoute.delegatedTransition != null;
 
     return nextRouteIsNotFullscreen &&
@@ -118,7 +122,7 @@ mixin _M3MaterialRouteTransitionMixin<T> on PageRoute<T> {
     Animation<double> animation,
     Animation<double> secondaryAnimation,
   ) {
-    final result = buildContent(context);
+    final Widget result = buildContent(context);
 
     return Semantics(
       scopesRoute: true,
@@ -128,13 +132,14 @@ mixin _M3MaterialRouteTransitionMixin<T> on PageRoute<T> {
   }
 
   // This always assumes CupertinoPageTransitionsBuilder's default duration.
-  Duration _getTransitionDuration(BuildContext context) =>
-      switch (Theme.of(context).platform) {
-        TargetPlatform.iOS ||
-        TargetPlatform.macOS =>
-          const Duration(milliseconds: 500),
-        _ => materialTransitionDuration,
-      };
+  Duration _getTransitionDuration(BuildContext context) => switch (Theme.of(
+    context,
+  ).platform) {
+    TargetPlatform.iOS || TargetPlatform.macOS => const Duration(
+      milliseconds: 500,
+    ),
+    _ => materialTransitionDuration,
+  };
 
   @override
   Widget buildTransitions(
@@ -143,11 +148,7 @@ mixin _M3MaterialRouteTransitionMixin<T> on PageRoute<T> {
     Animation<double> secondaryAnimation,
     Widget child,
   ) {
-    final theme = Theme.of(context).pageTransitionsTheme;
-
-    final duration = _getTransitionDuration(context);
-    controller?.duration = duration;
-    controller?.reverseDuration = reverseTransitionDuration;
+    final PageTransitionsTheme theme = Theme.of(context).pageTransitionsTheme;
 
     return theme.buildTransitions<T>(
       this,

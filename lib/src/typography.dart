@@ -30,14 +30,13 @@ abstract final class ExpressiveTypography {
   static Typography expressiveEnglishLike({
     TargetPlatform platform = TargetPlatform.android,
     ColorScheme colorScheme = const ColorScheme.light(),
-  }) =>
-      Typography.material2021(
-        platform: platform,
-        colorScheme: colorScheme,
-        englishLike: ExpressiveTypography.englishLike,
-        dense: ExpressiveTypography.englishLike,
-        tall: ExpressiveTypography.englishLike,
-      );
+  }) => Typography.material2021(
+    platform: platform,
+    colorScheme: colorScheme,
+    englishLike: ExpressiveTypography.englishLike,
+    dense: ExpressiveTypography.englishLike,
+    tall: ExpressiveTypography.englishLike,
+  );
 
   /// Defines text geometry for [ScriptCategory.englishLike] scripts, such as
   /// English, French, Russian, etc.

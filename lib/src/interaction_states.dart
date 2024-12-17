@@ -43,12 +43,12 @@ class InteractionStatesOverlay implements WidgetStateProperty<Color?> {
   final Color? color;
 
   WidgetStateProperty<Color?> get _mapper => WidgetStateProperty.fromMap({
-        WidgetState.hovered: color?.withValues(alpha: _kHoverOpacity),
-        WidgetState.focused: color?.withValues(alpha: _kFocusOpacity),
-        WidgetState.pressed: color?.withValues(alpha: _kPressedOpacity),
-        WidgetState.dragged: color?.withValues(alpha: _kDraggedOpacity),
-        WidgetState.any: null,
-      });
+    WidgetState.hovered: color?.withValues(alpha: _kHoverOpacity),
+    WidgetState.focused: color?.withValues(alpha: _kFocusOpacity),
+    WidgetState.pressed: color?.withValues(alpha: _kPressedOpacity),
+    WidgetState.dragged: color?.withValues(alpha: _kDraggedOpacity),
+    WidgetState.any: null,
+  });
 
   @override
   Color? resolve(Set<WidgetState> states) => _mapper.resolve(states);
@@ -81,11 +81,11 @@ class ForegroundStateOverlay implements WidgetStateProperty<Color?> {
   final Color? disabledColor;
 
   WidgetStateProperty<Color?> get _mapper => WidgetStateProperty.fromMap({
-        WidgetState.disabled: (disabledColor ?? color)?.withValues(
-          alpha: _kDisabledForegroundOpacity,
-        ),
-        WidgetState.any: color,
-      });
+    WidgetState.disabled: (disabledColor ?? color)?.withValues(
+      alpha: _kDisabledForegroundOpacity,
+    ),
+    WidgetState.any: color,
+  });
 
   @override
   Color? resolve(Set<WidgetState> states) => _mapper.resolve(states);
@@ -118,11 +118,11 @@ class BackgroundStateOverlay implements WidgetStateProperty<Color?> {
   final Color? disabledColor;
 
   WidgetStateProperty<Color?> get _mapper => WidgetStateProperty.fromMap({
-        WidgetState.disabled: (disabledColor ?? color)?.withValues(
-          alpha: _kDisabledContainerOpacity,
-        ),
-        WidgetState.any: color,
-      });
+    WidgetState.disabled: (disabledColor ?? color)?.withValues(
+      alpha: _kDisabledContainerOpacity,
+    ),
+    WidgetState.any: color,
+  });
 
   @override
   Color? resolve(Set<WidgetState> states) => _mapper.resolve(states);
@@ -165,17 +165,16 @@ class OutlineStateOverlay implements WidgetStateProperty<BorderSide> {
   final Color? focusedColor;
 
   WidgetStateProperty<Color> get _mapper => WidgetStateProperty.fromMap({
-        WidgetState.disabled: (disabledColor ?? color).withValues(
-          alpha: _kDisabledContainerOpacity,
-        ),
-        WidgetState.focused: focusedColor ?? color,
-        WidgetState.any: color,
-      });
+    WidgetState.disabled: (disabledColor ?? color).withValues(
+      alpha: _kDisabledContainerOpacity,
+    ),
+    WidgetState.focused: focusedColor ?? color,
+    WidgetState.any: color,
+  });
 
   @override
-  BorderSide resolve(Set<WidgetState> states) => BorderSide(
-        color: _mapper.resolve(states),
-      );
+  BorderSide resolve(Set<WidgetState> states) =>
+      BorderSide(color: _mapper.resolve(states));
 }
 
 /// Defines elevation states for [ElevatedButton].

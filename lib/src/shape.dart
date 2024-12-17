@@ -32,9 +32,7 @@ abstract final class Shapes {
 
   /// Baseline shape with all corners having `radius` of 20.0.
   static const BorderRadiusDirectional largeIncreased =
-      BorderRadiusDirectional.all(
-    CornerSize.largeIncreased,
-  );
+      BorderRadiusDirectional.all(CornerSize.largeIncreased);
 
   /// Baseline shape with all corners having `radius` of 28.0.
   static const BorderRadiusDirectional extraLarge = BorderRadiusDirectional.all(
@@ -43,15 +41,11 @@ abstract final class Shapes {
 
   /// Baseline shape with all corners having `radius` of 32.0.
   static const BorderRadiusDirectional extraLargeIncreased =
-      BorderRadiusDirectional.all(
-    CornerSize.extraLargeIncreased,
-  );
+      BorderRadiusDirectional.all(CornerSize.extraLargeIncreased);
 
   /// Baseline shape with all corners having `radius` of 48.0.
   static const BorderRadiusDirectional extraExtraLarge =
-      BorderRadiusDirectional.all(
-    CornerSize.extraExtraLarge,
-  );
+      BorderRadiusDirectional.all(CornerSize.extraExtraLarge);
 
   /// Baseline shape with all corners having `radius` of 90.0.
   static const BorderRadiusDirectional full = BorderRadiusDirectional.all(

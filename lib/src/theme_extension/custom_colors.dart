@@ -56,13 +56,13 @@ final class CustomColors extends ThemeExtension<CustomColors> {
   /// If [CustomColors] is not defined or no [CustomColor] was
   /// found by provided key this function will throw.
   static CustomColor of(BuildContext context, Object key) {
-    final colors = Theme.of(context).extension<CustomColors>();
+    final CustomColors? colors = Theme.of(context).extension<CustomColors>();
 
     if (colors == null) {
       throw ArgumentError('[CustomColors] are not defined in your ThemeData');
     }
 
-    final lookup = colors.colors[key];
+    final CustomColor? lookup = colors.colors[key];
 
     if (lookup == null) {
       throw ArgumentError("Couldn't find [CustomColor] with provided key");
@@ -89,11 +89,11 @@ final class CustomColors extends ThemeExtension<CustomColors> {
 
     final map = <Object, CustomColor>{};
 
-    final length = colors.length;
+    final int length = colors.length;
 
     for (var i = 0; i < length; i++) {
-      final color = colors.entries.elementAt(i);
-      final otherColor = other.colors.values.elementAt(i);
+      final MapEntry<Object, CustomColor> color = colors.entries.elementAt(i);
+      final CustomColor otherColor = other.colors.values.elementAt(i);
 
       map.putIfAbsent(color.key, () => color.value.lerp(otherColor, t));
     }

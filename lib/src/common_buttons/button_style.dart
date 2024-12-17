@@ -73,23 +73,23 @@ base class M3ButtonStyle extends ButtonStyle {
     super.visualDensity,
     super.splashFactory = InkSparkle.splashFactory,
     super.iconSize = const WidgetStatePropertyAll(18),
-  })  : _textStyle = textStyle,
-        _foregroundColor = foregroundColor,
-        _disabledColor = disabledColor,
-        _backgroundColor = backgroundColor,
-        _shadowColor = shadowColor,
-        _padding = padding,
-        _minimumSize = minimumSize,
-        _fixedSize = fixedSize,
-        _shape = shape,
-        _maximumSize = maximumSize,
-        _mouseCursor = mouseCursor,
-        super(
-          animationDuration: kThemeChangeDuration,
-          enableFeedback: true,
-          alignment: Alignment.center,
-          surfaceTintColor: const WidgetStatePropertyAll(Colors.transparent),
-        );
+  }) : _textStyle = textStyle,
+       _foregroundColor = foregroundColor,
+       _disabledColor = disabledColor,
+       _backgroundColor = backgroundColor,
+       _shadowColor = shadowColor,
+       _padding = padding,
+       _minimumSize = minimumSize,
+       _fixedSize = fixedSize,
+       _shape = shape,
+       _maximumSize = maximumSize,
+       _mouseCursor = mouseCursor,
+       super(
+         animationDuration: kThemeChangeDuration,
+         enableFeedback: true,
+         alignment: Alignment.center,
+         surfaceTintColor: const WidgetStatePropertyAll(Colors.transparent),
+       );
 
   /// Padding values for [ElevatedButton], [FilledButton] and [OutlinedButton].
   ///
@@ -132,9 +132,9 @@ base class M3ButtonStyle extends ButtonStyle {
     EdgeInsets padding,
   ) {
     const kFontSize = 14.0;
-    final theme = Theme.of(context).textTheme;
-    final defaultFontSize = theme.labelLarge?.fontSize ?? kFontSize;
-    final effectiveTextScale =
+    final TextTheme theme = Theme.of(context).textTheme;
+    final double defaultFontSize = theme.labelLarge?.fontSize ?? kFontSize;
+    final double effectiveTextScale =
         MediaQuery.textScalerOf(context).scale(defaultFontSize) / kFontSize;
 
     return ButtonStyleButton.scaledPadding(
@@ -163,18 +163,19 @@ base class M3ButtonStyle extends ButtonStyle {
       WidgetStatePropertyAll(_textStyle);
 
   @override
-  WidgetStateProperty<Color?>? get backgroundColor => this is M3TextButtonStyle
-      ? null
-      : BackgroundStateOverlay(
-          color: _backgroundColor,
-          disabledColor: _disabledColor,
-        );
+  WidgetStateProperty<Color?>? get backgroundColor =>
+      this is M3TextButtonStyle
+          ? null
+          : BackgroundStateOverlay(
+            color: _backgroundColor,
+            disabledColor: _disabledColor,
+          );
 
   @override
   WidgetStateProperty<Color?> get foregroundColor => ForegroundStateOverlay(
-        color: _foregroundColor,
-        disabledColor: _disabledColor,
-      );
+    color: _foregroundColor,
+    disabledColor: _disabledColor,
+  );
 
   @override
   WidgetStateProperty<Color?> get overlayColor =>
@@ -202,11 +203,11 @@ base class M3ButtonStyle extends ButtonStyle {
 
   @override
   WidgetStateProperty<OutlinedBorder?> get shape =>
-      WidgetStatePropertyAll(_shape);
+      WidgetStatePropertyAll<OutlinedBorder?>(_shape);
 
   @override
   WidgetStateProperty<MouseCursor?> get mouseCursor =>
-      WidgetStatePropertyAll(_mouseCursor);
+      WidgetStatePropertyAll<MouseCursor?>(_mouseCursor);
 
   @override
   WidgetStateProperty<Color?> get iconColor => foregroundColor;

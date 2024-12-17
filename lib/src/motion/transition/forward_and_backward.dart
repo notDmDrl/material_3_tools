@@ -24,17 +24,9 @@ final class ForwardAndBackwardTransitionsBuilder
   const ForwardAndBackwardTransitionsBuilder();
 
   @override
-  DelegatedTransitionBuilder get delegatedTransition => (
-        context,
-        animation,
-        secondaryAnimation,
-        allowSnapshotting,
-        child,
-      ) =>
-          _DelegatedTransition(
-            animation: animation,
-            child: child!,
-          );
+  DelegatedTransitionBuilder get delegatedTransition =>
+      (context, animation, secondaryAnimation, allowSnapshotting, child) =>
+          _DelegatedTransition(animation: animation, child: child!);
 
   // Used by all of the sliding transition animations.
   static const Curve _transitionCurve = Curves.easeInOutCubicEmphasized;
@@ -42,16 +34,16 @@ final class ForwardAndBackwardTransitionsBuilder
   // The previous page slides from right to left as the current page appears.
   static final Animatable<Offset> _secondaryBackwardTranslationTween =
       Tween<Offset>(
-    begin: Offset.zero,
-    end: const Offset(-0.25, 0),
-  ).chain(CurveTween(curve: _transitionCurve));
+        begin: Offset.zero,
+        end: const Offset(-0.25, 0),
+      ).chain(CurveTween(curve: _transitionCurve));
 
   // The previous page slides from left to right as the current page disappears.
   static final Animatable<Offset> _secondaryForwardTranslationTween =
       Tween<Offset>(
-    begin: const Offset(-0.25, 0),
-    end: Offset.zero,
-  ).chain(CurveTween(curve: _transitionCurve));
+        begin: const Offset(-0.25, 0),
+        end: Offset.zero,
+      ).chain(CurveTween(curve: _transitionCurve));
 
   // The fade in transition when the new page appears.
   static final Animatable<double> _fadeInTransition = Tween<double>(
@@ -72,12 +64,11 @@ final class ForwardAndBackwardTransitionsBuilder
     Animation<double> animation,
     Animation<double> secondaryAnimation,
     Widget child,
-  ) =>
-      _ForwardAndBackwardTransition(
-        animation: animation,
-        secondaryAnimation: secondaryAnimation,
-        child: child,
-      );
+  ) => _ForwardAndBackwardTransition(
+    animation: animation,
+    secondaryAnimation: secondaryAnimation,
+    child: child,
+  );
 }
 
 /// Defines a transition in which outgoing and incoming elements share a
@@ -128,8 +119,9 @@ class _ForwardAndBackwardTransition extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => DualTransitionBuilder(
-        animation: animation,
-        forwardBuilder: (context, animation, child) => FadeTransition(
+    animation: animation,
+    forwardBuilder:
+        (context, animation, child) => FadeTransition(
           opacity: ForwardAndBackwardTransitionsBuilder._fadeInTransition
               .animate(animation),
           child: SlideTransition(
@@ -137,7 +129,8 @@ class _ForwardAndBackwardTransition extends StatelessWidget {
             child: child,
           ),
         ),
-        reverseBuilder: (context, animation, child) => FadeTransition(
+    reverseBuilder:
+        (context, animation, child) => FadeTransition(
           opacity: ForwardAndBackwardTransitionsBuilder._fadeOutTransition
               .animate(animation),
           child: SlideTransition(
@@ -145,19 +138,13 @@ class _ForwardAndBackwardTransition extends StatelessWidget {
             child: child,
           ),
         ),
-        child: _DelegatedTransition(
-          animation: secondaryAnimation,
-          child: child,
-        ),
-      );
+    child: _DelegatedTransition(animation: secondaryAnimation, child: child),
+  );
 }
 
 @immutable
 class _DelegatedTransition extends StatelessWidget {
-  const _DelegatedTransition({
-    required this.animation,
-    required this.child,
-  });
+  const _DelegatedTransition({required this.animation, required this.child});
 
   /// The animation that transitions [child] when new content is pushed on top
   /// of it.
@@ -168,11 +155,13 @@ class _DelegatedTransition extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => DualTransitionBuilder(
-        animation: ReverseAnimation(animation),
-        forwardBuilder: (context, animation, child) => ColoredBox(
-          color: animation.isAnimating
-              ? Theme.of(context).canvasColor
-              : Colors.transparent,
+    animation: ReverseAnimation(animation),
+    forwardBuilder:
+        (context, animation, child) => ColoredBox(
+          color:
+              animation.isAnimating
+                  ? Theme.of(context).canvasColor
+                  : Colors.transparent,
           child: FadeTransition(
             opacity: ForwardAndBackwardTransitionsBuilder._fadeInTransition
                 .animate(animation),
@@ -184,10 +173,12 @@ class _DelegatedTransition extends StatelessWidget {
             ),
           ),
         ),
-        reverseBuilder: (context, animation, child) => ColoredBox(
-          color: animation.isAnimating
-              ? Theme.of(context).canvasColor
-              : Colors.transparent,
+    reverseBuilder:
+        (context, animation, child) => ColoredBox(
+          color:
+              animation.isAnimating
+                  ? Theme.of(context).canvasColor
+                  : Colors.transparent,
           child: FadeTransition(
             opacity: ForwardAndBackwardTransitionsBuilder._fadeOutTransition
                 .animate(animation),
@@ -199,6 +190,6 @@ class _DelegatedTransition extends StatelessWidget {
             ),
           ),
         ),
-        child: child,
-      );
+    child: child,
+  );
 }

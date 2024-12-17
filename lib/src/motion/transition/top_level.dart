@@ -80,7 +80,7 @@ class _ZoomedFadeInFadeOut extends AnimatedWidget {
     Widget? child, {
     required bool applyScaleTransition,
   }) {
-    var resolvedChild = child;
+    Widget? resolvedChild = child;
     if (applyScaleTransition) {
       resolvedChild = ScaleTransition(
         scale: _scaleIn.animate(animation),
