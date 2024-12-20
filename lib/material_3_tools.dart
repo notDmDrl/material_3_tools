@@ -11,7 +11,7 @@
 ///
 /// * Material Design 3 guidelines:
 ///   https://m3.material.io/
-library material_3_tools;
+library;
 
 export 'src/app.dart';
 export 'src/common_buttons/button_style.dart';

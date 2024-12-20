@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart' show Brightness, Color, ThemeData;
 
-const _kLightGrade = 0.0;
-const _kDarkGrade = -25.0;
+const double _kLightGrade = 0;
+const double _kDarkGrade = -25;
 
 const _kScrimOpacity = 0.32;
 

@@ -44,7 +44,7 @@ abstract final class ExpressiveTypography {
   /// The font sizes, weights, and letter spacings match the unreleased
   /// "Expressive Theme" Material Design 3 specification:
   /// <https://cs.android.com/androidx/platform/frameworks/support/+/androidx-main:compose/material3/material3/src/commonMain/kotlin/androidx/compose/material3/tokens/TypeScaleTokens.kt>
-  static const TextTheme englishLike = TextTheme(
+  static const englishLike = TextTheme(
     displayLarge: TextStyle(
       debugLabel: 'englishLike expressive displayLarge',
       inherit: false,

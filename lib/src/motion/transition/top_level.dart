@@ -31,17 +31,16 @@ final class TopLevelTransition extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => PageTransitionSwitcher(
-    transitionBuilder: (child, animation, secondaryAnimation) {
-      return _ZoomedFadeInFadeOut(
-        listenable: animation,
-        applyScaleTransition: applyScaleTransition,
-        child: _ZoomedFadeInFadeOut(
-          listenable: ReverseAnimation(secondaryAnimation),
+    transitionBuilder:
+        (child, animation, secondaryAnimation) => _ZoomedFadeInFadeOut(
+          listenable: animation,
           applyScaleTransition: applyScaleTransition,
-          child: child,
+          child: _ZoomedFadeInFadeOut(
+            listenable: ReverseAnimation(secondaryAnimation),
+            applyScaleTransition: applyScaleTransition,
+            child: child,
+          ),
         ),
-      );
-    },
     child: child,
   );
 }

@@ -45,13 +45,13 @@ class OutlinedInputBorder extends InputBorder {
   ///
   /// The corner radii must be circular, i.e. their [Radius.x] and [Radius.y]
   /// values must be the same.
-  final BorderRadiusDirectional borderRadius;
+  final BorderRadius borderRadius;
 
-  static bool _cornersAreCircular(BorderRadiusDirectional borderRadius) =>
-      borderRadius.topEnd.x == borderRadius.topEnd.y &&
-      borderRadius.bottomEnd.x == borderRadius.bottomEnd.y &&
-      borderRadius.topStart.x == borderRadius.topStart.y &&
-      borderRadius.bottomStart.x == borderRadius.bottomStart.y;
+  static bool _cornersAreCircular(BorderRadius borderRadius) =>
+      borderRadius.topLeft.x == borderRadius.topLeft.y &&
+      borderRadius.bottomLeft.x == borderRadius.bottomLeft.y &&
+      borderRadius.topRight.x == borderRadius.topRight.y &&
+      borderRadius.bottomRight.x == borderRadius.bottomRight.y;
 
   @override
   bool get isOutline => false;
@@ -59,7 +59,7 @@ class OutlinedInputBorder extends InputBorder {
   @override
   OutlinedInputBorder copyWith({
     BorderSide? borderSide,
-    BorderRadiusDirectional? borderRadius,
+    BorderRadius? borderRadius,
   }) => OutlinedInputBorder(
     borderSide: borderSide ?? this.borderSide,
     borderRadius: borderRadius ?? this.borderRadius,
@@ -78,8 +78,7 @@ class OutlinedInputBorder extends InputBorder {
   ShapeBorder? lerpFrom(ShapeBorder? a, double t) => switch (a) {
     OutlinedInputBorder() => OutlinedInputBorder(
       borderSide: BorderSide.lerp(a.borderSide, borderSide, t),
-      borderRadius:
-          BorderRadiusDirectional.lerp(a.borderRadius, borderRadius, t)!,
+      borderRadius: BorderRadius.lerp(a.borderRadius, borderRadius, t)!,
     ),
     _ => super.lerpFrom(a, t),
   };
@@ -88,8 +87,7 @@ class OutlinedInputBorder extends InputBorder {
   ShapeBorder? lerpTo(ShapeBorder? b, double t) => switch (b) {
     OutlinedInputBorder() => OutlinedInputBorder(
       borderSide: BorderSide.lerp(borderSide, b.borderSide, t),
-      borderRadius:
-          BorderRadiusDirectional.lerp(borderRadius, b.borderRadius, t)!,
+      borderRadius: BorderRadius.lerp(borderRadius, b.borderRadius, t)!,
     ),
     _ => super.lerpTo(b, t),
   };
@@ -128,8 +126,12 @@ class OutlinedInputBorder extends InputBorder {
 
   @override
   bool operator ==(Object other) {
-    if (identical(this, other)) return true;
-    if (other.runtimeType != runtimeType) return false;
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other.runtimeType != runtimeType) {
+      return false;
+    }
 
     return other is OutlinedInputBorder &&
         other.borderSide == borderSide &&

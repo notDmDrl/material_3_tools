@@ -6,7 +6,7 @@ import 'package:meta/meta.dart';
 import 'page_route.dart';
 
 // Copied from [MaterialApp] file
-const TextStyle _kErrorTextStyle = TextStyle(
+const _kErrorTextStyle = TextStyle(
   color: Color(0xD0FF0000),
   fontFamily: 'monospace',
   fontSize: 48,

@@ -9,7 +9,9 @@ import 'package:material_color_utilities/material_color_utilities.dart';
 /// * Harmonize colors M3 docs:
 /// <https://m3.material.io/styles/color/advanced/adjust-existing-colors#1cc12e43-237b-45b9-8fe0-9a3549c1f61e>
 Color harmonizedColor(Color source, Color? harmonizationColor) {
-  if (harmonizationColor == null || source == harmonizationColor) return source;
+  if (harmonizationColor == null || source == harmonizationColor) {
+    return source;
+  }
 
   return Color(
     Blend.harmonize(source.toARGB32(), harmonizationColor.toARGB32()),
