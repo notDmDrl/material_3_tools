@@ -110,6 +110,6 @@ class _SelectableIconState extends State<SelectableIcon>
       curve: widget.curve,
       reverseCurve: widget.curve.flipped,
     ),
-    builder: (context, __) => widget.icon(context, controller.value),
+    builder: (context, _) => widget.icon(context, controller.value),
   );
 }
