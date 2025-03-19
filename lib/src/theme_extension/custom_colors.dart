@@ -54,7 +54,7 @@ final class CustomColors extends ThemeExtension<CustomColors> {
   /// Get [CustomColor] by its key from [ThemeData.extensions].
   ///
   /// If [CustomColors] is not defined or no [CustomColor] was
-  /// found by provided key this function will throw.
+  /// found by provided key, this function will throw.
   static CustomColor of(BuildContext context, Object key) {
     final CustomColors? colors = Theme.of(context).extension<CustomColors>();
 

@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import '../easing.dart';
 
 /// Defines a transition in which the outgoing page fades out, then the incoming
-/// page fades in and scales up (if [applyScaleTransition] is set to true).
+/// page fades in and, if [applyScaleTransition] is set to true, scales up.
 ///
 /// See also:
 ///

@@ -1,4 +1,4 @@
-/// @docImport 'package:flutter/material.dart' show ScriptCategory;
+/// @docImport 'package:flutter/material.dart';
 library;
 
 import 'package:flutter/material.dart'
