@@ -14,11 +14,7 @@
 library;
 
 export 'src/app.dart';
-export 'src/common_buttons/button_style.dart';
-export 'src/common_buttons/elevated_button.dart';
-export 'src/common_buttons/filled_button.dart';
-export 'src/common_buttons/outlined_button.dart';
-export 'src/common_buttons/text_button.dart';
+export 'src/button_style.dart';
 export 'src/custom_color.dart';
 export 'src/extensions/navigator.dart';
 export 'src/extensions/theme.dart';

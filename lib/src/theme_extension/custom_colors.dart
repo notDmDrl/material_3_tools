@@ -6,7 +6,7 @@ import '../custom_color.dart' show CustomColor;
 ///
 /// Custom colors are mapped based on [Object] key.
 ///
-/// All examples are assuming [Object] is an [Enum] with values:
+/// All examples assume [Object] is an [Enum] with values:
 ///
 /// ```dart
 /// enum AppCustomColors { red, green, blue }
