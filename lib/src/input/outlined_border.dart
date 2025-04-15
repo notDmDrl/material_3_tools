@@ -39,6 +39,7 @@ class OutlinedInputBorder extends InputBorder {
   const OutlinedInputBorder({
     super.borderSide = BorderSide.none,
     this.borderRadius = Shapes.large,
+    this.isSuperellipse = false,
   });
 
   /// The radii of the border's rounded rectangle corners.
@@ -46,6 +47,14 @@ class OutlinedInputBorder extends InputBorder {
   /// The corner radii must be circular, i.e. their [Radius.x] and [Radius.y]
   /// values must be the same.
   final BorderRadius borderRadius;
+
+  /// Whether this outline border uses a rounded superellipse instead of
+  /// rounded rectangle;
+  ///
+  /// If `true`, [RSuperellipse] is used. If `false`, [RRect] is used.
+  ///
+  /// Defaults to `false`.
+  final bool isSuperellipse;
 
   static bool _cornersAreCircular(BorderRadius borderRadius) =>
       borderRadius.topLeft.x == borderRadius.topLeft.y &&
@@ -93,17 +102,42 @@ class OutlinedInputBorder extends InputBorder {
   };
 
   @override
-  Path getInnerPath(Rect rect, {TextDirection? textDirection}) =>
-      Path()..addRRect(
-        borderRadius
-            .resolve(textDirection)
-            .toRRect(rect)
-            .deflate(borderSide.width),
+  Path getInnerPath(Rect rect, {TextDirection? textDirection}) {
+    final path = Path();
+
+    final BorderRadius resolvedBorderRadius = borderRadius.resolve(
+      textDirection,
+    );
+
+    if (isSuperellipse) {
+      path.addRSuperellipse(
+        resolvedBorderRadius.toRSuperellipse(rect).deflate(borderSide.width),
       );
+    } else {
+      path.addRRect(
+        resolvedBorderRadius.toRRect(rect).deflate(borderSide.width),
+      );
+    }
+
+    return path;
+  }
 
   @override
-  Path getOuterPath(Rect rect, {TextDirection? textDirection}) =>
-      Path()..addRRect(borderRadius.resolve(textDirection).toRRect(rect));
+  Path getOuterPath(Rect rect, {TextDirection? textDirection}) {
+    final path = Path();
+
+    final BorderRadius resolvedBorderRadius = borderRadius.resolve(
+      textDirection,
+    );
+
+    if (isSuperellipse) {
+      path.addRSuperellipse(resolvedBorderRadius.toRSuperellipse(rect));
+    } else {
+      path.addRRect(resolvedBorderRadius.toRRect(rect));
+    }
+
+    return path;
+  }
 
   @override
   void paint(
@@ -118,10 +152,21 @@ class OutlinedInputBorder extends InputBorder {
     assert(_cornersAreCircular(borderRadius), '');
 
     final Paint paint = borderSide.toPaint();
-    final RRect outer = borderRadius.resolve(textDirection).toRRect(rect);
-    final RRect center = outer.deflate(borderSide.width / 2.0);
+    final BorderRadius resolvedBorderRadius = borderRadius.resolve(
+      textDirection,
+    );
 
-    canvas.drawRRect(center, paint);
+    if (isSuperellipse) {
+      final RSuperellipse outer = resolvedBorderRadius.toRSuperellipse(rect);
+      final RSuperellipse center = outer.deflate(borderSide.width / 2.0);
+
+      canvas.drawRSuperellipse(center, paint);
+    } else {
+      final RRect outer = resolvedBorderRadius.toRRect(rect);
+      final RRect center = outer.deflate(borderSide.width / 2.0);
+
+      canvas.drawRRect(center, paint);
+    }
   }
 
   @override

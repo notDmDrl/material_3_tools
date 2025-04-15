@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart' show CupertinoRouteTransitionMixin;
 import 'package:flutter/material.dart';
 
 import 'motion/transition/forward_and_backward.dart';
@@ -131,13 +132,11 @@ mixin _M3MaterialRouteTransitionMixin<T> on PageRoute<T> {
     );
   }
 
-  // This always assumes CupertinoPageTransitionsBuilder's default duration.
   Duration _getTransitionDuration(BuildContext context) => switch (Theme.of(
     context,
   ).platform) {
-    TargetPlatform.iOS || TargetPlatform.macOS => const Duration(
-      milliseconds: 500,
-    ),
+    TargetPlatform.iOS ||
+    TargetPlatform.macOS => CupertinoRouteTransitionMixin.kTransitionDuration,
     _ => materialTransitionDuration,
   };
 
