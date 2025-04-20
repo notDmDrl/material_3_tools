@@ -49,6 +49,7 @@ final class CustomColor {
     Brightness brightness = Brightness.light,
     DynamicSchemeVariant schemeVariant = DynamicSchemeVariant.tonalSpot,
     Color? harmonizationColor,
+    double contrastLevel = 0,
   }) {
     final int color =
         harmonizedColor(sourceColor, harmonizationColor).toARGB32();
@@ -56,63 +57,64 @@ final class CustomColor {
     final isDark = brightness == Brightness.dark;
     final Hct sourceColorHct = Hct.fromInt(color);
 
+    assert(
+      contrastLevel >= -1 && contrastLevel <= 1,
+      'Contrast levels should be between -1 and 1',
+    );
+
     final DynamicScheme scheme = switch (schemeVariant) {
       DynamicSchemeVariant.tonalSpot => SchemeTonalSpot(
         sourceColorHct: sourceColorHct,
         isDark: isDark,
-        contrastLevel: 0,
+        contrastLevel: contrastLevel,
       ),
       DynamicSchemeVariant.fidelity => SchemeFidelity(
         sourceColorHct: sourceColorHct,
         isDark: isDark,
-        contrastLevel: 0,
+        contrastLevel: contrastLevel,
       ),
       DynamicSchemeVariant.monochrome => SchemeMonochrome(
         sourceColorHct: sourceColorHct,
         isDark: isDark,
-        contrastLevel: 0,
+        contrastLevel: contrastLevel,
       ),
       DynamicSchemeVariant.neutral => SchemeNeutral(
         sourceColorHct: sourceColorHct,
         isDark: isDark,
-        contrastLevel: 0,
+        contrastLevel: contrastLevel,
       ),
       DynamicSchemeVariant.vibrant => SchemeVibrant(
         sourceColorHct: sourceColorHct,
         isDark: isDark,
-        contrastLevel: 0,
+        contrastLevel: contrastLevel,
       ),
       DynamicSchemeVariant.expressive => SchemeExpressive(
         sourceColorHct: sourceColorHct,
         isDark: isDark,
-        contrastLevel: 0,
+        contrastLevel: contrastLevel,
       ),
       DynamicSchemeVariant.content => SchemeContent(
         sourceColorHct: sourceColorHct,
         isDark: isDark,
-        contrastLevel: 0,
+        contrastLevel: contrastLevel,
       ),
       DynamicSchemeVariant.rainbow => SchemeRainbow(
         sourceColorHct: sourceColorHct,
         isDark: isDark,
-        contrastLevel: 0,
+        contrastLevel: contrastLevel,
       ),
       DynamicSchemeVariant.fruitSalad => SchemeFruitSalad(
         sourceColorHct: sourceColorHct,
         isDark: isDark,
-        contrastLevel: 0,
+        contrastLevel: contrastLevel,
       ),
     };
 
     return CustomColor(
-      primary: Color(MaterialDynamicColors.primary.getArgb(scheme)),
-      onPrimary: Color(MaterialDynamicColors.onPrimary.getArgb(scheme)),
-      primaryContainer: Color(
-        MaterialDynamicColors.primaryContainer.getArgb(scheme),
-      ),
-      onPrimaryContainer: Color(
-        MaterialDynamicColors.onPrimaryContainer.getArgb(scheme),
-      ),
+      primary: Color(scheme.primary),
+      onPrimary: Color(scheme.onPrimary),
+      primaryContainer: Color(scheme.primaryContainer),
+      onPrimaryContainer: Color(scheme.onPrimaryContainer),
     );
   }
 

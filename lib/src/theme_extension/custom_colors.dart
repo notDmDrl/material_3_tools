@@ -82,22 +82,16 @@ final class CustomColors extends ThemeExtension<CustomColors> {
       return this;
     }
 
-    assert(
-      colors.length == other.colors.length,
-      'Cannot lerp between 2 uneven lengths maps',
-    );
+    // lerp colors if this instance
+    final Map<Object, CustomColor> newColors = colors.map((id, color) {
+        final CustomColor? otherColor = other.colors[id];
+        return MapEntry(id, color.lerp(otherColor, t));
+      })
+      // add new colors from [other]
+      ..addEntries(
+        other.colors.entries.where((entry) => !colors.containsKey(entry.key)),
+      );
 
-    final map = <Object, CustomColor>{};
-
-    final int length = colors.length;
-
-    for (var i = 0; i < length; i++) {
-      final MapEntry<Object, CustomColor> color = colors.entries.elementAt(i);
-      final CustomColor otherColor = other.colors.values.elementAt(i);
-
-      map.putIfAbsent(color.key, () => color.value.lerp(otherColor, t));
-    }
-
-    return CustomColors(map);
+    return CustomColors(newColors);
   }
 }

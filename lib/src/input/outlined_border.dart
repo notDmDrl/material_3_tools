@@ -69,9 +69,11 @@ class OutlinedInputBorder extends InputBorder {
   OutlinedInputBorder copyWith({
     BorderSide? borderSide,
     BorderRadius? borderRadius,
+    bool? isSuperellipse,
   }) => OutlinedInputBorder(
     borderSide: borderSide ?? this.borderSide,
     borderRadius: borderRadius ?? this.borderRadius,
+    isSuperellipse: isSuperellipse ?? this.isSuperellipse,
   );
 
   @override
@@ -88,6 +90,7 @@ class OutlinedInputBorder extends InputBorder {
     OutlinedInputBorder() => OutlinedInputBorder(
       borderSide: BorderSide.lerp(a.borderSide, borderSide, t),
       borderRadius: BorderRadius.lerp(a.borderRadius, borderRadius, t)!,
+      isSuperellipse: t < 0.5 ? isSuperellipse : a.isSuperellipse,
     ),
     _ => super.lerpFrom(a, t),
   };
@@ -97,6 +100,7 @@ class OutlinedInputBorder extends InputBorder {
     OutlinedInputBorder() => OutlinedInputBorder(
       borderSide: BorderSide.lerp(borderSide, b.borderSide, t),
       borderRadius: BorderRadius.lerp(borderRadius, b.borderRadius, t)!,
+      isSuperellipse: t < 0.5 ? isSuperellipse : b.isSuperellipse,
     ),
     _ => super.lerpTo(b, t),
   };
@@ -180,9 +184,10 @@ class OutlinedInputBorder extends InputBorder {
 
     return other is OutlinedInputBorder &&
         other.borderSide == borderSide &&
-        other.borderRadius == borderRadius;
+        other.borderRadius == borderRadius &&
+        other.isSuperellipse == isSuperellipse;
   }
 
   @override
-  int get hashCode => Object.hash(borderSide, borderRadius);
+  int get hashCode => Object.hash(borderSide, borderRadius, isSuperellipse);
 }
