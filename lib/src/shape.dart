@@ -44,8 +44,6 @@ abstract final class Shapes {
 ///
 /// Usually should only be used internally for [Shapes] constants, but is
 /// exposed for convenience.
-///
-/// Values are taken from *androidx* material 3 compose [source code](https://cs.android.com/androidx/platform/frameworks/support/+/androidx-main:compose/material3/material3/src/commonMain/kotlin/androidx/compose/material3/Shapes.kt).
 abstract final class CornerSize {
   /// A non-rounded corner size.
   static const Radius none = Radius.zero;

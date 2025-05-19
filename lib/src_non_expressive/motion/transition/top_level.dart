@@ -1,7 +1,7 @@
 import 'package:animations/animations.dart' show PageTransitionSwitcher;
 import 'package:flutter/material.dart';
 
-import '../easing.dart';
+import '/src/motion/legacy_easing.dart';
 
 /// Defines a transition in which the outgoing page fades out, then the incoming
 /// page fades in and, if [applyScaleTransition] is set to true, scales up.
@@ -31,16 +31,15 @@ final class TopLevelTransition extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => PageTransitionSwitcher(
-    transitionBuilder:
-        (child, animation, secondaryAnimation) => _ZoomedFadeInFadeOut(
-          listenable: animation,
-          applyScaleTransition: applyScaleTransition,
-          child: _ZoomedFadeInFadeOut(
-            listenable: ReverseAnimation(secondaryAnimation),
-            applyScaleTransition: applyScaleTransition,
-            child: child,
-          ),
-        ),
+    transitionBuilder: (child, animation, secondaryAnimation) => _ZoomedFadeInFadeOut(
+      listenable: animation,
+      applyScaleTransition: applyScaleTransition,
+      child: _ZoomedFadeInFadeOut(
+        listenable: ReverseAnimation(secondaryAnimation),
+        applyScaleTransition: applyScaleTransition,
+        child: child,
+      ),
+    ),
     child: child,
   );
 }
@@ -107,18 +106,16 @@ class _ZoomedFadeInFadeOut extends AnimatedWidget {
     BuildContext _,
     Animation<double> animation,
     Widget? child,
-  ) =>
-      FadeTransition(opacity: _fadeOutOpacity.animate(animation), child: child);
+  ) => FadeTransition(opacity: _fadeOutOpacity.animate(animation), child: child);
 
   @override
   Widget build(BuildContext context) => DualTransitionBuilder(
     animation: listenable as Animation<double>,
-    forwardBuilder:
-        (_, animation, child) => _forward(
-          animation,
-          child,
-          applyScaleTransition: applyScaleTransition,
-        ),
+    forwardBuilder: (_, animation, child) => _forward(
+      animation,
+      child,
+      applyScaleTransition: applyScaleTransition,
+    ),
     reverseBuilder: _reverse,
     child: child,
   );

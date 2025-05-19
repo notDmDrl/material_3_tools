@@ -67,7 +67,7 @@ class M3MaterialApp extends StatefulWidget {
     this.shortcuts,
     this.actions,
     this.restorationScopeId,
-    this.scrollBehavior,
+    this.scrollBehavior = const MaterialScrollBehavior(),
     this.themeAnimationStyle,
   });
 
@@ -124,7 +124,7 @@ class M3MaterialApp extends StatefulWidget {
   final ThemeData? highContrastDarkTheme;
 
   /// See [MaterialApp.themeMode].
-  final ThemeMode? themeMode;
+  final ThemeMode themeMode;
 
   /// See [MaterialApp.themeAnimationDuration].
   final Duration themeAnimationDuration;
@@ -175,7 +175,7 @@ class M3MaterialApp extends StatefulWidget {
   final String? restorationScopeId;
 
   /// See [MaterialApp.scrollBehavior].
-  final ScrollBehavior? scrollBehavior;
+  final ScrollBehavior scrollBehavior;
 
   /// See [MaterialApp.debugShowMaterialGrid].
   final bool debugShowMaterialGrid;
@@ -225,7 +225,7 @@ class _M3MaterialAppState extends State<M3MaterialApp> {
     );
     final bool highContrast = MediaQuery.highContrastOf(context);
 
-    final ThemeMode mode = widget.themeMode ?? ThemeMode.system;
+    final ThemeMode mode = widget.themeMode;
 
     final bool useDarkTheme =
         mode == ThemeMode.dark ||
@@ -233,15 +233,19 @@ class _M3MaterialAppState extends State<M3MaterialApp> {
 
     ThemeData? theme;
 
-    if (useDarkTheme && highContrast && widget.highContrastDarkTheme != null) {
-      theme = widget.highContrastDarkTheme;
-    } else if (useDarkTheme && widget.darkTheme != null) {
-      theme = widget.darkTheme;
-    } else if (highContrast && widget.highContrastTheme != null) {
-      theme = widget.highContrastTheme;
+    if (useDarkTheme) {
+      if (highContrast) {
+        theme = widget.highContrastDarkTheme;
+      }
+      theme ??= widget.darkTheme;
+    } else {
+      if (highContrast) {
+        theme = widget.highContrastTheme;
+      }
+      theme ??= widget.theme;
     }
 
-    return theme ?? widget.theme ?? ThemeData.light(useMaterial3: true);
+    return theme ?? ThemeData.light(useMaterial3: true);
   }
 
   Widget _materialBuilder(BuildContext context, Widget? child) {
@@ -348,7 +352,7 @@ class _M3MaterialAppState extends State<M3MaterialApp> {
     }(), 'Shows material grid in debug mode');
 
     return ScrollConfiguration(
-      behavior: widget.scrollBehavior ?? const MaterialScrollBehavior(),
+      behavior: widget.scrollBehavior,
       child: HeroControllerScope(controller: _heroController, child: result),
     );
   }

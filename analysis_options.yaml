@@ -1,1 +1,4 @@
-include: package:yet_another_lint/package.yaml
+include: package:yet_another_lint/defaults.yaml
+
+formatter:
+  page_width: 80

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../shape.dart';
+import '/src/shape.dart';
 
 /// Draws a rounded rectangle around an [InputDecorator]'s container.
 ///

@@ -1,4 +1,5 @@
-import 'package:flutter/material.dart' show Cubic, Curve, Curves, Easing;
+import 'package:flutter/material.dart'
+    show Cubic, Curve, Curves, Durations, Easing;
 
 /// [Curve] constants which represent Material 3 [easing](https://m3.material.io/styles/motion/overview).
 ///
@@ -6,6 +7,13 @@ import 'package:flutter/material.dart' show Cubic, Curve, Curves, Easing;
 ///
 /// * Material 3 specification for easing:
 /// <https://m3.material.io/styles/motion/easing-and-duration/tokens-specs>
+@Deprecated(
+  'In the expressive update, components and motion now use '
+  'the motion physics system, which uses springs. '
+  'Products should migrate to the new system. '
+  'The easing and duration system is still used for transitions and can be '
+  "used by teams that haven't yet updated to GM3 Expressive, but is no longer maintained.",
+)
 abstract final class MaterialEasing {
   /// [Linear](https://m3.material.io/styles/motion/easing-and-duration/tokens-specs#6341c2bf-54a0-4260-8ec7-6173926709a3)
   static const Curve linear = Easing.linear;
@@ -46,4 +54,57 @@ abstract final class MaterialEasing {
   /// * Material 3 specification for gestures:
   /// <https://m3.material.io/foundations/interaction/gestures#22462fb2-fbe8-4e0c-b3e7-9278bd18ea0d>
   static const Curve predictiveBackEasing = Cubic(0.1, 0.1, 0, 1);
+}
+
+/// Combination of easing and duration.
+typedef MotionPair = ({Curve easing, Duration duration});
+
+/// Suggested easing and duration pairs from Material 3 [motion spec](https://m3.material.io/styles/motion/overview)
+///
+/// See also:
+///
+/// * [Durations] - [Duration] constants based on Material 3 duration spec.
+/// * [MaterialEasing] - [Curve] constants based on Material 3 easing spec.
+@Deprecated(
+  'In the expressive update, components and motion now use '
+  'the motion physics system, which uses springs. '
+  'Products should migrate to the new system. '
+  'The easing and duration system is still used for transitions and can be '
+  "used by teams that haven't yet updated to GM3 Expressive, but is no longer maintained.",
+)
+abstract final class Motion {
+  /// > Selection controls have a short duration of 200ms with Standard easing.
+  ///
+  /// <https://m3.material.io/styles/motion/easing-and-duration/tokens-specs#97194be9-de1c-41b9-90d4-21ae2b8d3f38>
+  static const MotionPair selectionMotion = (
+    easing: MaterialEasing.standard,
+    duration: Durations.short4,
+  );
+
+  /// > A FAB expanding into a Sheet uses a 400ms duration with Emphasized
+  /// easing.
+  ///
+  /// <https://m3.material.io/styles/motion/easing-and-duration/tokens-specs#e08d2356-1831-4375-bc2f-6d45230c6d98>
+  static const MotionPair fabExpandingMotion = (
+    easing: MaterialEasing.emphasized,
+    duration: Durations.medium4,
+  );
+
+  /// > A Card expanding to full screen uses a long 500ms duration with
+  /// Emphasized easing.
+  ///
+  /// <https://m3.material.io/styles/motion/easing-and-duration/tokens-specs#48bf653e-46f9-48f5-87e0-eaf8ea3fe716>
+  static const MotionPair cardExpansionMotion = (
+    easing: MaterialEasing.emphasized,
+    duration: Durations.long2,
+  );
+
+  /// > An ambient carousel auto-advance transition uses an extra long 1000ms
+  /// duration with emphasized easing.
+  ///
+  /// <https://m3.material.io/styles/motion/easing-and-duration/tokens-specs#ee9dbe95-70fa-4804-8347-c4fd58c60fe2>
+  static const MotionPair ambientCarouselMotion = (
+    easing: MaterialEasing.emphasized,
+    duration: Durations.long4,
+  );
 }
