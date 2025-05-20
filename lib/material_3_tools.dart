@@ -9,24 +9,23 @@
 ///
 /// See also:
 ///
-/// * Material Design 3 guidelines:
-///   https://m3.material.io/
+/// * [Material Design 3 guidelines](https://m3.material.io/)
 library;
 
 export 'src/buttons/button_style.dart';
 export 'src/buttons/size.dart';
-export 'src/icon_grade.dart';
+export 'src/elevation/scrim.dart';
+export 'src/icons/icon_grade.dart';
 export 'src/motion/curves.dart';
 export 'src/motion/legacy_easing.dart';
 export 'src/motion/spring.dart';
-export 'src/scrim.dart';
-export 'src/shape.dart';
+export 'src/shape/shape.dart';
+export 'src/utils/outlined_border.dart';
 // legacy exports
 export 'src_non_expressive/app.dart';
 export 'src_non_expressive/button_style.dart';
 export 'src_non_expressive/custom_color.dart';
 export 'src_non_expressive/extensions/navigator.dart';
-export 'src_non_expressive/input/outlined_border.dart';
 export 'src_non_expressive/interaction_states.dart';
 export 'src_non_expressive/motion/transition/forward_and_backward.dart';
 export 'src_non_expressive/motion/transition/top_level.dart';

@@ -1,50 +1,73 @@
 import 'package:flutter/rendering.dart' show BorderRadius, Radius;
 
-/// [BorderRadius] constants which represent Material 3 [shape system](https://m3.material.io/styles/shape/overview).
+/// [BorderRadius] constants which represent Material 3 [shape system](https://m3.material.io/styles/shape/overview-principles).
+///
+/// ![](https://firebasestorage.googleapis.com/v0/b/design-spec/o/projects%2Fgoogle-material-3%2Fimages%2Fm0c881mj-1.png?alt=media&token=fcb5e003-c5d3-4208-af8a-8766b55ad7ee)
 ///
 /// See also:
 ///
-/// * Material 3 specification for shapes:
-/// <https://m3.material.io/styles/shape/shape-scale-tokens>
-abstract final class Shapes {
+/// * [M3 guidelines: corner radius scale](https://m3.material.io/styles/shape/corner-radius-scale#7c4b83c5-25e3-4337-889d-4f24a2b93e6d)
+abstract final class Shape {
   /// Baseline shape with all corners having `radius` of zero.
   static const BorderRadius none = BorderRadius.zero;
 
   /// Baseline shape with all corners having `radius` of 4.0.
-  static const extraSmall = BorderRadius.all(CornerSize.extraSmall);
+  static const extraSmall = BorderRadius.all(
+    CornerRadius.extraSmall,
+  );
 
   /// Baseline shape with all corners having `radius` of 8.0.
-  static const small = BorderRadius.all(CornerSize.small);
+  static const small = BorderRadius.all(
+    CornerRadius.small,
+  );
 
   /// Baseline shape with all corners having `radius` of 12.0.
-  static const medium = BorderRadius.all(CornerSize.medium);
+  static const medium = BorderRadius.all(
+    CornerRadius.medium,
+  );
 
   /// Baseline shape with all corners having `radius` of 16.0.
-  static const large = BorderRadius.all(CornerSize.large);
+  static const large = BorderRadius.all(
+    CornerRadius.large,
+  );
 
   /// Baseline shape with all corners having `radius` of 20.0.
-  static const largeIncreased = BorderRadius.all(CornerSize.largeIncreased);
+  static const largeIncreased = BorderRadius.all(
+    CornerRadius.largeIncreased,
+  );
 
   /// Baseline shape with all corners having `radius` of 28.0.
-  static const extraLarge = BorderRadius.all(CornerSize.extraLarge);
+  static const extraLarge = BorderRadius.all(
+    CornerRadius.extraLarge,
+  );
 
   /// Baseline shape with all corners having `radius` of 32.0.
   static const extraLargeIncreased = BorderRadius.all(
-    CornerSize.extraLargeIncreased,
+    CornerRadius.extraLargeIncreased,
   );
 
   /// Baseline shape with all corners having `radius` of 48.0.
-  static const extraExtraLarge = BorderRadius.all(CornerSize.extraExtraLarge);
+  static const extraExtraLarge = BorderRadius.all(
+    CornerRadius.extraExtraLarge,
+  );
 
   /// Baseline shape with all corners having `radius` of 90.0.
-  static const full = BorderRadius.all(CornerSize.full);
+  static const full = BorderRadius.all(
+    CornerRadius.full,
+  );
 }
 
-/// [Radius.circular] constants which represent Material 3 [shape system](https://m3.material.io/styles/shape/overview).
+/// [Radius.circular] constants which represent Material 3 [shape system](https://m3.material.io/styles/shape/overview-principles).
 ///
-/// Usually should only be used internally for [Shapes] constants, but is
+/// Usually should only be used internally for [Shape] constants, but is
 /// exposed for convenience.
-abstract final class CornerSize {
+///
+/// ![](https://firebasestorage.googleapis.com/v0/b/design-spec/o/projects%2Fgoogle-material-3%2Fimages%2Fm0c881mj-1.png?alt=media&token=fcb5e003-c5d3-4208-af8a-8766b55ad7ee)
+///
+/// See also:
+///
+/// * [M3 guidelines: corner radius scale](https://m3.material.io/styles/shape/corner-radius-scale#7c4b83c5-25e3-4337-889d-4f24a2b93e6d)
+abstract final class CornerRadius {
   /// A non-rounded corner size.
   static const Radius none = Radius.zero;
 

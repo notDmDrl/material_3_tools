@@ -1,4 +1,4 @@
-import 'package:flutter/animation.dart';
+import 'package:flutter/animation.dart' show SpringDescription;
 
 // https://m3.material.io/styles/motion/overview/how-it-works#91dfe12e-1e79-4417-a27e-33049358b149
 abstract final class ExpressiveSpring {

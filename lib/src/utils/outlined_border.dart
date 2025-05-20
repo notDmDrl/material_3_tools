@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '/src/shape.dart';
+import '../shape/shape.dart';
 
 /// Draws a rounded rectangle around an [InputDecorator]'s container.
 ///
@@ -38,7 +38,7 @@ class OutlinedInputBorder extends InputBorder {
   /// their [Radius.x] and [Radius.y] values must be the same.
   const OutlinedInputBorder({
     super.borderSide = BorderSide.none,
-    this.borderRadius = Shapes.large,
+    this.borderRadius = Shape.large,
     this.isSuperellipse = false,
   });
 
