@@ -3,13 +3,14 @@ library;
 
 import 'package:flutter/material.dart';
 
-import '/src/motion/legacy_easing.dart';
+import '/src/styles/motion/easing_and_duration.dart';
 
 /// Signature for the callback invoked when [SelectableIcon]s selection state
 /// changes.
 ///
 /// Used by [SelectableIcon.icon].
-typedef SelectableIconBuilder = Widget Function(BuildContext context, double fill);
+typedef SelectableIconBuilder =
+    Widget Function(BuildContext context, double fill);
 
 /// An [Icon] that animates its [Icon.fill] value.
 ///
@@ -67,7 +68,8 @@ final class SelectableIcon extends StatefulWidget {
   State<SelectableIcon> createState() => _SelectableIconState();
 }
 
-class _SelectableIconState extends State<SelectableIcon> with SingleTickerProviderStateMixin {
+class _SelectableIconState extends State<SelectableIcon>
+    with SingleTickerProviderStateMixin {
   late final AnimationController controller;
 
   @override

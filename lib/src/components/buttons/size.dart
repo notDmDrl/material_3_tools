@@ -8,9 +8,9 @@ import 'package:flutter/material.dart'
         WidgetStateMapper,
         immutable;
 
-import '/src/motion/curves.dart';
-import '/src/motion/spring.dart';
-import '/src/shape/shape.dart';
+import '/src/styles/motion/physics/curves.dart';
+import '/src/styles/motion/physics/spring.dart';
+import '/src/styles/shape/shape.dart';
 
 typedef TextStyleResolver = TextStyle Function(TextTheme textTheme);
 
@@ -169,8 +169,8 @@ final class ExpressiveButtonSize {
   final WidgetStateMapper<BorderRadius> shapeResolverSquare;
 
   // are the same for every size
-  static const SpringDescription spring = ExpressiveSpring.standardSpatialFast;
-  static const ExCurve curve = ExpressiveCurve.standardSpatialFast;
+  static const SpringDescription spring = MotionPhysicsSpring.standardFast;
+  static const MotionPhysicsCurvePair curve = MotionPhysicsCurve.standardFast;
 
   ExpressiveButtonSize copyWith({
     double? containerHeight,

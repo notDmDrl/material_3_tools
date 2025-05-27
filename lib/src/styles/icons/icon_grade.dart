@@ -1,5 +1,7 @@
-import 'package:flutter/material.dart'
-    show Brightness, BuildContext, Theme, ThemeData;
+/// @docImport 'package:flutter/material.dart';
+library;
+
+import 'package:flutter/material.dart' show Brightness, BuildContext, Theme;
 
 /// Weight and grade affect a symbol’s thickness. Adjustments to grade are
 /// more granular than adjustments to weight and have a smaller impact on the
@@ -31,6 +33,15 @@ abstract final class IconGrade {
         Brightness.light => kLightGrade,
         Brightness.dark => kDarkGrade,
       };
+
+  /// Returns the default grade for an icon for the provided [brightness]:
+  ///
+  /// * 0 - for [Brightness.light];
+  /// * -25 - for [Brightness.dark];
+  static double from(Brightness brightness) => switch (brightness) {
+    Brightness.light => kLightGrade,
+    Brightness.dark => kDarkGrade,
+  };
 
   /// The default grade for a dark icon on a light background.
   ///

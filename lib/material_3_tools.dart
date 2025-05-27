@@ -12,14 +12,18 @@
 /// * [Material Design 3 guidelines](https://m3.material.io/)
 library;
 
-export 'src/buttons/button_style.dart';
-export 'src/buttons/size.dart';
-export 'src/elevation/scrim.dart';
-export 'src/icons/icon_grade.dart';
-export 'src/motion/curves.dart';
-export 'src/motion/legacy_easing.dart';
-export 'src/motion/spring.dart';
-export 'src/shape/shape.dart';
+export 'src/components/buttons/button_style.dart';
+export 'src/components/buttons/size.dart';
+export 'src/styles/elevation/scrim.dart';
+export 'src/styles/icons/icon.dart';
+export 'src/styles/icons/icon_grade.dart';
+export 'src/styles/icons/optical_size.dart';
+export 'src/styles/motion/easing_and_duration.dart';
+export 'src/styles/motion/physics/curves.dart';
+export 'src/styles/motion/physics/spring.dart';
+export 'src/styles/motion/transitions/forward_and_backward.dart';
+export 'src/styles/motion/transitions/top_level.dart';
+export 'src/styles/shape/shape.dart';
 export 'src/utils/outlined_border.dart';
 // legacy exports
 export 'src_non_expressive/app.dart';
@@ -27,8 +31,6 @@ export 'src_non_expressive/button_style.dart';
 export 'src_non_expressive/custom_color.dart';
 export 'src_non_expressive/extensions/navigator.dart';
 export 'src_non_expressive/interaction_states.dart';
-export 'src_non_expressive/motion/transition/forward_and_backward.dart';
-export 'src_non_expressive/motion/transition/top_level.dart';
 export 'src_non_expressive/page_route.dart';
 export 'src_non_expressive/selectable_icon.dart';
 export 'src_non_expressive/theme_extension/custom_colors.dart';
