@@ -100,7 +100,8 @@ class M3Icon extends StatelessWidget {
   /// the text font has a -25 grade value, the symbols can match it with a
   /// suitable value, say -25.
   ///
-  /// Defaults to nearest [ThemeData]'s [IconGrade.of].
+  /// Defaults to nearest [IconTheme]'s [IconThemeData.grade].
+  /// If that is `null`, defaults to nearest [ThemeData]'s [IconGrade.of].
   ///
   /// See also:
   ///
@@ -121,8 +122,7 @@ class M3Icon extends StatelessWidget {
   /// (thickness) must change as the icon size scales. Optical size offers a way
   /// to automatically adjust the stroke weight as icon size changes.
   ///
-  /// Defaults to the nearest [IconTheme]'s [IconThemeData.opticalSize].
-  /// If that is `null`, defaults to resolved icon size.
+  /// Defaults to resolved icon size.
   ///
   /// See also:
   ///
@@ -220,8 +220,8 @@ class M3Icon extends StatelessWidget {
       size: resolvedSize,
       fill: fill,
       weight: weight,
-      grade: grade ?? IconGrade.of(context),
-      opticalSize: opticalSize ?? iconThemeData.opticalSize ?? resolvedSize,
+      grade: grade ?? iconThemeData.grade ?? IconGrade.of(context),
+      opticalSize: opticalSize ?? resolvedSize,
       color: color,
       semanticLabel: semanticLabel,
       textDirection: textDirection,
