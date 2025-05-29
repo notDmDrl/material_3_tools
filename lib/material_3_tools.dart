@@ -23,7 +23,9 @@ export 'src/styles/motion/physics/curves.dart';
 export 'src/styles/motion/physics/spring.dart';
 export 'src/styles/motion/transitions/forward_and_backward.dart';
 export 'src/styles/motion/transitions/top_level.dart';
-export 'src/styles/shape/shape.dart';
+export 'src/styles/shape/corner_radius_scale.dart';
+export 'src/styles/typography/font_family.dart';
+export 'src/styles/typography/type_scale.dart';
 export 'src/utils/outlined_border.dart';
 // legacy exports
 export 'src_non_expressive/app.dart';
@@ -34,4 +36,3 @@ export 'src_non_expressive/interaction_states.dart';
 export 'src_non_expressive/page_route.dart';
 export 'src_non_expressive/selectable_icon.dart';
 export 'src_non_expressive/theme_extension/custom_colors.dart';
-export 'src_non_expressive/typography.dart';

@@ -7,7 +7,7 @@ import 'package:flutter/rendering.dart' show BorderRadius, Radius;
 /// See also:
 ///
 /// * [M3 guidelines: corner radius scale](https://m3.material.io/styles/shape/corner-radius-scale#7c4b83c5-25e3-4337-889d-4f24a2b93e6d)
-abstract final class Shape {
+abstract final class CornerRadiusScale {
   /// Baseline shape with all corners having `radius` of zero.
   static const BorderRadius none = BorderRadius.zero;
 
@@ -59,7 +59,7 @@ abstract final class Shape {
 
 /// [Radius.circular] constants which represent Material 3 [shape system](https://m3.material.io/styles/shape/overview-principles).
 ///
-/// Usually should only be used internally for [Shape] constants, but is
+/// Usually should only be used internally for [CornerRadiusScale] constants, but is
 /// exposed for convenience.
 ///
 /// ![](https://firebasestorage.googleapis.com/v0/b/design-spec/o/projects%2Fgoogle-material-3%2Fimages%2Fm0c881mj-1.png?alt=media&token=fcb5e003-c5d3-4208-af8a-8766b55ad7ee)

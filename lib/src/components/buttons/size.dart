@@ -10,7 +10,7 @@ import 'package:flutter/material.dart'
 
 import '/src/styles/motion/physics/curves.dart';
 import '/src/styles/motion/physics/spring.dart';
-import '/src/styles/shape/shape.dart';
+import '/src/styles/shape/corner_radius_scale.dart';
 
 typedef TextStyleResolver = TextStyle Function(TextTheme textTheme);
 
@@ -46,14 +46,14 @@ final class ExpressiveButtonSize {
     betweenIconLabelSpace: 8,
     trailingSpace: 12,
     shapeResolverRound: WidgetStateMapper({
-      WidgetState.pressed: Shape.small,
-      WidgetState.selected: Shape.medium,
-      WidgetState.any: Shape.full,
+      WidgetState.pressed: CornerRadiusScale.small,
+      WidgetState.selected: CornerRadiusScale.medium,
+      WidgetState.any: CornerRadiusScale.full,
     }),
     shapeResolverSquare: WidgetStateMapper({
-      WidgetState.pressed: Shape.small,
-      WidgetState.selected: Shape.full,
-      WidgetState.any: Shape.medium,
+      WidgetState.pressed: CornerRadiusScale.small,
+      WidgetState.selected: CornerRadiusScale.full,
+      WidgetState.any: CornerRadiusScale.medium,
     }),
   );
 
@@ -66,14 +66,14 @@ final class ExpressiveButtonSize {
     betweenIconLabelSpace: 8,
     trailingSpace: 16,
     shapeResolverRound: WidgetStateMapper({
-      WidgetState.pressed: Shape.small,
-      WidgetState.selected: Shape.medium,
-      WidgetState.any: Shape.full,
+      WidgetState.pressed: CornerRadiusScale.small,
+      WidgetState.selected: CornerRadiusScale.medium,
+      WidgetState.any: CornerRadiusScale.full,
     }),
     shapeResolverSquare: WidgetStateMapper({
-      WidgetState.pressed: Shape.small,
-      WidgetState.selected: Shape.full,
-      WidgetState.any: Shape.medium,
+      WidgetState.pressed: CornerRadiusScale.small,
+      WidgetState.selected: CornerRadiusScale.full,
+      WidgetState.any: CornerRadiusScale.medium,
     }),
   );
 
@@ -87,14 +87,14 @@ final class ExpressiveButtonSize {
     betweenIconLabelSpace: 8,
     trailingSpace: 20,
     shapeResolverRound: WidgetStateMapper({
-      WidgetState.pressed: Shape.medium,
-      WidgetState.selected: Shape.large,
-      WidgetState.any: Shape.full,
+      WidgetState.pressed: CornerRadiusScale.medium,
+      WidgetState.selected: CornerRadiusScale.large,
+      WidgetState.any: CornerRadiusScale.full,
     }),
     shapeResolverSquare: WidgetStateMapper({
-      WidgetState.pressed: Shape.medium,
-      WidgetState.selected: Shape.full,
-      WidgetState.any: Shape.large,
+      WidgetState.pressed: CornerRadiusScale.medium,
+      WidgetState.selected: CornerRadiusScale.full,
+      WidgetState.any: CornerRadiusScale.large,
     }),
   );
 
@@ -107,14 +107,14 @@ final class ExpressiveButtonSize {
     betweenIconLabelSpace: 8,
     trailingSpace: 24,
     shapeResolverRound: WidgetStateMapper({
-      WidgetState.pressed: Shape.medium,
-      WidgetState.selected: Shape.large,
-      WidgetState.any: Shape.full,
+      WidgetState.pressed: CornerRadiusScale.medium,
+      WidgetState.selected: CornerRadiusScale.large,
+      WidgetState.any: CornerRadiusScale.full,
     }),
     shapeResolverSquare: WidgetStateMapper({
-      WidgetState.pressed: Shape.medium,
-      WidgetState.selected: Shape.full,
-      WidgetState.any: Shape.large,
+      WidgetState.pressed: CornerRadiusScale.medium,
+      WidgetState.selected: CornerRadiusScale.full,
+      WidgetState.any: CornerRadiusScale.large,
     }),
   );
 
@@ -127,14 +127,14 @@ final class ExpressiveButtonSize {
     betweenIconLabelSpace: 12,
     trailingSpace: 48,
     shapeResolverRound: WidgetStateMapper({
-      WidgetState.pressed: Shape.large,
-      WidgetState.selected: Shape.extraLarge,
-      WidgetState.any: Shape.full,
+      WidgetState.pressed: CornerRadiusScale.large,
+      WidgetState.selected: CornerRadiusScale.extraLarge,
+      WidgetState.any: CornerRadiusScale.full,
     }),
     shapeResolverSquare: WidgetStateMapper({
-      WidgetState.pressed: Shape.large,
-      WidgetState.selected: Shape.full,
-      WidgetState.any: Shape.extraLarge,
+      WidgetState.pressed: CornerRadiusScale.large,
+      WidgetState.selected: CornerRadiusScale.full,
+      WidgetState.any: CornerRadiusScale.extraLarge,
     }),
   );
 
@@ -147,14 +147,14 @@ final class ExpressiveButtonSize {
     betweenIconLabelSpace: 16,
     trailingSpace: 64,
     shapeResolverRound: WidgetStateMapper({
-      WidgetState.pressed: Shape.large,
-      WidgetState.selected: Shape.extraLarge,
-      WidgetState.any: Shape.full,
+      WidgetState.pressed: CornerRadiusScale.large,
+      WidgetState.selected: CornerRadiusScale.extraLarge,
+      WidgetState.any: CornerRadiusScale.full,
     }),
     shapeResolverSquare: WidgetStateMapper({
-      WidgetState.pressed: Shape.large,
-      WidgetState.selected: Shape.full,
-      WidgetState.any: Shape.extraLarge,
+      WidgetState.pressed: CornerRadiusScale.large,
+      WidgetState.selected: CornerRadiusScale.full,
+      WidgetState.any: CornerRadiusScale.extraLarge,
     }),
   );
 

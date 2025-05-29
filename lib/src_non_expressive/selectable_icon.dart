@@ -1,6 +1,3 @@
-/// @docImport 'motion/transition/top_level.dart';
-library;
-
 import 'package:flutter/material.dart';
 
 import '/src/styles/motion/easing_and_duration.dart';
