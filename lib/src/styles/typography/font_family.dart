@@ -25,7 +25,7 @@ abstract final class TypographyFontFamilyUtils {
     required TextTheme textTheme,
     String? fontFamily,
     String? displayFontFamily,
-    List<FontFeature>? fontFeatues,
+    List<FontFeature>? fontFeatures,
   }) {
     final String? resolvedDisplayFontFamily = displayFontFamily ?? fontFamily;
 
@@ -52,7 +52,7 @@ abstract final class TypographyFontFamilyUtils {
 
   /// Applies font family for specific text style of the provided [textTheme].
   ///
-  /// Additionally, if not `null` applies [fontFeatues] to all of the [textTheme]'s styles.
+  /// Additionally, if not `null` applies [fontFeatures] to all of the [textTheme]'s styles.
   static TextTheme applyFontFamilyToStyles({
     required TextTheme textTheme,
     String? displayLargeFontFamily,
@@ -70,7 +70,7 @@ abstract final class TypographyFontFamilyUtils {
     String? labelLargeFontFamily,
     String? labelMediumFontFamily,
     String? labelSmallFontFamily,
-    List<FontFeature>? fontFeatues,
+    List<FontFeature>? fontFeatures,
   }) => TextTheme(
     displayLarge: textTheme.displayLarge?.copyWith(
       fontFamily: displayLargeFontFamily,
