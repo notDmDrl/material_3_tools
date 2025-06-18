@@ -1,8 +1,6 @@
 import 'package:flutter/cupertino.dart' show CupertinoRouteTransitionMixin;
 import 'package:flutter/material.dart';
 
-import '/src/styles/motion/transitions/forward_and_backward.dart';
-
 /// A modal route that replaces the entire screen with a platform-adaptive M3
 /// transition.
 ///
@@ -17,9 +15,11 @@ import '/src/styles/motion/transitions/forward_and_backward.dart';
 /// See also:
 ///
 /// [MaterialPageRoute] - the default material modal route.
+@Deprecated('')
 final class M3MaterialPageRoute<T> extends PageRoute<T>
     with _M3MaterialRouteTransitionMixin<T> {
   /// Creates a [M3MaterialPageRoute] with short 300ms duration transition.
+  @Deprecated('')
   M3MaterialPageRoute({
     required this.builder,
     super.settings,
@@ -29,6 +29,7 @@ final class M3MaterialPageRoute<T> extends PageRoute<T>
        super(barrierDismissible: false, allowSnapshotting: true);
 
   /// Creates a [M3MaterialPageRoute] with a long 800ms duration transition.
+  @Deprecated('')
   M3MaterialPageRoute.long({
     required this.builder,
     super.settings,
@@ -55,7 +56,7 @@ final class M3MaterialPageRoute<T> extends PageRoute<T>
 
 /// A mixin that provides platform-adaptive M3 transitions for a [PageRoute].
 ///
-/// For Android, the transition is [ForwardAndBackwardTransitionsBuilder].
+/// For Android, the transition is [FadeForwardsPageTransitionsBuilder].
 ///
 /// For iOS, the transition is the one provided by
 /// [CupertinoPageTransitionsBuilder].
@@ -64,7 +65,7 @@ mixin _M3MaterialRouteTransitionMixin<T> on PageRoute<T> {
   @protected
   Widget buildContent(BuildContext context);
 
-  /// Duration for ForwardAndBackwardTransitionsBuilder;
+  /// Duration for FadeForwardsPageTransitionsBuilder;
   @protected
   Duration get materialTransitionDuration;
 

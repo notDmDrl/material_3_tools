@@ -14,6 +14,8 @@ library;
 
 export 'src/components/buttons/button_style.dart';
 export 'src/components/buttons/size.dart';
+export 'src/foundations/accessibility/color_contrast.dart';
+export 'src/foundations/interaction/states.dart';
 export 'src/styles/elevation/scrim.dart';
 export 'src/styles/icons/icon.dart';
 export 'src/styles/icons/icon_grade.dart';
@@ -21,7 +23,6 @@ export 'src/styles/icons/optical_size.dart';
 export 'src/styles/motion/easing_and_duration.dart';
 export 'src/styles/motion/physics/curves.dart';
 export 'src/styles/motion/physics/spring.dart';
-export 'src/styles/motion/transitions/forward_and_backward.dart';
 export 'src/styles/motion/transitions/top_level.dart';
 export 'src/styles/shape/corner_radius_scale.dart';
 export 'src/styles/typography/font_family.dart';
