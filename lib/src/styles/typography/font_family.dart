@@ -16,6 +16,8 @@ abstract final class TypographyFontFamilyUtils {
   /// If [displayFontFamily] is not `null`, applies it to all display, headline,
   /// and title large styles.
   ///
+  /// If [fontFeatures] is not `null`, applies it to all of [textTheme]'s styles.
+  ///
   /// See also:
   ///
   /// * [M3 guidelines: typography, applying type](https://m3.material.io/styles/typography/applying-type)
@@ -23,6 +25,7 @@ abstract final class TypographyFontFamilyUtils {
     required TextTheme textTheme,
     String? fontFamily,
     String? displayFontFamily,
+    List<FontFeature>? fontFeatures,
   }) {
     final String? resolvedDisplayFontFamily = displayFontFamily ?? fontFamily;
 
@@ -43,10 +46,13 @@ abstract final class TypographyFontFamilyUtils {
       labelLargeFontFamily: fontFamily,
       labelMediumFontFamily: fontFamily,
       labelSmallFontFamily: fontFamily,
+      fontFeatures: fontFeatures,
     );
   }
 
   /// Applies font family for specific text style of the provided [textTheme].
+  ///
+  /// Additionally, if not `null` applies [fontFeatures] to all of the [textTheme]'s styles.
   static TextTheme applyFontFamilyToStyles({
     required TextTheme textTheme,
     String? displayLargeFontFamily,
@@ -64,51 +70,67 @@ abstract final class TypographyFontFamilyUtils {
     String? labelLargeFontFamily,
     String? labelMediumFontFamily,
     String? labelSmallFontFamily,
+    List<FontFeature>? fontFeatures,
   }) => TextTheme(
-    displayLarge: textTheme.displayLarge?.apply(
+    displayLarge: textTheme.displayLarge?.copyWith(
       fontFamily: displayLargeFontFamily,
+      fontFeatures: fontFeatures,
     ),
-    displayMedium: textTheme.displayMedium?.apply(
+    displayMedium: textTheme.displayMedium?.copyWith(
       fontFamily: displayMediumFontFamily,
+      fontFeatures: fontFeatures,
     ),
-    displaySmall: textTheme.displaySmall?.apply(
+    displaySmall: textTheme.displaySmall?.copyWith(
       fontFamily: displaySmallFontFamily,
+      fontFeatures: fontFeatures,
     ),
-    headlineLarge: textTheme.headlineLarge?.apply(
+    headlineLarge: textTheme.headlineLarge?.copyWith(
       fontFamily: headlineLargeFontFamily,
+      fontFeatures: fontFeatures,
     ),
-    headlineMedium: textTheme.headlineMedium?.apply(
+    headlineMedium: textTheme.headlineMedium?.copyWith(
       fontFamily: headlineMediumFontFamily,
+      fontFeatures: fontFeatures,
     ),
-    headlineSmall: textTheme.headlineSmall?.apply(
+    headlineSmall: textTheme.headlineSmall?.copyWith(
       fontFamily: headlineSmallFontFamily,
+      fontFeatures: fontFeatures,
     ),
-    titleLarge: textTheme.titleLarge?.apply(
+    titleLarge: textTheme.titleLarge?.copyWith(
       fontFamily: titleLargeFontFamily,
+      fontFeatures: fontFeatures,
     ),
-    titleMedium: textTheme.titleMedium?.apply(
+    titleMedium: textTheme.titleMedium?.copyWith(
       fontFamily: titleMediumFontFamily,
+      fontFeatures: fontFeatures,
     ),
-    titleSmall: textTheme.titleSmall?.apply(
+    titleSmall: textTheme.titleSmall?.copyWith(
       fontFamily: titleSmallFontFamily,
+      fontFeatures: fontFeatures,
     ),
-    bodyLarge: textTheme.bodyLarge?.apply(
+    bodyLarge: textTheme.bodyLarge?.copyWith(
       fontFamily: bodyLargeFontFamily,
+      fontFeatures: fontFeatures,
     ),
-    bodyMedium: textTheme.bodyMedium?.apply(
+    bodyMedium: textTheme.bodyMedium?.copyWith(
       fontFamily: bodyMediumFontFamily,
+      fontFeatures: fontFeatures,
     ),
-    bodySmall: textTheme.bodySmall?.apply(
+    bodySmall: textTheme.bodySmall?.copyWith(
       fontFamily: bodySmallFontFamily,
+      fontFeatures: fontFeatures,
     ),
-    labelLarge: textTheme.labelLarge?.apply(
+    labelLarge: textTheme.labelLarge?.copyWith(
       fontFamily: labelLargeFontFamily,
+      fontFeatures: fontFeatures,
     ),
-    labelMedium: textTheme.labelMedium?.apply(
+    labelMedium: textTheme.labelMedium?.copyWith(
       fontFamily: labelMediumFontFamily,
+      fontFeatures: fontFeatures,
     ),
-    labelSmall: textTheme.labelSmall?.apply(
+    labelSmall: textTheme.labelSmall?.copyWith(
       fontFamily: labelSmallFontFamily,
+      fontFeatures: fontFeatures,
     ),
   );
 }
