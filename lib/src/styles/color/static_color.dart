@@ -1,66 +1,64 @@
-import 'package:flutter/material.dart'
-    show Brightness, Color, ColorScheme, DynamicSchemeVariant, immutable;
+/// @docImport 'package:flutter/material.dart';
+/// @docImport 'harmonization.dart';
+library;
+
+import 'package:flutter/material.dart';
 import 'package:material_color_utilities/material_color_utilities.dart';
 
-/// Harmonize custom color with, usually, your theme primary color.
-///
-/// See also:
-///
-/// * Harmonize colors M3 docs:
-/// <https://m3.material.io/styles/color/advanced/adjust-existing-colors#1cc12e43-237b-45b9-8fe0-9a3549c1f61e>
-Color harmonizedColor(Color source, Color? harmonizationColor) {
-  if (harmonizationColor == null || source == harmonizationColor) {
-    return source;
-  }
+import 'harmonization.dart';
 
-  return Color(
-    Blend.harmonize(source.toARGB32(), harmonizationColor.toARGB32()),
-  );
-}
-
-/// A set of 4 colors based on the [Material 3 Custom colors spec](https://m3.material.io/styles/color/advanced/define-new-colors#f13116d1-3023-44b9-b0b5-2ee07dc1af5f)
+/// A set of 4 colors based on the [Material 3 Static colors spec](https://m3.material.io/styles/color/advanced/define-new-colors#f13116d1-3023-44b9-b0b5-2ee07dc1af5f)
 ///
-/// Custom colors are similar to [ColorScheme], but they only have primary set
+/// ![](https://firebasestorage.googleapis.com/v0/b/design-spec/o/projects%2Fgoogle-material-3%2Fimages%2Flwt7wrjx-1.png?alt=media&token=ca9d1728-afc1-4229-8280-ae94ad9f31f8)
+///
+/// Static colors are similar to [ColorScheme], but they only have primary set
 /// of colors.
 ///
 /// Custom colors are used as an addition to existing [ColorScheme] with ability
-/// to harmonize [CustomColor] to, usually, [ColorScheme.primary] color.
+/// to harmonize [StaticColor] to, usually, [ColorScheme.primary] color.
 ///
-/// > In dynamic schemes, you can automatically adjust the hue of static colors
-/// > so they look better alongside the scheme’s primary color.
-/// [link](https://m3.material.io/styles/color/advanced/adjust-existing-colors#1cc12e43-237b-45b9-8fe0-9a3549c1f61e)
+/// See also:
+///
+/// * [M3 guidelines: color, static colors](https://m3.material.io/styles/color/advanced/define-new-colors#f13116d1-3023-44b9-b0b5-2ee07dc1af5f)
+/// * [ColorHarmonization], color harmonization utils.
 @immutable
-final class CustomColor {
-  /// Creates [CustomColor] from all required colors.
+final class StaticColor {
+  /// Creates [StaticColor] from all required colors.
   ///
-  /// [CustomColor.fromSource] can be used as a simpler way to create a custom
+  /// [StaticColor.fromSource] can be used as a simpler way to create a custom
   /// color derived from a single source color.
-  const CustomColor({
+  const StaticColor({
     required this.primary,
     required this.onPrimary,
-    required this.primaryContainer,
-    required this.onPrimaryContainer,
+    required this.container,
+    required this.onContainer,
   });
 
-  /// Creates [CustomColor] by providing source color, brightness, scheme
+  /// Creates [StaticColor] by providing source color, brightness, scheme
   /// variant, and optional harmonization color.
-  factory CustomColor.fromSource({
+  ///
+  /// If the colors provided back from your input color appear differently than
+  /// expected, set [schemeVariant] to [DynamicSchemeVariant.fidelity].
+  factory StaticColor.fromSource({
     required Color sourceColor,
+    Color? harmonizationColor,
     Brightness brightness = Brightness.light,
     DynamicSchemeVariant schemeVariant = DynamicSchemeVariant.tonalSpot,
-    Color? harmonizationColor,
     double contrastLevel = 0,
   }) {
-    final int color =
-        harmonizedColor(sourceColor, harmonizationColor).toARGB32();
-
-    final isDark = brightness == Brightness.dark;
-    final Hct sourceColorHct = Hct.fromInt(color);
-
     assert(
       contrastLevel >= -1 && contrastLevel <= 1,
       'Contrast levels should be between -1 and 1',
     );
+
+    final isDark = brightness == Brightness.dark;
+
+    final int color = ColorHarmonization.harmonize(
+      sourceColor,
+      harmonizationColor,
+    ).toARGB32();
+
+    final Hct sourceColorHct = Hct.fromInt(color);
 
     final DynamicScheme scheme = switch (schemeVariant) {
       DynamicSchemeVariant.tonalSpot => SchemeTonalSpot(
@@ -110,11 +108,11 @@ final class CustomColor {
       ),
     };
 
-    return CustomColor(
+    return StaticColor(
       primary: Color(scheme.primary),
       onPrimary: Color(scheme.onPrimary),
-      primaryContainer: Color(scheme.primaryContainer),
-      onPrimaryContainer: Color(scheme.onPrimaryContainer),
+      container: Color(scheme.primaryContainer),
+      onContainer: Color(scheme.onPrimaryContainer),
     );
   }
 
@@ -125,17 +123,16 @@ final class CustomColor {
   final Color onPrimary;
 
   /// A color used for elements needing less emphasis than [primary].
-  final Color primaryContainer;
+  final Color container;
 
-  /// A color that's clearly legible when drawn on [primaryContainer].
-  final Color onPrimaryContainer;
+  /// A color that's clearly legible when drawn on [container].
+  final Color onContainer;
 
   /// Linearly interpolate between two custom colors.
-  CustomColor lerp(CustomColor? other, double t) => CustomColor(
+  StaticColor lerp(StaticColor? other, double t) => StaticColor(
     primary: Color.lerp(primary, other?.primary, t)!,
     onPrimary: Color.lerp(onPrimary, other?.onPrimary, t)!,
-    primaryContainer: Color.lerp(primaryContainer, other?.primaryContainer, t)!,
-    onPrimaryContainer:
-        Color.lerp(onPrimaryContainer, other?.onPrimaryContainer, t)!,
+    container: Color.lerp(container, other?.container, t)!,
+    onContainer: Color.lerp(onContainer, other?.onContainer, t)!,
   );
 }

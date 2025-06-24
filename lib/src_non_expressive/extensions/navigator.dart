@@ -27,6 +27,7 @@ extension NavigatorStateX on NavigatorState {
   ///   );
   /// }
   /// ```
+  @Deprecated('')
   @optionalTypeArgs
   Future<T?> m3push<T extends Object?>({
     required WidgetBuilder builder,
@@ -58,6 +59,7 @@ extension NavigatorStateX on NavigatorState {
   ///   );
   /// }
   /// ```
+  @Deprecated('')
   @optionalTypeArgs
   Future<T?> m3pushReplacement<T extends Object?, TO extends Object?>({
     required WidgetBuilder builder,

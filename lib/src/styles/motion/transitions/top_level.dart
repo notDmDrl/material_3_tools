@@ -1,7 +1,9 @@
-import 'package:animations/animations.dart' show PageTransitionSwitcher;
+// Material Easing was deprecated, yet still required for transitions.
+// ignore_for_file: deprecated_member_use_from_same_package
 import 'package:flutter/material.dart';
 
 import '/src/styles/motion/easing_and_duration.dart';
+import '_page_transition_switcher.dart';
 
 /// Defines a transition in which the outgoing page fades out, then the incoming
 /// page fades in and, if [applyScaleTransition] is set to true, scales up.
@@ -33,10 +35,10 @@ final class TopLevelTransition extends StatelessWidget {
   Widget build(BuildContext context) => PageTransitionSwitcher(
     transitionBuilder: (child, animation, secondaryAnimation) =>
         _ZoomedFadeInFadeOut(
-          listenable: animation,
+          animation: animation,
           applyScaleTransition: applyScaleTransition,
           child: _ZoomedFadeInFadeOut(
-            listenable: ReverseAnimation(secondaryAnimation),
+            animation: ReverseAnimation(secondaryAnimation),
             applyScaleTransition: applyScaleTransition,
             child: child,
           ),
@@ -46,13 +48,14 @@ final class TopLevelTransition extends StatelessWidget {
 }
 
 @immutable
-class _ZoomedFadeInFadeOut extends AnimatedWidget {
+class _ZoomedFadeInFadeOut extends StatelessWidget {
   const _ZoomedFadeInFadeOut({
-    required super.listenable,
+    required this.animation,
     required this.applyScaleTransition,
     this.child,
   });
 
+  final Animation<double> animation;
   final Widget? child;
   final bool applyScaleTransition;
 
@@ -112,7 +115,7 @@ class _ZoomedFadeInFadeOut extends AnimatedWidget {
 
   @override
   Widget build(BuildContext context) => DualTransitionBuilder(
-    animation: listenable as Animation<double>,
+    animation: animation,
     forwardBuilder: (_, animation, child) => _forward(
       animation,
       child,
