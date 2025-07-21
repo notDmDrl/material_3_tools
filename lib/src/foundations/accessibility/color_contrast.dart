@@ -22,7 +22,7 @@ abstract final class ColorContrast {
       throw ArgumentError('Background can not be translucent');
     }
 
-    Color resolvedForeground = foreground;
+    var resolvedForeground = foreground;
     if (resolvedForeground.a < 1.0) {
       resolvedForeground = Color.alphaBlend(resolvedForeground, background);
     }

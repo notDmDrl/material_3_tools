@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 
 /// Signature for the callback invoked when [AnimatedIconFill]s selection state
@@ -104,10 +106,10 @@ class _AnimatedIconFillState extends State<AnimatedIconFill>
     super.didUpdateWidget(oldWidget);
     if (oldWidget.isSelected != widget.isSelected) {
       if (widget.isSelected) {
-        controller.forward();
+        unawaited(controller.forward());
       } else {
         if (widget.animateReverse) {
-          controller.reverse();
+          unawaited(controller.reverse());
         } else {
           controller.reset();
         }

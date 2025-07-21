@@ -1,4 +1,6 @@
 // copy of page_transition_switcher.dart from animations package (to remove dependency)
+import 'dart:async';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 
@@ -317,9 +319,9 @@ class _PageTransitionSwitcherState extends State<PageTransitionSwitcher>
     if (_currentEntry != null) {
       assert(shouldAnimate, '');
       if (widget.reverse) {
-        _currentEntry!.primaryController.reverse();
+        unawaited(_currentEntry!.primaryController.reverse());
       } else {
-        _currentEntry!.secondaryController.forward();
+        unawaited(_currentEntry!.secondaryController.forward());
       }
       _currentEntry = null;
     }
@@ -337,11 +339,10 @@ class _PageTransitionSwitcherState extends State<PageTransitionSwitcher>
     if (shouldAnimate) {
       if (widget.reverse) {
         primaryController.value = 1.0;
-        secondaryController
-          ..value = 1.0
-          ..reverse();
+        secondaryController.value = 1.0;
+        unawaited(secondaryController.reverse());
       } else {
-        primaryController.forward();
+        unawaited(primaryController.forward());
       }
     } else {
       assert(_activeEntries.isEmpty, '');

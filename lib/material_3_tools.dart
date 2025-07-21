@@ -28,6 +28,7 @@ export 'src/styles/icons/optical_size.dart';
 export 'src/styles/motion/easing_and_duration.dart';
 export 'src/styles/motion/physics/curves.dart';
 export 'src/styles/motion/physics/spring.dart';
+export 'src/styles/motion/transitions/forward_and_backward.dart';
 export 'src/styles/motion/transitions/top_level.dart';
 export 'src/styles/shape/corner_radius_scale.dart';
 export 'src/styles/typography/font_family.dart';
