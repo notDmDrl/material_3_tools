@@ -42,8 +42,8 @@ final class StaticColor {
   factory StaticColor.fromSource({
     required Color sourceColor,
     Color? harmonizationColor,
-    Brightness brightness = Brightness.light,
-    DynamicSchemeVariant schemeVariant = DynamicSchemeVariant.tonalSpot,
+    Brightness brightness = .light,
+    DynamicSchemeVariant schemeVariant = .tonalSpot,
     double contrastLevel = 0,
   }) {
     assert(
@@ -51,7 +51,7 @@ final class StaticColor {
       'Contrast levels should be between -1 and 1',
     );
 
-    final isDark = brightness == Brightness.dark;
+    final isDark = brightness == .dark;
 
     final int color = ColorHarmonization.harmonize(
       sourceColor,
@@ -61,47 +61,47 @@ final class StaticColor {
     final Hct sourceColorHct = Hct.fromInt(color);
 
     final DynamicScheme scheme = switch (schemeVariant) {
-      DynamicSchemeVariant.tonalSpot => SchemeTonalSpot(
+      .tonalSpot => SchemeTonalSpot(
         sourceColorHct: sourceColorHct,
         isDark: isDark,
         contrastLevel: contrastLevel,
       ),
-      DynamicSchemeVariant.fidelity => SchemeFidelity(
+      .fidelity => SchemeFidelity(
         sourceColorHct: sourceColorHct,
         isDark: isDark,
         contrastLevel: contrastLevel,
       ),
-      DynamicSchemeVariant.monochrome => SchemeMonochrome(
+      .monochrome => SchemeMonochrome(
         sourceColorHct: sourceColorHct,
         isDark: isDark,
         contrastLevel: contrastLevel,
       ),
-      DynamicSchemeVariant.neutral => SchemeNeutral(
+      .neutral => SchemeNeutral(
         sourceColorHct: sourceColorHct,
         isDark: isDark,
         contrastLevel: contrastLevel,
       ),
-      DynamicSchemeVariant.vibrant => SchemeVibrant(
+      .vibrant => SchemeVibrant(
         sourceColorHct: sourceColorHct,
         isDark: isDark,
         contrastLevel: contrastLevel,
       ),
-      DynamicSchemeVariant.expressive => SchemeExpressive(
+      .expressive => SchemeExpressive(
         sourceColorHct: sourceColorHct,
         isDark: isDark,
         contrastLevel: contrastLevel,
       ),
-      DynamicSchemeVariant.content => SchemeContent(
+      .content => SchemeContent(
         sourceColorHct: sourceColorHct,
         isDark: isDark,
         contrastLevel: contrastLevel,
       ),
-      DynamicSchemeVariant.rainbow => SchemeRainbow(
+      .rainbow => SchemeRainbow(
         sourceColorHct: sourceColorHct,
         isDark: isDark,
         contrastLevel: contrastLevel,
       ),
-      DynamicSchemeVariant.fruitSalad => SchemeFruitSalad(
+      .fruitSalad => SchemeFruitSalad(
         sourceColorHct: sourceColorHct,
         isDark: isDark,
         contrastLevel: contrastLevel,
@@ -130,9 +130,9 @@ final class StaticColor {
 
   /// Linearly interpolate between two custom colors.
   StaticColor lerp(StaticColor? other, double t) => StaticColor(
-    primary: Color.lerp(primary, other?.primary, t)!,
-    onPrimary: Color.lerp(onPrimary, other?.onPrimary, t)!,
-    container: Color.lerp(container, other?.container, t)!,
-    onContainer: Color.lerp(onContainer, other?.onContainer, t)!,
+    primary: .lerp(primary, other?.primary, t)!,
+    onPrimary: .lerp(onPrimary, other?.onPrimary, t)!,
+    container: .lerp(container, other?.container, t)!,
+    onContainer: .lerp(onContainer, other?.onContainer, t)!,
   );
 }

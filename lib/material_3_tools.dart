@@ -35,9 +35,6 @@ export 'src/styles/typography/font_family.dart';
 export 'src/styles/typography/type_scale.dart';
 export 'src/utils/outlined_border.dart';
 // legacy exports
-export 'src_non_expressive/app.dart';
 export 'src_non_expressive/button_style.dart';
-export 'src_non_expressive/extensions/navigator.dart';
 export 'src_non_expressive/interaction_states.dart';
-export 'src_non_expressive/page_route.dart';
 export 'src_non_expressive/theme_extension/custom_colors.dart';

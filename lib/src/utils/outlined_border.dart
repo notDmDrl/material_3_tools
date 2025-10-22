@@ -37,7 +37,7 @@ class OutlinedInputBorder extends InputBorder {
   /// have a circular radius of 16.0. The corner radii must be circular, i.e.
   /// their [Radius.x] and [Radius.y] values must be the same.
   const OutlinedInputBorder({
-    super.borderSide = BorderSide.none,
+    super.borderSide = .none,
     this.borderRadius = CornerRadiusScale.large,
     this.isSuperellipse = false,
   });
@@ -88,8 +88,8 @@ class OutlinedInputBorder extends InputBorder {
   @override
   ShapeBorder? lerpFrom(ShapeBorder? a, double t) => switch (a) {
     OutlinedInputBorder() => OutlinedInputBorder(
-      borderSide: BorderSide.lerp(a.borderSide, borderSide, t),
-      borderRadius: BorderRadius.lerp(a.borderRadius, borderRadius, t)!,
+      borderSide: .lerp(a.borderSide, borderSide, t),
+      borderRadius: .lerp(a.borderRadius, borderRadius, t)!,
       isSuperellipse: t < 0.5 ? isSuperellipse : a.isSuperellipse,
     ),
     _ => super.lerpFrom(a, t),
@@ -98,8 +98,8 @@ class OutlinedInputBorder extends InputBorder {
   @override
   ShapeBorder? lerpTo(ShapeBorder? b, double t) => switch (b) {
     OutlinedInputBorder() => OutlinedInputBorder(
-      borderSide: BorderSide.lerp(borderSide, b.borderSide, t),
-      borderRadius: BorderRadius.lerp(borderRadius, b.borderRadius, t)!,
+      borderSide: .lerp(borderSide, b.borderSide, t),
+      borderRadius: .lerp(borderRadius, b.borderRadius, t)!,
       isSuperellipse: t < 0.5 ? isSuperellipse : b.isSuperellipse,
     ),
     _ => super.lerpTo(b, t),

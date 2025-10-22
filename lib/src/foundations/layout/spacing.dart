@@ -13,6 +13,7 @@ library;
 /// of content.
 ///
 /// See also:
+///
 /// * [WindowSizeClass]
 /// * [M3 guidelines: layout, margins](https://m3.material.io/foundations/layout/understanding-layout/spacing#0678ba2e-1bce-49b8-8591-e471d6417011)
 abstract final class Margins {

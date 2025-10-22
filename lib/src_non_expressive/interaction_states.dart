@@ -198,8 +198,8 @@ class OutlineStateOverlay implements WidgetStateProperty<BorderSide> {
     WidgetState.disabled: (disabledColor ?? color).withValues(
       alpha: _kDisabledContainerOpacity,
     ),
-    if (selectedColor != null) WidgetState.selected: selectedColor!,
-    if (focusedColor != null) WidgetState.focused: focusedColor!,
+    WidgetState.selected: ?selectedColor,
+    WidgetState.focused: ?focusedColor,
     WidgetState.any: color,
   });
 

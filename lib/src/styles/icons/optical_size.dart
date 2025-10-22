@@ -9,6 +9,10 @@
 /// resulting in a large scaled icon that’s too heavy compared to the original.
 /// With the optical size axis, you can maintain the stroke weight
 /// (thickness) as the icon size grows.
+///
+/// See also:
+///
+/// * [M3 guidelines: icon optical sizes](https://m3.material.io/styles/icons/applying-icons#b41cbc01-9b49-4a44-a525-d153d1ea1425)
 abstract final class IconOpticalSize {
   /// The smallest optical size at 20px.
   static const double size20 = 20;

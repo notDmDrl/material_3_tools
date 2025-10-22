@@ -16,7 +16,7 @@ abstract final class ColorContrast {
   /// See also:
   ///
   /// * [W3C contrast ratio formula](http://www.w3.org/TR/2008/REC-WCAG20-20081211/#contrast-ratiodef)
-  /// * [M3 guidelines, accessibility, contrast ratios](https://m3.material.io/foundations/designing/color-contrast#b248ecd2-9abd-4877-8f5e-ebfbb87e2048)
+  /// * [M3 guidelines: accessibility, contrast ratios](https://m3.material.io/foundations/designing/color-contrast#b248ecd2-9abd-4877-8f5e-ebfbb87e2048)
   static double calculateContrast(Color foreground, Color background) {
     if (background.a != 1.0) {
       throw ArgumentError('Background can not be translucent');
@@ -24,7 +24,7 @@ abstract final class ColorContrast {
 
     var resolvedForeground = foreground;
     if (resolvedForeground.a < 1.0) {
-      resolvedForeground = Color.alphaBlend(resolvedForeground, background);
+      resolvedForeground = .alphaBlend(resolvedForeground, background);
     }
 
     final double foregroundLuminance =
@@ -48,7 +48,7 @@ abstract final class ColorContrast {
   ///
   /// See also:
   ///
-  /// * [M3 guidelines, accessibility, contrast ratios](https://m3.material.io/foundations/designing/color-contrast#b248ecd2-9abd-4877-8f5e-ebfbb87e2048)
+  /// * [M3 guidelines: accessibility, contrast ratios](https://m3.material.io/foundations/designing/color-contrast#b248ecd2-9abd-4877-8f5e-ebfbb87e2048)
   static bool debugCheckTextStyleHasValidContrast(
     TextStyle textStyle,
     Color background,

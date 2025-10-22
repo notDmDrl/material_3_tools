@@ -78,8 +78,8 @@ class AnimatedIconFill extends StatefulWidget {
 
 class _AnimatedIconFillState extends State<AnimatedIconFill>
     with SingleTickerProviderStateMixin {
-  late final AnimationController controller;
-  late final CurvedAnimation animation;
+  AnimationController? controller;
+  CurvedAnimation? animation;
 
   @override
   void initState() {
@@ -95,7 +95,7 @@ class _AnimatedIconFillState extends State<AnimatedIconFill>
 
     final Curve curve = widget.curve;
     animation = CurvedAnimation(
-      parent: controller,
+      parent: controller!,
       curve: curve,
       reverseCurve: widget.reverseCurve ?? curve.flipped,
     );
@@ -106,12 +106,12 @@ class _AnimatedIconFillState extends State<AnimatedIconFill>
     super.didUpdateWidget(oldWidget);
     if (oldWidget.isSelected != widget.isSelected) {
       if (widget.isSelected) {
-        unawaited(controller.forward());
+        unawaited(controller?.forward());
       } else {
         if (widget.animateReverse) {
-          unawaited(controller.reverse());
+          unawaited(controller?.reverse());
         } else {
-          controller.reset();
+          controller?.reset();
         }
       }
     }
@@ -119,17 +119,21 @@ class _AnimatedIconFillState extends State<AnimatedIconFill>
 
   @override
   void dispose() {
-    controller.dispose();
-    animation.dispose();
+    controller?.dispose();
+    controller = null;
+
+    animation?.dispose();
+    animation = null;
+
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) => AnimatedBuilder(
-    animation: animation,
+    animation: animation!,
     builder: (context, _) => widget.builder(
       context,
-      animation.value,
+      animation!.value,
     ),
   );
 }
