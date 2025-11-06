@@ -54,15 +54,15 @@ abstract final class ColorContrast {
     Color background,
   ) {
     assert(() {
-      final Color? textColor = textStyle.color;
-      final double? fontSize = textStyle.fontSize;
-      if (textColor == null || fontSize == null) {
+      final TextStyle(:Color? color, :double? fontSize) = textStyle;
+
+      if (color == null || fontSize == null) {
         throw FlutterError(
           'Provided textStyle should have non-null color and fontSize.',
         );
       }
 
-      final double contrast = calculateContrast(textColor, background);
+      final double contrast = calculateContrast(color, background);
 
       return switch (fontSize) {
         >= 18 when textStyle.weightIsAtLeast(400) => contrast >= 3,
