@@ -12,7 +12,6 @@ import '_page_transition_switcher.dart';
 ///
 /// * [M3 guidelines: top level transition](https://m3.material.io/styles/motion/transitions/transition-patterns#8327d206-2a7d-423a-abf0-2be86130535b)
 /// * [Material motion: top level transition with scale animation](https://github.com/material-components/material-components-android/blob/master/docs/theming/Motion.md#fade-through)
-@immutable
 final class TopLevelTransition extends StatelessWidget {
   /// Creates [TopLevelTransition].
   const TopLevelTransition({
@@ -45,7 +44,6 @@ final class TopLevelTransition extends StatelessWidget {
   );
 }
 
-@immutable
 class _ZoomedFadeInFadeOut extends StatelessWidget {
   const _ZoomedFadeInFadeOut({
     required this.animation,

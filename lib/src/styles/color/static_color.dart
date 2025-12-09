@@ -135,4 +135,22 @@ final class StaticColor {
     container: .lerp(container, other?.container, t)!,
     onContainer: .lerp(onContainer, other?.onContainer, t)!,
   );
+
+  @override
+  int get hashCode => Object.hash(primary, onPrimary, container, onContainer);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+    if (other is! StaticColor) {
+      return false;
+    }
+
+    return other.primary == primary &&
+        other.onPrimary == onPrimary &&
+        other.container == container &&
+        other.onContainer == onContainer;
+  }
 }

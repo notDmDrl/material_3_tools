@@ -21,7 +21,6 @@ import '/src/styles/shape/corner_radius_scale.dart';
 /// * [UnderlineInputBorder], the default [InputDecorator] border which draws a
 /// horizontal line at the bottom of the input decorator's container.
 /// * [InputDecoration], which is used to configure an [InputDecorator].
-@immutable
 class OutlinedInputBorder extends InputBorder {
   /// Creates a rounded rectangle outline border for an [InputDecorator].
   ///

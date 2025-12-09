@@ -11,6 +11,8 @@ import 'package:flutter/material.dart';
 ///
 ///  * [FadeForwardsPageTransitionsBuilder], which defines a page transition
 ///    that's similar to the one provided by Android U.
+///  * [PredictiveBackPageTransitionsBuilder], which defines a page
+///    transition that allows peeking behind the current route on Android.
 ///  * [FadeUpwardsPageTransitionsBuilder], which defines a page transition
 ///    that's similar to the one provided by Android O.
 ///  * [OpenUpwardsPageTransitionsBuilder], which defines a page transition
@@ -20,7 +22,6 @@ import 'package:flutter/material.dart';
 ///  * [CupertinoPageTransitionsBuilder], which defines a horizontal page
 ///    transition that matches native iOS page transitions.
 ///  * [M3 guidelines: motion, transition, forward and backward](https://m3.material.io/styles/motion/transitions/transition-patterns#df9c7d76-1454-47f3-ad1c-268a31f58bad)
-@immutable
 final class ForwardAndBackwardTransitionsBuilder
     extends FadeForwardsPageTransitionsBuilder {
   /// Constructs a page transition animation that matches the transition used in
@@ -34,7 +35,7 @@ final class ForwardAndBackwardTransitionsBuilder
 
   /// {@macro flutter.widgets.TransitionRoute.transitionDuration}
   ///
-  /// Defaults to 800 milliseconds.
+  /// Defaults to 450 milliseconds.
   @override
   final Duration transitionDuration;
 }

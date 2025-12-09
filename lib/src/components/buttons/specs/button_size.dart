@@ -1,12 +1,4 @@
-import 'package:flutter/material.dart'
-    show
-        BorderRadius,
-        SpringDescription,
-        TextStyle,
-        TextTheme,
-        WidgetState,
-        WidgetStateMapper,
-        immutable;
+import 'package:flutter/material.dart';
 
 import '/src/styles/motion/physics/curves.dart';
 import '/src/styles/motion/physics/spring.dart';
@@ -24,8 +16,8 @@ TextStyle _headlineLargeLabel(TextTheme textTheme) => textTheme.headlineLarge!;
 
 // https://m3.material.io/components/buttons/specs#c75be779-5a59-4748-98d4-e47fc888d0b1
 @immutable
-final class ExpressiveButtonSize {
-  const ExpressiveButtonSize({
+final class ButtonSize {
+  const ButtonSize({
     required this.containerHeight,
     required this.outlineWidth,
     required this.labelStyle,
@@ -37,13 +29,13 @@ final class ExpressiveButtonSize {
     required this.shapeResolverSquare,
   });
 
-  static const extraSmall = ExpressiveButtonSize(
+  static const extraSmall = ButtonSize(
     containerHeight: 32,
     outlineWidth: 1,
     labelStyle: _titleSmallLabel,
     iconSize: 20,
     leadingSpace: 12,
-    betweenIconLabelSpace: 8,
+    betweenIconLabelSpace: 4,
     trailingSpace: 12,
     shapeResolverRound: WidgetStateMapper({
       WidgetState.pressed: CornerRadiusScale.small,
@@ -57,7 +49,7 @@ final class ExpressiveButtonSize {
     }),
   );
 
-  static const small = ExpressiveButtonSize(
+  static const small = ButtonSize(
     containerHeight: 40,
     outlineWidth: 1,
     labelStyle: _titleSmallLabel,
@@ -78,7 +70,7 @@ final class ExpressiveButtonSize {
   );
 
   // custom variant
-  static const smallIncreased = ExpressiveButtonSize(
+  static const smallIncreased = ButtonSize(
     containerHeight: 48,
     outlineWidth: 1,
     labelStyle: _titleMediumLabel,
@@ -98,7 +90,7 @@ final class ExpressiveButtonSize {
     }),
   );
 
-  static const medium = ExpressiveButtonSize(
+  static const medium = ButtonSize(
     containerHeight: 56,
     outlineWidth: 1,
     labelStyle: _titleMediumLabel,
@@ -118,7 +110,7 @@ final class ExpressiveButtonSize {
     }),
   );
 
-  static const large = ExpressiveButtonSize(
+  static const large = ButtonSize(
     containerHeight: 96,
     outlineWidth: 2,
     labelStyle: _headlineSmallLabel,
@@ -138,7 +130,7 @@ final class ExpressiveButtonSize {
     }),
   );
 
-  static const extraLarge = ExpressiveButtonSize(
+  static const extraLarge = ButtonSize(
     containerHeight: 136,
     outlineWidth: 3,
     labelStyle: _headlineLargeLabel,
@@ -172,7 +164,7 @@ final class ExpressiveButtonSize {
   static const SpringDescription spring = MotionPhysicsSpring.standardFast;
   static const MotionPhysicsCurvePair curve = MotionPhysicsCurve.standardFast;
 
-  ExpressiveButtonSize copyWith({
+  ButtonSize copyWith({
     double? containerHeight,
     double? outlineWidth,
     TextStyleResolver? labelStyle,
@@ -182,7 +174,7 @@ final class ExpressiveButtonSize {
     double? trailingSpace,
     WidgetStateMapper<BorderRadius>? shapeResolverRound,
     WidgetStateMapper<BorderRadius>? shapeResolverSquare,
-  }) => ExpressiveButtonSize(
+  }) => ButtonSize(
     containerHeight: containerHeight ?? this.containerHeight,
     outlineWidth: outlineWidth ?? this.outlineWidth,
     labelStyle: labelStyle ?? this.labelStyle,
@@ -212,7 +204,7 @@ final class ExpressiveButtonSize {
     if (identical(this, other)) {
       return true;
     }
-    if (other is! ExpressiveButtonSize) {
+    if (other is! ButtonSize) {
       return false;
     }
 

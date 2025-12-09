@@ -12,8 +12,9 @@
 /// * [Material Design 3 guidelines](https://m3.material.io/)
 library;
 
-export 'src/components/buttons/button_style.dart';
-export 'src/components/buttons/size.dart';
+export 'src/components/buttons/button_configuration.dart';
+export 'src/components/buttons/specs/button_color.dart';
+export 'src/components/buttons/specs/button_size.dart';
 export 'src/foundations/accessibility/color_contrast.dart';
 export 'src/foundations/interaction/states.dart';
 export 'src/foundations/layout/spacing.dart';

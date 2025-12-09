@@ -15,7 +15,7 @@ abstract final class StateLayerToken {
   ///
   /// See also:
   ///
-  /// [hoverAlpha], the same value, but in alpha instead.
+  /// * [hoverAlpha], the same value, but in alpha instead.
   static const hoverOpacity = 0.08;
 
   /// Baseline on-hover alpha that should be applied to the "on" container
@@ -23,7 +23,7 @@ abstract final class StateLayerToken {
   ///
   /// See also:
   ///
-  /// [hoverOpacity], the same value, but in opacity percentage instead.
+  /// * [hoverOpacity], the same value, but in opacity percentage instead.
   static const hoverAlpha = 0x14;
 
   /// Baseline on-focus opacity that should be applied to the "on" container
@@ -31,7 +31,7 @@ abstract final class StateLayerToken {
   ///
   /// See also:
   ///
-  /// [focusAlpha], the same value, but in alpha instead.
+  /// * [focusAlpha], the same value, but in alpha instead.
   static const focusOpacity = 0.1;
 
   /// Baseline on-focus alpha that should be applied to the "on" container
@@ -39,7 +39,7 @@ abstract final class StateLayerToken {
   ///
   /// See also:
   ///
-  /// [focusOpacity], the same value, but in opacity percentage instead.
+  /// * [focusOpacity], the same value, but in opacity percentage instead.
   static const focusAlpha = 0x1A;
 
   /// Baseline on-press opacity that should be applied to the "on" container
@@ -47,7 +47,7 @@ abstract final class StateLayerToken {
   ///
   /// See also:
   ///
-  /// [pressAlpha], the same value, but in alpha instead.
+  /// * [pressAlpha], the same value, but in alpha instead.
   static const pressOpacity = 0.1;
 
   /// Baseline on-press alpha that should be applied to the "on" container
@@ -55,7 +55,7 @@ abstract final class StateLayerToken {
   ///
   /// See also:
   ///
-  /// [pressOpacity], the same value, but in opacity percentage instead.
+  /// * [pressOpacity], the same value, but in opacity percentage instead.
   static const pressAlpha = 0x1A;
 
   /// Baseline on-drag opacity that should be applied to the "on" container
@@ -63,7 +63,7 @@ abstract final class StateLayerToken {
   ///
   /// See also:
   ///
-  /// [dragAlpha], the same value, but in alpha instead.
+  /// * [dragAlpha], the same value, but in alpha instead.
   static const dragOpacity = 0.16;
 
   /// Baseline on-drag alpha that should be applied to the "on" container
@@ -71,6 +71,6 @@ abstract final class StateLayerToken {
   ///
   /// See also:
   ///
-  /// [dragOpacity], the same value, but in opacity percentage instead.
+  /// * [dragOpacity], the same value, but in opacity percentage instead.
   static const dragAlpha = 0x29;
 }

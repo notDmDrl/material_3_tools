@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../src/components/buttons/states.dart';
 import 'interaction_states.dart';
 
 /// A helper class that allows creating Material 3 [ButtonStyle]s by
@@ -63,25 +64,54 @@ final class M3ButtonStyle extends ButtonStyle {
          enableFeedback: true,
          surfaceTintColor: const WidgetStatePropertyAll(Colors.transparent),
          textStyle: WidgetStatePropertyAll(textStyle),
-         backgroundColor: BackgroundStateOverlay(
-           color: backgroundColor,
-           disabledColor: disabledColor,
-           selectedColor: backgroundSelectedColor,
-         ),
-         foregroundColor: ForegroundStateOverlay(
-           color: foregroundColor,
-           disabledColor: disabledColor,
-           selectedColor: selectedColor,
-         ),
-         iconColor: ForegroundStateOverlay(
-           color: foregroundColor,
-           disabledColor: disabledColor,
-           selectedColor: selectedColor,
-         ),
-         overlayColor: InteractionStatesOverlay(
-           color: foregroundColor,
-           selectedColor: selectedColor,
-         ),
+         backgroundColor: switch ((backgroundColor, backgroundSelectedColor)) {
+           (Color color?, null) => BackgroundStateOverlay(
+             color: color,
+             disabledColor: disabledColor,
+           ),
+           (Color unselected?, Color selected?) =>
+             BackgroundStateOverlay.toggle(
+               unselected: unselected,
+               selected: selected,
+               disabledColor: disabledColor,
+             ),
+           _ => null,
+         },
+         foregroundColor: switch ((foregroundColor, selectedColor)) {
+           (Color color?, null) => ForegroundStateOverlay(
+             color: color,
+             disabledColor: disabledColor,
+           ),
+           (Color unselected?, Color selected?) =>
+             ForegroundStateOverlay.toggle(
+               unselected: unselected,
+               selected: selected,
+               disabledColor: disabledColor,
+             ),
+           _ => null,
+         },
+         iconColor: switch ((foregroundColor, selectedColor)) {
+           (Color color?, null) => ForegroundStateOverlay(
+             color: color,
+             disabledColor: disabledColor,
+           ),
+           (Color unselected?, Color selected?) =>
+             ForegroundStateOverlay.toggle(
+               unselected: unselected,
+               selected: selected,
+               disabledColor: disabledColor,
+             ),
+           _ => null,
+         },
+         overlayColor: switch ((foregroundColor, selectedColor)) {
+           (Color color?, null) => InteractionStatesOverlay(color: color),
+           (Color unselected?, Color selected?) =>
+             InteractionStatesOverlay.toggle(
+               unselected: unselected,
+               selected: selected,
+             ),
+           _ => null,
+         },
          shadowColor: WidgetStatePropertyAll(shadowColor),
          padding: WidgetStatePropertyAll(padding),
          minimumSize: WidgetStatePropertyAll(minimumSize),
@@ -112,7 +142,7 @@ final class M3ButtonStyle extends ButtonStyle {
     Color? backgroundSelectedColor,
     Color? disabledColor,
     Color? shadowColor,
-    WidgetStateProperty<double> elevation = const ElevatedButtonElevation(),
+    WidgetStateProperty<double>? elevation,
     EdgeInsetsGeometry padding = M3ButtonStyle.layoutPadding,
     Size minimumSize = const Size(64, 40),
     Size? fixedSize,
@@ -178,7 +208,7 @@ final class M3ButtonStyle extends ButtonStyle {
     Color? backgroundSelectedColor,
     Color? disabledColor,
     Color? shadowColor,
-    WidgetStateProperty<double> elevation = const FilledButtonElevation(),
+    WidgetStateProperty<double>? elevation,
     EdgeInsetsGeometry padding = M3ButtonStyle.layoutPadding,
     Size minimumSize = const Size(64, 40),
     Size? fixedSize,
@@ -244,7 +274,7 @@ final class M3ButtonStyle extends ButtonStyle {
     Color? backgroundSelectedColor,
     Color? disabledColor,
     Color? shadowColor,
-    WidgetStateProperty<double> elevation = FilledButtonElevation.none,
+    WidgetStateProperty<double>? elevation,
     EdgeInsetsGeometry padding = M3ButtonStyle.layoutPadding,
     Size minimumSize = const Size(64, 40),
     Size? fixedSize,
@@ -308,7 +338,7 @@ final class M3ButtonStyle extends ButtonStyle {
     Color? selectedColor,
     Color? disabledColor,
     Color? shadowColor,
-    WidgetStateProperty<double> elevation = FilledButtonElevation.none,
+    WidgetStateProperty<double>? elevation,
     EdgeInsetsGeometry padding = M3ButtonStyle.textButtonLayoutPadding,
     Size minimumSize = const Size(64, 40),
     Size? fixedSize,

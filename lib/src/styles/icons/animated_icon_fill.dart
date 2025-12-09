@@ -24,7 +24,6 @@ typedef AnimatedIconFillBuilder =
 ///
 /// Selectable icon inside of [NavigationBar] in M3 docs:
 /// <https://m3.material.io/styles/icons/applying-icons#750a6f13-39d8-4fe5-a035-047b88a16514>
-@immutable
 class AnimatedIconFill extends StatefulWidget {
   const AnimatedIconFill({
     super.key,

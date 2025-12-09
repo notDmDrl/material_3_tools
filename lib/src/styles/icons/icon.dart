@@ -8,7 +8,6 @@ import 'icon_grade.dart';
 import 'optical_size.dart';
 
 /// A copy of [Icon] with some M3 defaults used.
-@immutable
 class M3Icon extends StatelessWidget {
   /// Creates a M3 styled [Icon].
   const M3Icon(
