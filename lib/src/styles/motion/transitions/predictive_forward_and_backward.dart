@@ -12,8 +12,7 @@ import 'forward_and_backward.dart';
 /// Is a copy of [PredictiveBackPageTransitionsBuilder], with
 /// [ForwardAndBackwardTransitionsBuilder] as a replacement for
 /// [FadeForwardsPageTransitionsBuilder], to allow transition duration and
-/// background color
-/// change.
+/// background color change.
 ///
 /// See also:
 ///
