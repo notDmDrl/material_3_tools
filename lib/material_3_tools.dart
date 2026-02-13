@@ -22,6 +22,7 @@ export 'src/foundations/layout/spacing.dart';
 export 'src/foundations/layout/window_size_class.dart';
 export 'src/styles/color/harmonization.dart';
 export 'src/styles/color/static_color.dart';
+export 'src/styles/color/static_colors.dart';
 export 'src/styles/elevation/scrim.dart';
 export 'src/styles/icons/animated_icon_fill.dart';
 export 'src/styles/icons/icon.dart';
@@ -40,4 +41,3 @@ export 'src/utils/outlined_border.dart';
 // legacy exports
 export 'src_non_expressive/button_style.dart';
 export 'src_non_expressive/interaction_states.dart';
-export 'src_non_expressive/theme_extension/custom_colors.dart';

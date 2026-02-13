@@ -1,14 +1,14 @@
 name: material_3_tools
 description: Utils that simplify usage of Material Design 3 Expressive (M3X) theming available in Flutter
-version: 0.2.0+1
+version: 0.2.1
 homepage: https://github.com/notDmDrl/material_3_tools
 repository: https://github.com/notDmDrl/material_3_tools
 
 publish_to: none
 
 environment:
-  sdk: ^3.11.0-200.1.beta
-  flutter: ^3.40.0-0.1.pre
+  sdk: ^3.12.0-113.1.beta
+  flutter: ^3.42.0-0.0.pre
 
 dependencies:
   flutter:

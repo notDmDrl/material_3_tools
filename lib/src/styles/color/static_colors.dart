@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '/src/styles/color/static_color.dart';
+import 'static_color.dart';
 
 /// Defines a set of [StaticColor] to be defined inside [ThemeData.extensions].
 ///
@@ -9,19 +9,19 @@ import '/src/styles/color/static_color.dart';
 /// All examples assume [Object] is an [Enum] with values:
 ///
 /// ```dart
-/// enum AppCustomColors { red, green, blue }
+/// enum AppStaticColors { red, green, blue }
 /// ```
 ///
 /// Example:
 /// ```dart
 /// ThemeData(
 ///   extensions: [
-///     CustomColors({
-///       AppCustomColors.red:
+///     StaticColors({
+///       AppStaticColors.red:
 ///           StaticColor.fromSource(sourceColor: Colors.red),
-///       AppCustomColors.green:
+///       AppStaticColors.green:
 ///           StaticColor.fromSource(sourceColor: Colors.green),
-///       AppCustomColors.blue:
+///       AppStaticColors.blue:
 ///           StaticColor.fromSource(sourceColor: Colors.blue),
 ///     }),
 ///   ],
@@ -38,28 +38,28 @@ import '/src/styles/color/static_color.dart';
 ///
 /// Accessing values:
 ///
-/// To directly get required color use [CustomColors.of]:
+/// To directly get required color use [StaticColors.of]:
 ///
 /// ```dart
-/// final color = CustomColors.of(context, AppCustomColors.red);
+/// final color = StaticColors.of(context, AppStaticColors.red);
 /// ```
 @immutable
-final class CustomColors extends ThemeExtension<CustomColors> {
+final class StaticColors extends ThemeExtension<StaticColors> {
   /// Creates a map of [StaticColor].
-  const CustomColors(this.colors);
+  const StaticColors(this.colors);
 
   /// A map of custom colors.
   final Map<Object, StaticColor> colors;
 
   /// Get [StaticColor] by its key from [ThemeData.extensions].
   ///
-  /// If [CustomColors] is not defined or no [StaticColor] was
+  /// If [StaticColors] is not defined or no [StaticColor] was
   /// found by provided key, this function will throw.
   static StaticColor of(BuildContext context, Object key) {
-    final CustomColors? colors = Theme.of(context).extension<CustomColors>();
+    final StaticColors? colors = Theme.of(context).extension<StaticColors>();
 
     if (colors == null) {
-      throw ArgumentError('[CustomColors] are not defined in your ThemeData');
+      throw ArgumentError('[StaticColors] are not defined in your ThemeData');
     }
 
     final StaticColor? lookup = colors.colors[key];
@@ -73,25 +73,28 @@ final class CustomColors extends ThemeExtension<CustomColors> {
 
   /// Creates a new map of [StaticColor]s.
   @override
-  CustomColors copyWith({Map<Object, StaticColor>? colors}) =>
-      CustomColors(colors ?? this.colors);
+  StaticColors copyWith({Map<Object, StaticColor>? colors}) =>
+      StaticColors(colors ?? this.colors);
 
   @override
-  CustomColors lerp(covariant ThemeExtension<CustomColors> other, double t) {
-    if (other is! CustomColors) {
+  StaticColors lerp(covariant ThemeExtension<StaticColors> other, double t) {
+    if (other is! StaticColors) {
       return this;
     }
 
     // lerp colors if this instance
-    final Map<Object, StaticColor> newColors = colors.map((id, color) {
-        final StaticColor? otherColor = other.colors[id];
-        return MapEntry(id, color.lerp(otherColor, t));
-      })
-      // add new colors from [other]
-      ..addEntries(
-        other.colors.entries.where((entry) => !colors.containsKey(entry.key)),
-      );
+    final Map<Object, StaticColor> newColors =
+        colors.map((id, color) {
+            final StaticColor? otherColor = other.colors[id];
+            return MapEntry(id, color.lerp(otherColor, t));
+          })
+          // add new colors from [other]
+          ..addEntries(
+            other.colors.entries.where(
+              (entry) => !colors.containsKey(entry.key),
+            ),
+          );
 
-    return CustomColors(newColors);
+    return StaticColors(newColors);
   }
 }
