@@ -94,7 +94,7 @@ enum WindowSizeClass {
   /// See also:
   ///
   /// * [Margins]
-  final int margin;
+  final double margin;
 
   /// The [WindowSizeClass] from the closest [MediaQuery] instance that
   /// encloses the given context.

@@ -23,7 +23,7 @@ abstract final class Margins {
   /// See also:
   ///
   /// * [WindowSizeClass.compact]
-  static const compact = 16;
+  static const double compact = 16;
 
   /// Baseline space between the edge of a window area and the elements
   /// within that window area for medium window class.
@@ -31,7 +31,7 @@ abstract final class Margins {
   /// See also:
   ///
   /// * [WindowSizeClass.medium]
-  static const medium = 24;
+  static const double medium = 24;
 
   /// Baseline space between the edge of a window area and the elements
   /// within that window area for expanded window class.
@@ -39,7 +39,7 @@ abstract final class Margins {
   /// See also:
   ///
   /// * [WindowSizeClass.expanded]
-  static const expanded = 24;
+  static const double expanded = 24;
 
   /// Baseline space between the edge of a window area and the elements
   /// within that window area for large window class.
@@ -47,7 +47,7 @@ abstract final class Margins {
   /// See also:
   ///
   /// * [WindowSizeClass.large]
-  static const large = 24;
+  static const double large = 24;
 
   /// Baseline space between the edge of a window area and the elements
   /// within that window area for extra-large window class.
@@ -55,7 +55,7 @@ abstract final class Margins {
   /// See also:
   ///
   /// * [WindowSizeClass.extraLarge]
-  static const extraLarge = 24;
+  static const double extraLarge = 24;
 }
 
 /// A spacer refers to the space between two panes in a layout.
@@ -69,5 +69,5 @@ abstract final class Margins {
 /// * [M3 guidelines: layout, spacers](https://m3.material.io/foundations/layout/understanding-layout/spacing#cd66a766-1835-4b82-ae48-e70634fd9e6d)
 abstract final class Spacers {
   /// Baseline pane spacer width.
-  static const paneSpacer = 24;
+  static const double paneSpacer = 24;
 }
