@@ -1,6 +1,6 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
-import '../src/components/buttons/states.dart';
+import '/src/components/buttons/states.dart';
 import 'interaction_states.dart';
 
 /// A helper class that allows creating Material 3 [ButtonStyle]s by

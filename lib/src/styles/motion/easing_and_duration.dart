@@ -1,5 +1,4 @@
-import 'package:flutter/material.dart'
-    show Cubic, Curve, Curves, Durations, Easing;
+import 'package:material_ui/material_ui.dart';
 
 /// [Curve] constants which represent Material 3 [easing](https://m3.material.io/styles/motion/overview).
 ///

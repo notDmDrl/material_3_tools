@@ -1,7 +1,4 @@
-/// @docImport 'package:flutter/material.dart';
-library;
-
-import 'package:flutter/material.dart' show Brightness, BuildContext, Theme;
+import 'package:material_ui/material_ui.dart';
 
 /// Weight and grade affect a symbol’s thickness. Adjustments to grade are
 /// more granular than adjustments to weight and have a smaller impact on the

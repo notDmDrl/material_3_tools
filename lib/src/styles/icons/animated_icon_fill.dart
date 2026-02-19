@@ -1,6 +1,9 @@
+/// @docImport 'package:material_ui/material_ui.dart';
+library;
+
 import 'dart:async';
 
-import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 /// Signature for the callback invoked when [AnimatedIconFill]s selection state
 /// changes.

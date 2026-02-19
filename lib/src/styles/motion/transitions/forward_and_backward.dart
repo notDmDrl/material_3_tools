@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 /// Used by [PageTransitionsTheme] to define a horizontal slide and fade
 /// [MaterialPageRoute] page transition animation that looks like the default

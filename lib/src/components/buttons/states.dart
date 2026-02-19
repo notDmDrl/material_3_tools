@@ -1,7 +1,9 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 import '/src/foundations/interaction/states.dart';
 import 'button_configuration.dart';
+
+const _kTransparent = Color(0x00000000);
 
 /// Opacity and alpha constants which represent Material 3 button state layer
 /// system.
@@ -77,7 +79,7 @@ final class InteractionStatesOverlay implements WidgetStateProperty<Color> {
             WidgetState.pressed: color.withAlpha(StateLayerToken.pressAlpha),
             WidgetState.dragged: color.withAlpha(StateLayerToken.dragAlpha),
           },
-          WidgetState.any: Colors.transparent,
+          WidgetState.any: _kTransparent,
         };
       case ButtonType.toggle:
         final Color? unselected = this.unselected;
@@ -112,8 +114,7 @@ final class InteractionStatesOverlay implements WidgetStateProperty<Color> {
               StateLayerToken.dragAlpha,
             ),
           },
-
-          WidgetState.any: Colors.transparent,
+          WidgetState.any: _kTransparent,
         };
     }
 

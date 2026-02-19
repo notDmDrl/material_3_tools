@@ -1,4 +1,5 @@
-import 'package:flutter/material.dart';
+import 'dart:ui';
+
 import 'package:material_color_utilities/material_color_utilities.dart';
 
 /// Utility methods for creating lighter or darker variant of a given color.

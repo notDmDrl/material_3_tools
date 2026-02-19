@@ -1,6 +1,6 @@
 // Material Easing was deprecated, yet still required for transitions.
 // ignore_for_file: deprecated_member_use_from_same_package
-import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 import '/src/styles/motion/easing_and_duration.dart';
 import '_page_transition_switcher.dart';

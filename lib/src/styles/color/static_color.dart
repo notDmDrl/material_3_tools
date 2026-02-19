@@ -2,8 +2,8 @@
 /// @docImport 'harmonization.dart';
 library;
 
-import 'package:flutter/material.dart';
 import 'package:material_color_utilities/material_color_utilities.dart';
+import 'package:material_ui/material_ui.dart';
 
 import 'harmonization.dart';
 

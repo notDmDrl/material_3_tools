@@ -1,7 +1,7 @@
 /// @docImport 'type_scale.dart';
 library;
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 /// Set of utils used to apply different font families for default tokens' text
 /// styles.

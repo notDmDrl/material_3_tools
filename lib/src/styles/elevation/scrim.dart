@@ -1,4 +1,5 @@
-import 'package:flutter/material.dart' show BuildContext, Color, ColorScheme;
+import 'package:material_ui/material_ui.dart'
+    show BuildContext, Color, ColorScheme;
 
 /// A scrim can bring focus to specific elements by increasing the visual
 /// contrast of a large layered surface. Use the scrim beneath elements
@@ -14,7 +15,9 @@ import 'package:flutter/material.dart' show BuildContext, Color, ColorScheme;
 abstract final class Scrim {
   /// Returns the color of scrim container of the current [ColorScheme].
   static Color of(BuildContext context) =>
-      ColorScheme.of(context).scrim.withValues(alpha: kScrimOpacity);
+      ColorScheme.of(context).scrim.withValues(
+        alpha: kScrimOpacity,
+      );
 
   /// The *scrim* color role's opacity.
   static const kScrimOpacity = 0.32;

@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 import '/src/styles/motion/physics/curves.dart';
 import '/src/styles/motion/physics/spring.dart';
