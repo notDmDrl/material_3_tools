@@ -37,6 +37,7 @@ export 'src/styles/motion/transitions/top_level.dart';
 export 'src/styles/shape/corner_radius_scale.dart';
 export 'src/styles/typography/font_family.dart';
 export 'src/styles/typography/type_scale.dart';
+export 'src/utils/color_utils.dart';
 export 'src/utils/outlined_border.dart';
 // legacy exports
 export 'src_non_expressive/button_style.dart';
