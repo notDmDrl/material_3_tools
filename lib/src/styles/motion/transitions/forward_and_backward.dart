@@ -1,3 +1,6 @@
+/// @docImport 'package:flutter/cupertino.dart';
+library;
+
 import 'package:material_ui/material_ui.dart';
 
 /// Used by [PageTransitionsTheme] to define a horizontal slide and fade
