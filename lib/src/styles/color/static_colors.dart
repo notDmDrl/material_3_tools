@@ -44,13 +44,10 @@ import 'static_color.dart';
 /// final color = StaticColors.of(context, AppStaticColors.red);
 /// ```
 @immutable
-final class StaticColors extends ThemeExtension<StaticColors> {
-  /// Creates a map of [StaticColor].
-  const StaticColors(this.colors);
-
+final class const StaticColors(
   /// A map of custom colors.
-  final Map<Object, StaticColor> colors;
-
+  final Map<Object, StaticColor> colors,
+) extends ThemeExtension<StaticColors> {
   /// Get [StaticColor] by its key from [ThemeData.extensions].
   ///
   /// If [StaticColors] is not defined or no [StaticColor] was

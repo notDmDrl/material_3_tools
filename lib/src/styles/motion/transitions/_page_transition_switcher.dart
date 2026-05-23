@@ -1,5 +1,4 @@
 // copy of page_transition_switcher.dart from animations package (to remove dependency)
-import 'dart:async';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
@@ -10,31 +9,20 @@ import 'package:flutter/widgets.dart';
 ///
 /// The internal representation includes fields that we don't want to expose to
 /// the public API (like the controllers).
-class _ChildEntry {
-  /// Creates a [_ChildEntry].
-  ///
-  /// The [primaryController], [secondaryController], [transition] and
-  /// [widgetChild] parameters must not be null.
-  _ChildEntry({
-    required this.primaryController,
-    required this.secondaryController,
-    required this.transition,
-    required this.widgetChild,
-  });
-
+class _ChildEntry({
   /// The animation controller for the child's transition.
-  final AnimationController primaryController;
+  required final AnimationController primaryController,
 
   /// The (curved) animation being used to drive the transition.
-  final AnimationController secondaryController;
+  required final AnimationController secondaryController,
 
   /// The currently built transition for this child.
-  Widget transition;
+  required var Widget transition,
 
   /// The widget's child at the time this entry was created or updated.
   /// Used to rebuild the transition if necessary.
-  Widget widgetChild;
-
+  required var Widget widgetChild,
+}) {
   /// Release the resources used by this object.
   ///
   /// The object is no longer usable after this method is called.
@@ -54,10 +42,9 @@ class _ChildEntry {
 /// The builder should return a widget which contains the given children, laid
 /// out as desired. It must not return null. The builder should be able to
 /// handle an empty list of `entries`.
-typedef PageTransitionSwitcherLayoutBuilder =
-    Widget Function(
-      List<Widget> entries,
-    );
+typedef PageTransitionSwitcherLayoutBuilder = Widget Function(
+  List<Widget> entries,
+);
 
 /// Signature for builders used to generate custom transitions for
 /// [PageTransitionSwitcher].
@@ -73,12 +60,11 @@ typedef PageTransitionSwitcherLayoutBuilder =
 /// incorporate both animations. It will use the primary animation to define how
 /// its child appears, and the secondary animation to define how its child
 /// disappears.
-typedef PageTransitionSwitcherTransitionBuilder =
-    Widget Function(
-      Widget child,
-      Animation<double> primaryAnimation,
-      Animation<double> secondaryAnimation,
-    );
+typedef PageTransitionSwitcherTransitionBuilder = Widget Function(
+  Widget child,
+  Animation<double> primaryAnimation,
+  Animation<double> secondaryAnimation,
+);
 
 /// A widget that transitions from an old child to a new child whenever [child]
 /// changes using an animation specified by [transitionBuilder].
@@ -162,39 +148,15 @@ typedef PageTransitionSwitcherTransitionBuilder =
 /// See the documentation for [layoutBuilder] for suggestions on how to
 /// configure the layout of the incoming and outgoing child widgets if
 /// [defaultLayoutBuilder] is not your desired layout.
-class PageTransitionSwitcher extends StatefulWidget {
-  /// Creates a [PageTransitionSwitcher].
-  ///
-  /// The [duration], [reverse], and [transitionBuilder] parameters
-  /// must not be null.
-  const PageTransitionSwitcher({
-    super.key,
-    this.duration = const Duration(milliseconds: 300),
-    this.reverse = false,
-    required this.transitionBuilder,
-    this.layoutBuilder = defaultLayoutBuilder,
-    this.child,
-  });
-
-  /// The current child widget to display.
-  ///
-  /// If there was an old child, it will be transitioned out using the
-  /// secondary animation of the [transitionBuilder], while the new child
-  /// transitions in using the primary animation of the [transitionBuilder].
-  ///
-  /// If there was no old child, then this child will transition in using
-  /// the primary animation of the [transitionBuilder].
-  ///
-  /// The child is considered to be "new" if it has a different type or [Key]
-  /// (see [Widget.canUpdate]).
-  final Widget? child;
+class const PageTransitionSwitcher({
+  super.key,
 
   /// The duration of the transition from the old [child] value to the new one.
   ///
   /// This duration is applied to the given [child] when that property is set to
   /// a new child. Changing [duration] will not affect the durations of
   /// transitions already in progress.
-  final Duration duration;
+  final Duration duration = const Duration(milliseconds: 300),
 
   /// Indicates whether the new [child] will visually appear on top of or
   /// underneath the old child.
@@ -210,7 +172,7 @@ class PageTransitionSwitcher extends StatefulWidget {
   /// animation of the old child are running in reverse. This is similar to
   /// the transition associated with popping a [PageRoute] to reveal a new
   /// [PageRoute] below it.
-  final bool reverse;
+  final bool reverse = false,
 
   /// A function that wraps a new [child] with a primary and secondary animation
   /// set define how the child appears and disappears.
@@ -222,7 +184,7 @@ class PageTransitionSwitcher extends StatefulWidget {
   /// null.
   ///
   /// The child provided to the transitionBuilder may be null.
-  final PageTransitionSwitcherTransitionBuilder transitionBuilder;
+  required final PageTransitionSwitcherTransitionBuilder transitionBuilder,
 
   /// A function that wraps all of the children that are transitioning out, and
   /// the [child] that's transitioning in, with a widget that lays all of them
@@ -252,8 +214,22 @@ class PageTransitionSwitcher extends StatefulWidget {
   /// ```
   /// See [PageTransitionSwitcherLayoutBuilder] for more information about
   /// how a layout builder should function.
-  final PageTransitionSwitcherLayoutBuilder layoutBuilder;
+  final PageTransitionSwitcherLayoutBuilder layoutBuilder =
+      defaultLayoutBuilder,
 
+  /// The current child widget to display.
+  ///
+  /// If there was an old child, it will be transitioned out using the
+  /// secondary animation of the [transitionBuilder], while the new child
+  /// transitions in using the primary animation of the [transitionBuilder].
+  ///
+  /// If there was no old child, then this child will transition in using
+  /// the primary animation of the [transitionBuilder].
+  ///
+  /// The child is considered to be "new" if it has a different type or [Key]
+  /// (see [Widget.canUpdate]).
+  final Widget? child,
+}) extends StatefulWidget {
   /// The default layout builder for [PageTransitionSwitcher].
   ///
   /// This function is the default way for how the new and old child widgets are placed
@@ -319,9 +295,9 @@ class _PageTransitionSwitcherState extends State<PageTransitionSwitcher>
     if (_currentEntry != null) {
       assert(shouldAnimate, '');
       if (widget.reverse) {
-        unawaited(_currentEntry!.primaryController.reverse());
+        _currentEntry!.primaryController.reverse();
       } else {
-        unawaited(_currentEntry!.secondaryController.forward());
+        _currentEntry!.secondaryController.forward();
       }
       _currentEntry = null;
     }
@@ -339,10 +315,11 @@ class _PageTransitionSwitcherState extends State<PageTransitionSwitcher>
     if (shouldAnimate) {
       if (widget.reverse) {
         primaryController.value = 1.0;
-        secondaryController.value = 1.0;
-        unawaited(secondaryController.reverse());
+        secondaryController
+          ..value = 1.0
+          ..reverse();
       } else {
-        unawaited(primaryController.forward());
+        primaryController.forward();
       }
     } else {
       assert(_activeEntries.isEmpty, '');

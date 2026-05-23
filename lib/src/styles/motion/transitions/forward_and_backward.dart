@@ -25,20 +25,14 @@ import 'package:material_ui/material_ui.dart';
 ///  * [CupertinoPageTransitionsBuilder], which defines a horizontal page
 ///    transition that matches native iOS page transitions.
 ///  * [M3 guidelines: motion, transition, forward and backward](https://m3.material.io/styles/motion/transitions/transition-patterns#df9c7d76-1454-47f3-ad1c-268a31f58bad)
-final class ForwardAndBackwardTransitionsBuilder
-    extends FadeForwardsPageTransitionsBuilder {
-  /// Constructs a page transition animation that matches the transition used in
-  /// Material 3 and Android 12+
-  const ForwardAndBackwardTransitionsBuilder({
-    super.backgroundColor,
-    this.transitionDuration = const Duration(
-      milliseconds: FadeForwardsPageTransitionsBuilder.kTransitionMilliseconds,
-    ),
-  });
+final class const ForwardAndBackwardTransitionsBuilder({
+  super.backgroundColor,
 
   /// {@macro flutter.widgets.TransitionRoute.transitionDuration}
   ///
   /// Defaults to 450 milliseconds.
   @override
-  final Duration transitionDuration;
-}
+  final Duration transitionDuration = const Duration(
+    milliseconds: FadeForwardsPageTransitionsBuilder.kTransitionMilliseconds,
+  ),
+}) extends FadeForwardsPageTransitionsBuilder;

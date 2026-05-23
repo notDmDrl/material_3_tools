@@ -1,19 +1,16 @@
 /// @docImport 'package:material_ui/material_ui.dart';
 library;
 
-import 'dart:async';
-
 import 'package:flutter/widgets.dart';
 
 /// Signature for the callback invoked when [AnimatedIconFill]s selection state
 /// changes.
 ///
 /// Used by [AnimatedIconFill.builder].
-typedef AnimatedIconFillBuilder =
-    Widget Function(
-      BuildContext context,
-      double fill,
-    );
+typedef AnimatedIconFillBuilder = Widget Function(
+  BuildContext context,
+  double fill,
+);
 
 /// An [Icon] that animates its [Icon.fill] value.
 ///
@@ -27,44 +24,35 @@ typedef AnimatedIconFillBuilder =
 ///
 /// Selectable icon inside of [NavigationBar] in M3 docs:
 /// <https://m3.material.io/styles/icons/applying-icons#750a6f13-39d8-4fe5-a035-047b88a16514>
-class AnimatedIconFill extends StatefulWidget {
-  const AnimatedIconFill({
-    super.key,
-    required this.builder,
-    required this.isSelected,
-    required this.duration,
-    this.reverseDuration,
-    required this.curve,
-    this.reverseCurve,
-    this.animateReverse = true,
-  });
+class const AnimatedIconFill({
+  super.key,
 
   /// Builder that provides [BuildContext] as well as *fill* value to pass to
   /// any custom icon widget.
-  final AnimatedIconFillBuilder builder;
+  required final AnimatedIconFillBuilder builder,
 
   /// Whether this icon is selected and should be fully filled.
-  final bool isSelected;
+  required final bool isSelected,
 
   /// The duration of icon's fill animation.
-  final Duration duration;
+  required final Duration duration,
 
   /// The duration of icon's reverse fill animation.
   ///
   /// If null, [duration] is used instead.
   ///
   /// Defaults to `null`.
-  final Duration? reverseDuration;
+  final Duration? reverseDuration,
 
   /// The curve of icon's fill animation.
-  final Curve curve;
+  required final Curve curve,
 
   /// The curve of icon's reverse fill animation.
   ///
   /// If null, [Curve.flipped] of [curve] is used instead.
   ///
   /// Defaults to `null`.
-  final Curve? reverseCurve;
+  final Curve? reverseCurve,
 
   /// Whether to animate an icon's fill value if [isSelected] was set to `false`.
   ///
@@ -72,8 +60,8 @@ class AnimatedIconFill extends StatefulWidget {
   /// upon [isSelected] being set to `false`.
   ///
   /// Defaults to `true`.
-  final bool animateReverse;
-
+  final bool animateReverse = true,
+}) extends StatefulWidget {
   @override
   State<AnimatedIconFill> createState() => _AnimatedIconFillState();
 }
@@ -108,10 +96,10 @@ class _AnimatedIconFillState extends State<AnimatedIconFill>
     super.didUpdateWidget(oldWidget);
     if (oldWidget.isSelected != widget.isSelected) {
       if (widget.isSelected) {
-        unawaited(controller?.forward());
+        controller?.forward();
       } else {
         if (widget.animateReverse) {
-          unawaited(controller?.reverse());
+          controller?.reverse();
         } else {
           controller?.reset();
         }

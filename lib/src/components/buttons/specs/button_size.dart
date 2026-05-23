@@ -16,19 +16,17 @@ TextStyle _headlineLargeLabel(TextTheme textTheme) => textTheme.headlineLarge!;
 
 // https://m3.material.io/components/buttons/specs#c75be779-5a59-4748-98d4-e47fc888d0b1
 @immutable
-final class ButtonSize {
-  const ButtonSize({
-    required this.containerHeight,
-    required this.outlineWidth,
-    required this.labelStyle,
-    required this.iconSize,
-    required this.leadingSpace,
-    required this.betweenIconLabelSpace,
-    required this.trailingSpace,
-    required this.shapeResolverRound,
-    required this.shapeResolverSquare,
-  });
-
+final class const ButtonSize({
+  required final double containerHeight,
+  required final double outlineWidth,
+  required final TextStyleResolver labelStyle,
+  required final double iconSize,
+  required final double leadingSpace,
+  required final double betweenIconLabelSpace,
+  required final double trailingSpace,
+  required final WidgetStateMapper<BorderRadius> shapeResolverRound,
+  required final WidgetStateMapper<BorderRadius> shapeResolverSquare,
+}) {
   static const extraSmall = ButtonSize(
     containerHeight: 32,
     outlineWidth: 1,
@@ -149,16 +147,6 @@ final class ButtonSize {
       WidgetState.any: CornerRadiusScale.extraLarge,
     }),
   );
-
-  final double containerHeight;
-  final double outlineWidth;
-  final TextStyleResolver labelStyle;
-  final double iconSize;
-  final double leadingSpace;
-  final double betweenIconLabelSpace;
-  final double trailingSpace;
-  final WidgetStateMapper<BorderRadius> shapeResolverRound;
-  final WidgetStateMapper<BorderRadius> shapeResolverSquare;
 
   // are the same for every size
   static const SpringDescription spring = MotionPhysicsSpring.standardFast;

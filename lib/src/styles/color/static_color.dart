@@ -17,29 +17,35 @@ import 'harmonization.dart';
 /// Custom colors are used as an addition to existing [ColorScheme] with ability
 /// to harmonize [StaticColor] to, usually, [ColorScheme.primary] color.
 ///
+/// Creates [StaticColor] from all required colors.
+///
+/// [StaticColor.fromSource] can be used as a simpler way to create a custom
+/// color derived from a single source color.
+///
 /// See also:
 ///
 /// * [M3 guidelines: color, static colors](https://m3.material.io/styles/color/advanced/define-new-colors#f13116d1-3023-44b9-b0b5-2ee07dc1af5f)
 /// * [ColorHarmonization], color harmonization utils.
 @immutable
-final class StaticColor {
-  /// Creates [StaticColor] from all required colors.
-  ///
-  /// [StaticColor.fromSource] can be used as a simpler way to create a custom
-  /// color derived from a single source color.
-  const StaticColor({
-    required this.primary,
-    required this.onPrimary,
-    required this.container,
-    required this.onContainer,
-  });
+final class const StaticColor({
+  /// The color used for elements needing high emphasis.
+  required final Color primary,
 
+  /// A color that's clearly legible when drawn on [primary].
+  required final Color onPrimary,
+
+  /// A color used for elements needing less emphasis than [primary].
+  required final Color container,
+
+  /// A color that's clearly legible when drawn on [container].
+  required final Color onContainer,
+}) {
   /// Creates [StaticColor] by providing source color, brightness, scheme
   /// variant, and optional harmonization color.
   ///
   /// If the colors provided back from your input color appear differently than
   /// expected, set [schemeVariant] to [DynamicSchemeVariant.fidelity].
-  factory StaticColor.fromSource({
+  factory fromSource({
     required Color sourceColor,
     Color? harmonizationColor,
     Brightness brightness = .light,
@@ -115,18 +121,6 @@ final class StaticColor {
       onContainer: Color(scheme.onPrimaryContainer),
     );
   }
-
-  /// The color used for elements needing high emphasis.
-  final Color primary;
-
-  /// A color that's clearly legible when drawn on [primary].
-  final Color onPrimary;
-
-  /// A color used for elements needing less emphasis than [primary].
-  final Color container;
-
-  /// A color that's clearly legible when drawn on [container].
-  final Color onContainer;
 
   /// Linearly interpolate between two custom colors.
   StaticColor lerp(StaticColor? other, double t) => StaticColor(

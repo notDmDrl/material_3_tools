@@ -26,17 +26,11 @@ enum ButtonShape {
 }
 
 @immutable
-final class ButtonConfiguration {
-  const ButtonConfiguration({
-    required this.size,
-    required this.shape,
-    required this.color,
-  });
-
-  final ButtonSize size;
-  final ButtonShape shape;
-  final ButtonColor color;
-
+final class const ButtonConfiguration({
+  required final ButtonSize size,
+  required final ButtonShape shape,
+  required final ButtonColor color,
+}) {
   // are the same for every size
   static const SpringDescription spring = MotionPhysicsSpring.standardFast;
   static const MotionPhysicsCurvePair curve = MotionPhysicsCurve.standardFast;

@@ -42,13 +42,13 @@ abstract final class ButtonStateToken {
 /// Defines the ink response for focus, hover, drag and splash [WidgetState]s.
 final class InteractionStatesOverlay implements WidgetStateProperty<Color> {
   /// Creates Material 3 interaction state overlay for a default button.
-  const InteractionStatesOverlay({required this.color})
+  const new({required this.color})
     : _type = .button,
       unselected = null,
       selected = null;
 
   /// Creates Material 3 interaction state overlay for a toggle button.
-  const InteractionStatesOverlay.toggle({
+  const new toggle({
     required this.unselected,
     required this.selected,
   }) : _type = .toggle,
@@ -129,7 +129,7 @@ final class InteractionStatesOverlay implements WidgetStateProperty<Color> {
 final class ForegroundStateOverlay implements WidgetStateProperty<Color> {
   /// Creates Material 3 foreground interaction state overlay for a default
   /// button.
-  const ForegroundStateOverlay({
+  const new({
     required Color this.color,
     Color? disabledColor,
   }) : _type = .button,
@@ -139,7 +139,7 @@ final class ForegroundStateOverlay implements WidgetStateProperty<Color> {
 
   /// Creates Material 3 foreground interaction state overlay for a toggle
   /// button.
-  const ForegroundStateOverlay.toggle({
+  const new toggle({
     required Color this.unselected,
     required Color this.selected,
     Color? disabledColor,
@@ -190,7 +190,7 @@ final class ForegroundStateOverlay implements WidgetStateProperty<Color> {
 final class BackgroundStateOverlay implements WidgetStateProperty<Color?> {
   /// Creates Material 3 background interaction state overlay for a default
   /// button.
-  const BackgroundStateOverlay({
+  const new({
     required Color this.color,
     Color? disabledColor,
   }) : _type = .button,
@@ -200,7 +200,7 @@ final class BackgroundStateOverlay implements WidgetStateProperty<Color?> {
 
   /// Creates Material 3 background interaction state overlay for a toggle
   /// button.
-  const BackgroundStateOverlay.toggle({
+  const new toggle({
     required Color this.unselected,
     required Color this.selected,
     Color? disabledColor,

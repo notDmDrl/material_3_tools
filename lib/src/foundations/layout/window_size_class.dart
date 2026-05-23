@@ -24,7 +24,21 @@ const double _kLargeMax = 1600;
 /// See also:
 ///
 /// * [M3 guidelines: layout, window size classes](https://m3.material.io/foundations/layout/applying-layout/window-size-classes)
-enum WindowSizeClass {
+enum WindowSizeClass(
+  /// A minimum windows space for this window size class.
+  final double minimumBreakpoint,
+
+  /// A limit for a maximum windows space for this window size class.
+  final double maximumBreakpoint,
+
+  /// Space between the edge of a window area and the elements within that
+  /// window area.
+  ///
+  /// See also:
+  ///
+  /// * [Margins]
+  final double margin,
+) {
   /// Layouts for compact window size classes are for screen widths smaller
   /// than **`600dp`**.
   ///
@@ -74,27 +88,6 @@ enum WindowSizeClass {
   ///
   /// * [M3 guidelines: layout, extra-large window size class](https://m3.material.io/foundations/layout/applying-layout/large-extra-large)
   extraLarge(_kLargeMax, 9999, Margins.extraLarge);
-
-  /// Creates [WindowSizeClass].
-  const WindowSizeClass(
-    this.minimumBreakpoint,
-    this.maximumBreakpoint,
-    this.margin,
-  );
-
-  /// A minimum windows space for this window size class.
-  final double minimumBreakpoint;
-
-  /// A limit for a maximum windows space for this window size class.
-  final double maximumBreakpoint;
-
-  /// Space between the edge of a window area and the elements within that
-  /// window area.
-  ///
-  /// See also:
-  ///
-  /// * [Margins]
-  final double margin;
 
   /// The [WindowSizeClass] from the closest [MediaQuery] instance that
   /// encloses the given context.

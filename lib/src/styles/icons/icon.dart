@@ -8,28 +8,13 @@ import 'icon_grade.dart';
 import 'optical_size.dart';
 
 /// A copy of [Icon] with some M3 defaults used.
-class M3Icon extends StatelessWidget {
-  /// Creates a M3 styled [Icon].
-  const M3Icon(
-    this.icon, {
-    super.key,
-    this.size,
-    this.fill,
-    this.weight,
-    this.grade,
-    this.opticalSize,
-    this.color,
-    this.semanticLabel,
-    this.textDirection,
-    this.applyTextScaling,
-    this.blendMode,
-  });
-
+class const M3Icon(
   /// The icon to display. The available icons are described in [Icons].
   ///
   /// The icon can be null, in which case the widget will render as an empty
   /// space of the specified [size].
-  final IconData? icon;
+  final IconData? icon, {
+  super.key,
 
   /// The size of the icon in logical pixels.
   ///
@@ -47,7 +32,7 @@ class M3Icon extends StatelessWidget {
   ///
   /// * [Icon.size].
   /// * [IconOpticalSize], default Material 3 optical sizes.
-  final double? size;
+  final double? size,
 
   /// The fill for drawing the icon.
   ///
@@ -66,7 +51,7 @@ class M3Icon extends StatelessWidget {
   /// * [grade], for controlling stroke weight in a more granular way.
   /// * [opticalSize], for controlling optical size.
   /// * [Icon.fill].
-  final double? fill;
+  final double? fill,
 
   /// The stroke weight for drawing the icon.
   ///
@@ -83,7 +68,7 @@ class M3Icon extends StatelessWidget {
   /// * [opticalSize], for controlling optical size.
   /// * https://fonts.google.com/knowledge/glossary/weight_axis
   /// * [Icon.weight].
-  final double? weight;
+  final double? weight,
 
   /// The grade (granular stroke weight) for drawing the icon.
   ///
@@ -109,7 +94,7 @@ class M3Icon extends StatelessWidget {
   /// * [opticalSize], for controlling optical size.
   /// * https://fonts.google.com/knowledge/glossary/grade_axis
   /// * [Icon.grade].
-  final double? grade;
+  final double? grade,
 
   /// The optical size for drawing the icon.
   ///
@@ -131,7 +116,7 @@ class M3Icon extends StatelessWidget {
   /// * https://fonts.google.com/knowledge/glossary/optical_size_axis
   /// * [Icon.opticalSize].
   /// * [IconOpticalSize], default Material 3 optical sizes.
-  final double? opticalSize;
+  final double? opticalSize,
 
   /// The color to use when drawing the icon.
   ///
@@ -144,7 +129,7 @@ class M3Icon extends StatelessWidget {
   /// See also:
   ///
   /// * [Icon.color].
-  final Color? color;
+  final Color? color,
 
   /// Semantic label for the icon.
   ///
@@ -157,7 +142,7 @@ class M3Icon extends StatelessWidget {
   /// See also:
   ///
   /// * [Icon.semanticLabel].
-  final String? semanticLabel;
+  final String? semanticLabel,
 
   /// The text direction to use for rendering the icon.
   ///
@@ -176,7 +161,7 @@ class M3Icon extends StatelessWidget {
   /// See also:
   ///
   /// * [Icon.textDirection].
-  final TextDirection? textDirection;
+  final TextDirection? textDirection,
 
   /// Whether to scale the size of this widget using the ambient
   /// [MediaQuery]'s [TextScaler].
@@ -190,7 +175,7 @@ class M3Icon extends StatelessWidget {
   /// See also:
   ///
   /// * [Icon.applyTextScaling].
-  final bool? applyTextScaling;
+  final bool? applyTextScaling,
 
   /// The [BlendMode] to apply to the foreground of the icon.
   ///
@@ -199,8 +184,8 @@ class M3Icon extends StatelessWidget {
   /// See also:
   ///
   /// * [Icon.blendMode].
-  final BlendMode? blendMode;
-
+  final BlendMode? blendMode,
+}) extends StatelessWidget {
   /// The default icon size if none is specified.
   ///
   /// See also:
