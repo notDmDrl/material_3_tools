@@ -35,6 +35,7 @@ export 'src/styles/motion/transitions/forward_and_backward.dart';
 export 'src/styles/motion/transitions/predictive_forward_and_backward.dart';
 export 'src/styles/motion/transitions/top_level.dart';
 export 'src/styles/shape/corner_radius_scale.dart';
+export 'src/styles/spacing/system_spacing.dart';
 export 'src/styles/typography/font_family.dart';
 export 'src/styles/typography/type_scale.dart';
 export 'src/utils/color_utils.dart';
