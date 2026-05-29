@@ -94,9 +94,9 @@ enum WindowSizeClass(
   static WindowSizeClass of(BuildContext context) =>
       switch (MediaQuery.widthOf(context)) {
         < _kCompactMax => compact,
-        <= _kCompactMax && < _kMediumMax => medium,
-        <= _kMediumMax && < _kExpandedMax => expanded,
-        <= _kExpandedMax && < _kLargeMax => large,
+        < _kMediumMax => medium,
+        < _kExpandedMax => expanded,
+        < _kLargeMax => large,
         _ => extraLarge,
       };
 }
