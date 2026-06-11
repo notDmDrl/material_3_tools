@@ -14,6 +14,18 @@ import '/src/styles/shape/corner_radius_scale.dart';
 /// [UnderlineInputBorder] features - a fully rounded input border with the
 /// label being placed inside of input decorator's container.
 ///
+/// If the [borderSide] parameter is [BorderSide.none], it will not draw a
+/// border. However, it will still define a shape (which you can see if
+/// [InputDecoration.filled] is true).
+///
+/// If an application does not specify a [borderSide] parameter of
+/// value [BorderSide.none], the input decorator substitutes its own, using
+/// [copyWith], based on the current theme and [InputDecorator.isFocused].
+///
+/// The [borderRadius] parameter defaults to a value where all four corners
+/// have a circular radius of 16.0. The corner radii must be circular, i.e.
+/// their [Radius.x] and [Radius.y] values must be the same.
+///
 /// See also:
 ///
 /// * [OutlineInputBorder], an [InputDecorator] border which draws a rounded
@@ -21,31 +33,14 @@ import '/src/styles/shape/corner_radius_scale.dart';
 /// * [UnderlineInputBorder], the default [InputDecorator] border which draws a
 /// horizontal line at the bottom of the input decorator's container.
 /// * [InputDecoration], which is used to configure an [InputDecorator].
-class OutlinedInputBorder extends InputBorder {
-  /// Creates a rounded rectangle outline border for an [InputDecorator].
-  ///
-  /// If the [borderSide] parameter is [BorderSide.none], it will not draw a
-  /// border. However, it will still define a shape (which you can see if
-  /// [InputDecoration.filled] is true).
-  ///
-  /// If an application does not specify a [borderSide] parameter of
-  /// value [BorderSide.none], the input decorator substitutes its own, using
-  /// [copyWith], based on the current theme and [InputDecorator.isFocused].
-  ///
-  /// The [borderRadius] parameter defaults to a value where all four corners
-  /// have a circular radius of 16.0. The corner radii must be circular, i.e.
-  /// their [Radius.x] and [Radius.y] values must be the same.
-  const OutlinedInputBorder({
-    super.borderSide = .none,
-    this.borderRadius = CornerRadiusScale.large,
-    this.isSuperellipse = false,
-  });
+class const OutlinedInputBorder({
+  super.borderSide = .none,
 
   /// The radii of the border's rounded rectangle corners.
   ///
   /// The corner radii must be circular, i.e. their [Radius.x] and [Radius.y]
   /// values must be the same.
-  final BorderRadius borderRadius;
+  final BorderRadius borderRadius = CornerRadiusScale.large,
 
   /// Whether this outline border uses a rounded superellipse instead of
   /// rounded rectangle;
@@ -53,8 +48,8 @@ class OutlinedInputBorder extends InputBorder {
   /// If `true`, [RSuperellipse] is used. If `false`, [RRect] is used.
   ///
   /// Defaults to `false`.
-  final bool isSuperellipse;
-
+  final bool isSuperellipse = false,
+}) extends InputBorder {
   static bool _cornersAreCircular(BorderRadius borderRadius) =>
       borderRadius.topLeft.x == borderRadius.topLeft.y &&
       borderRadius.bottomLeft.x == borderRadius.bottomLeft.y &&

@@ -30,22 +30,14 @@ import 'forward_and_backward.dart';
 ///  * [CupertinoPageTransitionsBuilder], which defines a horizontal page
 ///    transition that matches native iOS page transitions.
 ///  * [M3 guidelines: motion, transition, forward and backward](https://m3.material.io/styles/motion/transitions/transition-patterns#df9c7d76-1454-47f3-ad1c-268a31f58bad)
-final class PredictiveForwardAndBackwardTransitionsBuilder
-    extends PageTransitionsBuilder {
-  /// Constructs a page transition animation that matches the transition used in
-  /// Material 3 and Android 12+
-  const PredictiveForwardAndBackwardTransitionsBuilder({
-    this.transitionDuration = const Duration(
-      milliseconds: FadeForwardsPageTransitionsBuilder.kTransitionMilliseconds,
-    ),
-    this.backgroundColor,
-  });
-
+final class const PredictiveForwardAndBackwardTransitionsBuilder({
   /// {@macro flutter.widgets.TransitionRoute.transitionDuration}
   ///
   /// Defaults to 450 milliseconds.
   @override
-  final Duration transitionDuration;
+  final Duration transitionDuration = const Duration(
+    milliseconds: FadeForwardsPageTransitionsBuilder.kTransitionMilliseconds,
+  ),
 
   /// The background color during transition between two routes.
   ///
@@ -53,8 +45,8 @@ final class PredictiveForwardAndBackwardTransitionsBuilder
   /// helps avoid a black background between two page.
   ///
   /// Defaults to [ColorScheme.surface]
-  final Color? backgroundColor;
-
+  final Color? backgroundColor,
+}) extends PageTransitionsBuilder {
   /// Default builders for each platform.
   ///
   /// The list of builders is: [PredictiveForwardAndBackwardTransitionsBuilder]
@@ -134,21 +126,16 @@ final class PredictiveForwardAndBackwardTransitionsBuilder
 
 enum _PredictiveBackPhase { idle, start, update, commit, cancel }
 
-class _PredictiveBackGestureDetector extends StatefulWidget {
-  const _PredictiveBackGestureDetector({
-    required this.route,
-    required this.builder,
-  });
-
-  final Widget Function(
+class const _PredictiveBackGestureDetector({
+  required final PageRoute<dynamic> route,
+  required final Widget Function(
     BuildContext,
     _PredictiveBackPhase,
     PredictiveBackEvent?,
     PredictiveBackEvent?,
   )
-  builder;
-  final PageRoute<dynamic> route;
-
+  builder,
+}) extends StatefulWidget {
   @override
   State<_PredictiveBackGestureDetector> createState() =>
       _PredictiveBackGestureDetectorState();
@@ -247,27 +234,16 @@ class _PredictiveBackGestureDetectorState
   );
 }
 
-class _PredictiveBackSharedElementPageTransition extends StatefulWidget {
-  const _PredictiveBackSharedElementPageTransition({
-    required this.isDelegatedTransition,
-    required this.animation,
-    required this.secondaryAnimation,
-    required this.phase,
-    required this.startBackEvent,
-    required this.currentBackEvent,
-    required this.child,
-    required this.animationDuration,
-  });
-
-  final bool isDelegatedTransition;
-  final Animation<double> animation;
-  final Animation<double> secondaryAnimation;
-  final _PredictiveBackPhase phase;
-  final PredictiveBackEvent? startBackEvent;
-  final PredictiveBackEvent? currentBackEvent;
-  final Widget child;
-  final Duration animationDuration;
-
+class const _PredictiveBackSharedElementPageTransition({
+  required final bool isDelegatedTransition,
+  required final Animation<double> animation,
+  required final Animation<double> secondaryAnimation,
+  required final _PredictiveBackPhase phase,
+  required final PredictiveBackEvent? startBackEvent,
+  required final PredictiveBackEvent? currentBackEvent,
+  required final Widget child,
+  required final Duration animationDuration,
+}) extends StatefulWidget {
   @override
   State<_PredictiveBackSharedElementPageTransition> createState() =>
       _PredictiveBackSharedElementPageTransitionState();

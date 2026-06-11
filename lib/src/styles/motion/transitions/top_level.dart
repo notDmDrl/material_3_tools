@@ -12,22 +12,17 @@ import '_page_transition_switcher.dart';
 ///
 /// * [M3 guidelines: top level transition](https://m3.material.io/styles/motion/transitions/transition-patterns#8327d206-2a7d-423a-abf0-2be86130535b)
 /// * [Material motion: top level transition with scale animation](https://github.com/material-components/material-components-android/blob/master/docs/theming/Motion.md#fade-through)
-final class TopLevelTransition extends StatelessWidget {
-  /// Creates [TopLevelTransition].
-  const TopLevelTransition({
-    super.key,
-    required this.child,
-    this.applyScaleTransition = false,
-  });
+final class const TopLevelTransition({
+  super.key,
 
   /// The current child widget to display.
   ///
   /// See [PageTransitionSwitcher.child].
-  final Widget child;
+  required final Widget child,
 
   /// Whether to apply a scale transition to an incoming page.
-  final bool applyScaleTransition;
-
+  final bool applyScaleTransition = false,
+}) extends StatelessWidget {
   @override
   Widget build(BuildContext context) => PageTransitionSwitcher(
     transitionBuilder: (child, animation, secondaryAnimation) =>
@@ -44,17 +39,11 @@ final class TopLevelTransition extends StatelessWidget {
   );
 }
 
-class _ZoomedFadeInFadeOut extends StatelessWidget {
-  const _ZoomedFadeInFadeOut({
-    required this.animation,
-    required this.applyScaleTransition,
-    this.child,
-  });
-
-  final Animation<double> animation;
-  final Widget? child;
-  final bool applyScaleTransition;
-
+class const _ZoomedFadeInFadeOut({
+  required final Animation<double> animation,
+  required final bool applyScaleTransition,
+  final Widget? child,
+}) extends StatelessWidget {
   static final _inCurve = CurveTween(curve: MaterialEasing.legacy);
 
   static final _scaleIn = TweenSequence<double>([
