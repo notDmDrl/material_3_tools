@@ -21,7 +21,7 @@ import 'font_family.dart';
 /// * [M3 guidelines: typography, overview](https://m3.material.io/styles/typography/overview)
 /// * [M3 guidelines: typography, type scale & tokens](https://m3.material.io/styles/typography/type-scale-tokens)
 /// * [M3 guidelines: typography, where emphasized styles can be used](https://m3.material.io/styles/typography/type-scale-tokens#c898d7e2-4833-440c-9dba-9a95c8f50ac9)
-abstract final class M3TypeScale {
+abstract final class M3TypeScale() {
   /// Creates a baseline Material 3 typography with [baselineTokens].
   ///
   /// See also:

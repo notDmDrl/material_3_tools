@@ -7,7 +7,7 @@ import 'package:flutter/rendering.dart' show BorderRadius, Radius;
 /// See also:
 ///
 /// * [M3 guidelines: corner radius scale](https://m3.material.io/styles/shape/corner-radius-scale#7c4b83c5-25e3-4337-889d-4f24a2b93e6d)
-abstract final class CornerRadiusScale {
+abstract final class CornerRadiusScale() {
   /// Baseline shape with all corners having `radius` of zero.
   static const BorderRadius none = BorderRadius.zero;
 
@@ -67,7 +67,7 @@ abstract final class CornerRadiusScale {
 /// See also:
 ///
 /// * [M3 guidelines: corner radius scale](https://m3.material.io/styles/shape/corner-radius-scale#7c4b83c5-25e3-4337-889d-4f24a2b93e6d)
-abstract final class CornerRadius {
+abstract final class CornerRadius() {
   /// A non-rounded corner size.
   static const Radius none = Radius.zero;
 

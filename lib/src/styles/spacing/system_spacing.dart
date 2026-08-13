@@ -7,7 +7,7 @@
 /// See also:
 ///
 /// * [M3 guidelines: system spacing tokens](https://m3.material.io/styles/spacing/tokens#a744956e-be8e-4b97-8a30-b2170e6944a8)
-abstract final class SystemSpacing {
+abstract final class SystemSpacing() {
   /// Baseline system spacing with value of zero.
   static double space0 = 0;
 

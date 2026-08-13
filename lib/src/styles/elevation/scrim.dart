@@ -12,7 +12,7 @@ import 'package:material_ui/material_ui.dart'
 /// See also:
 ///
 /// * [M3 guidelines: scrim](https://m3.material.io/styles/elevation/applying-elevation#92b9fb39-f0c4-4829-8e4d-97ac512976aa)
-abstract final class Scrim {
+abstract final class Scrim() {
   /// Returns the color of scrim container of the current [ColorScheme].
   static Color of(BuildContext context) =>
       ColorScheme.of(context).scrim.withValues(

@@ -1,6 +1,6 @@
 import 'dart:ui';
 
-import 'package:flutter/cupertino.dart' show CupertinoPageTransitionsBuilder;
+import 'package:cupertino_ui/cupertino_ui.dart' show CupertinoPageTransitionsBuilder;
 import 'package:flutter/services.dart';
 import 'package:material_ui/material_ui.dart';
 
@@ -124,7 +124,7 @@ final class const PredictiveForwardAndBackwardTransitionsBuilder({
   );
 }
 
-enum _PredictiveBackPhase { idle, start, update, commit, cancel }
+enum _PredictiveBackPhase() { idle, start, update, commit, cancel }
 
 class const _PredictiveBackGestureDetector({
   required final PageRoute<dynamic> route,
@@ -141,7 +141,7 @@ class const _PredictiveBackGestureDetector({
       _PredictiveBackGestureDetectorState();
 }
 
-class _PredictiveBackGestureDetectorState
+class _PredictiveBackGestureDetectorState()
     extends State<_PredictiveBackGestureDetector>
     with WidgetsBindingObserver {
   bool get _isEnabled =>
@@ -249,7 +249,7 @@ class const _PredictiveBackSharedElementPageTransition({
       _PredictiveBackSharedElementPageTransitionState();
 }
 
-class _PredictiveBackSharedElementPageTransitionState
+class _PredictiveBackSharedElementPageTransitionState()
     extends State<_PredictiveBackSharedElementPageTransition>
     with SingleTickerProviderStateMixin {
   // Constants as per the motion specs

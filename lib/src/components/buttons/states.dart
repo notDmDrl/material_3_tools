@@ -9,7 +9,7 @@ const _kTransparent = Color(0x00000000);
 /// system.
 ///
 /// The state layer uses a fixed percentage for the opacity for each state.
-abstract final class ButtonStateToken {
+abstract final class ButtonStateToken() {
   /// Baseline of disabled button's background opacity.
   ///
   /// See also:

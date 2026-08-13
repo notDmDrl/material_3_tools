@@ -8,7 +8,7 @@ import 'package:flutter/widgets.dart';
 /// See also:
 ///
 /// * [M3 guidelines: accessibility, color contrast](https://m3.material.io/foundations/designing/color-contrast)
-abstract final class ColorContrast {
+abstract final class ColorContrast() {
   /// Returns the contrast ratio between [foreground] and [background].
   ///
   /// The [background] must be opaque.

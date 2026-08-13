@@ -66,7 +66,7 @@ class const AnimatedIconFill({
   State<AnimatedIconFill> createState() => _AnimatedIconFillState();
 }
 
-class _AnimatedIconFillState extends State<AnimatedIconFill>
+class _AnimatedIconFillState() extends State<AnimatedIconFill>
     with SingleTickerProviderStateMixin {
   AnimationController? controller;
   CurvedAnimation? animation;

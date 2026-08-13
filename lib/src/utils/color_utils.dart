@@ -3,7 +3,7 @@ import 'dart:ui';
 import 'package:material_color_utilities/material_color_utilities.dart';
 
 /// Utility methods for creating lighter or darker variant of a given color.
-abstract final class ColorUtils {
+abstract final class ColorUtils() {
   /// Returns a lighter, by a given [ratio], variant of a given [color].
   ///
   /// If [ratio] cannot be achieved with the given [color], returns

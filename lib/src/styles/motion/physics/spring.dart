@@ -27,7 +27,7 @@ import 'package:flutter/animation.dart' show SpringDescription;
 ///
 /// * [MotionPhysicsCurve], a [Curve] and [Duration] based motion physics.
 /// * [Web: Convert springs to curves](https://m3.material.io/styles/motion/overview/specs#e3e4f10b-6314-47b7-9051-988066081fa0)
-abstract final class MotionPhysicsSpring {
+abstract final class MotionPhysicsSpring() {
   /// Standard spatial movement with a fast duration.
   static const standardFast = SpringDescription(
     mass: 1,

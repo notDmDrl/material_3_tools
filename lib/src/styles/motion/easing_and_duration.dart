@@ -13,7 +13,7 @@ import 'package:material_ui/material_ui.dart';
   'The easing and duration system is still used for transitions and can be '
   "used by teams that haven't yet updated to GM3 Expressive, but is no longer maintained.",
 )
-abstract final class MaterialEasing {
+abstract final class MaterialEasing() {
   /// [Linear](https://m3.material.io/styles/motion/easing-and-duration/tokens-specs#6341c2bf-54a0-4260-8ec7-6173926709a3)
   static const Curve linear = Easing.linear;
 
@@ -71,7 +71,7 @@ typedef MotionPair = ({Curve easing, Duration duration});
   'The easing and duration system is still used for transitions and can be '
   "used by teams that haven't yet updated to GM3 Expressive, but is no longer maintained.",
 )
-abstract final class Motion {
+abstract final class Motion() {
   /// > Selection controls have a short duration of 200ms with Standard easing.
   ///
   /// <https://m3.material.io/styles/motion/easing-and-duration/tokens-specs#97194be9-de1c-41b9-90d4-21ae2b8d3f38>

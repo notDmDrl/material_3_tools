@@ -19,7 +19,7 @@ import 'package:material_ui/material_ui.dart';
 /// See also:
 ///
 /// * [M3 guidelines: icon grade](https://m3.material.io/styles/icons/applying-icons#3ad55207-1cb0-43af-8092-fad2762f69f7)
-abstract final class IconGrade {
+abstract final class IconGrade() {
   /// Returns the default grade for an icon for current [ThemeData]'s
   /// *brightness*:
   ///

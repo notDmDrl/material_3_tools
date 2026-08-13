@@ -248,7 +248,7 @@ class const PageTransitionSwitcher({
   State<PageTransitionSwitcher> createState() => _PageTransitionSwitcherState();
 }
 
-class _PageTransitionSwitcherState extends State<PageTransitionSwitcher>
+class _PageTransitionSwitcherState() extends State<PageTransitionSwitcher>
     with TickerProviderStateMixin {
   final _activeEntries = <_ChildEntry>[];
   _ChildEntry? _currentEntry;

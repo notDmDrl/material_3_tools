@@ -13,7 +13,7 @@
 /// See also:
 ///
 /// * [M3 guidelines: icon optical sizes](https://m3.material.io/styles/icons/applying-icons#b41cbc01-9b49-4a44-a525-d153d1ea1425)
-abstract final class IconOpticalSize {
+abstract final class IconOpticalSize() {
   /// The smallest optical size at 20px.
   static const double size20 = 20;
 

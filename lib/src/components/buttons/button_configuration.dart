@@ -8,7 +8,7 @@ import 'specs/button_size.dart';
 /// Types of buttons in Material 3 [button component specs](https://m3.material.io/components/buttons/specs)
 ///
 /// ![](https://lh3.googleusercontent.com/7Vjp5irga3GlT0U-h7e6hfX3rYr5Fqtky_CurQoMYy7XUy-jCESxyo2yudjXddnaRc72DJksLjQDkwYNClrgJkMNbTaZz5GD2jQFJbu3A6wk=s0)
-enum ButtonType {
+enum ButtonType() {
   /// The default button type.
   button,
 
@@ -17,7 +17,7 @@ enum ButtonType {
 }
 
 /// Types of button shapes in Material 3 [button component specs](https://m3.material.io/components/buttons/specs)
-enum ButtonShape {
+enum ButtonShape() {
   /// Fully rounded button shape.
   round,
 

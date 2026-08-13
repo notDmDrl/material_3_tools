@@ -33,7 +33,7 @@ import 'package:material_color_utilities/material_color_utilities.dart'
 /// See also:
 ///
 /// * [M3 guidelines: color, harmonize colors](https://m3.material.io/styles/color/advanced/adjust-existing-colors#1cc12e43-237b-45b9-8fe0-9a3549c1f61e)
-abstract final class ColorHarmonization {
+abstract final class ColorHarmonization() {
   /// Harmonize custom color with, usually, your theme primary color.
   static Color harmonize(Color source, Color? harmonizationColor) {
     if (harmonizationColor == null || source == harmonizationColor) {

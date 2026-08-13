@@ -9,7 +9,7 @@
 /// See also:
 ///
 /// * [M3 guidelines: state layer tokens](https://m3.material.io/foundations/interaction/states/state-layers#bf9b84b2-690c-44b2-8429-8c42dc012d43)
-abstract final class StateLayerToken {
+abstract final class StateLayerToken() {
   /// Baseline on-hover opacity that should be applied to the "on" container
   /// color role.
   ///

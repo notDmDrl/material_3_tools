@@ -10,7 +10,7 @@ import 'package:material_ui/material_ui.dart';
 ///
 /// * [M3TypeScale.baselineTokens]
 /// * [M3TypeScale.emphasizedTokens]
-abstract final class TypographyFontFamilyUtils {
+abstract final class TypographyFontFamilyUtils() {
   /// Applies [fontFamily] for all [textTheme]'s text styles.
   ///
   /// If [displayFontFamily] is not `null`, applies it to all display, headline,

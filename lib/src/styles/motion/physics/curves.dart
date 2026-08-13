@@ -33,7 +33,7 @@ typedef MotionPhysicsCurvePair = ({Curve curve, Duration duration});
 ///
 /// * [MotionPhysicsSpring], a [SpringDescription] based motion physics.
 /// * [Web: Convert springs to curves](https://m3.material.io/styles/motion/overview/specs#e3e4f10b-6314-47b7-9051-988066081fa0)
-abstract final class MotionPhysicsCurve {
+abstract final class MotionPhysicsCurve() {
   /// Standard spatial movement with a fast duration.
   static const MotionPhysicsCurvePair standardFast = (
     curve: Cubic(0.27, 1.06, 0.18, 1),

@@ -31,94 +31,91 @@ import 'interaction_states.dart';
 ///
 /// * Material 3 buttons accessibility:
 /// <https://m3.material.io/components/buttons/accessibility>
-final class M3ButtonStyle extends ButtonStyle {
+final class M3ButtonStyle({
+  TextStyle? textStyle,
+  Color? backgroundColor,
+  Color? foregroundColor,
+  Color? selectedColor,
+  Color? backgroundSelectedColor,
+  Color? disabledColor,
+  Color? shadowColor,
+  super.elevation,
+  EdgeInsetsGeometry padding = M3ButtonStyle.layoutPadding,
+  Size minimumSize = const Size(64, 40),
+  Size? fixedSize,
+  Size maximumSize = Size.infinite,
+  super.iconSize = const WidgetStatePropertyAll(18),
+  super.iconAlignment,
+  OutlineStateOverlay? super.side,
+  OutlinedBorder? shape,
+  super.mouseCursor,
+  MaterialTapTargetSize super.tapTargetSize = MaterialTapTargetSize.shrinkWrap,
+  super.visualDensity,
+  InteractiveInkFeatureFactory super.splashFactory = InkSparkle.splashFactory,
+  Duration super.animationDuration = kThemeChangeDuration,
+  AlignmentGeometry super.alignment = Alignment.center,
+  super.backgroundBuilder,
+  super.foregroundBuilder,
+}) extends ButtonStyle {
   /// Creates [ButtonStyle] with non [WidgetStateProperty] properties and
   /// Material 3 defaults where possible.
-  M3ButtonStyle({
-    TextStyle? textStyle,
-    Color? backgroundColor,
-    Color? foregroundColor,
-    Color? selectedColor,
-    Color? backgroundSelectedColor,
-    Color? disabledColor,
-    Color? shadowColor,
-    super.elevation,
-    EdgeInsetsGeometry padding = M3ButtonStyle.layoutPadding,
-    Size minimumSize = const Size(64, 40),
-    Size? fixedSize,
-    Size maximumSize = Size.infinite,
-    super.iconSize = const WidgetStatePropertyAll(18),
-    super.iconAlignment,
-    OutlineStateOverlay? super.side,
-    OutlinedBorder? shape,
-    super.mouseCursor,
-    MaterialTapTargetSize super.tapTargetSize =
-        MaterialTapTargetSize.shrinkWrap,
-    super.visualDensity,
-    InteractiveInkFeatureFactory super.splashFactory = InkSparkle.splashFactory,
-    Duration super.animationDuration = kThemeChangeDuration,
-    AlignmentGeometry super.alignment = Alignment.center,
-    super.backgroundBuilder,
-    super.foregroundBuilder,
-  }) : super(
-         enableFeedback: true,
-         surfaceTintColor: const WidgetStatePropertyAll(Colors.transparent),
-         textStyle: WidgetStatePropertyAll(textStyle),
-         backgroundColor: switch ((backgroundColor, backgroundSelectedColor)) {
-           (Color color?, null) => BackgroundStateOverlay(
-             color: color,
-             disabledColor: disabledColor,
-           ),
-           (Color unselected?, Color selected?) =>
-             BackgroundStateOverlay.toggle(
-               unselected: unselected,
-               selected: selected,
-               disabledColor: disabledColor,
-             ),
-           _ => null,
-         },
-         foregroundColor: switch ((foregroundColor, selectedColor)) {
-           (Color color?, null) => ForegroundStateOverlay(
-             color: color,
-             disabledColor: disabledColor,
-           ),
-           (Color unselected?, Color selected?) =>
-             ForegroundStateOverlay.toggle(
-               unselected: unselected,
-               selected: selected,
-               disabledColor: disabledColor,
-             ),
-           _ => null,
-         },
-         iconColor: switch ((foregroundColor, selectedColor)) {
-           (Color color?, null) => ForegroundStateOverlay(
-             color: color,
-             disabledColor: disabledColor,
-           ),
-           (Color unselected?, Color selected?) =>
-             ForegroundStateOverlay.toggle(
-               unselected: unselected,
-               selected: selected,
-               disabledColor: disabledColor,
-             ),
-           _ => null,
-         },
-         overlayColor: switch ((foregroundColor, selectedColor)) {
-           (Color color?, null) => InteractionStatesOverlay(color: color),
-           (Color unselected?, Color selected?) =>
-             InteractionStatesOverlay.toggle(
-               unselected: unselected,
-               selected: selected,
-             ),
-           _ => null,
-         },
-         shadowColor: WidgetStatePropertyAll(shadowColor),
-         padding: WidgetStatePropertyAll(padding),
-         minimumSize: WidgetStatePropertyAll(minimumSize),
-         fixedSize: WidgetStatePropertyAll(fixedSize),
-         maximumSize: WidgetStatePropertyAll(maximumSize),
-         shape: WidgetStatePropertyAll(shape),
-       );
+  this
+    : super(
+        enableFeedback: true,
+        surfaceTintColor: const WidgetStatePropertyAll(Colors.transparent),
+        textStyle: WidgetStatePropertyAll(textStyle),
+        backgroundColor: switch ((backgroundColor, backgroundSelectedColor)) {
+          (Color color?, null) => BackgroundStateOverlay(
+            color: color,
+            disabledColor: disabledColor,
+          ),
+          (Color unselected?, Color selected?) => BackgroundStateOverlay.toggle(
+            unselected: unselected,
+            selected: selected,
+            disabledColor: disabledColor,
+          ),
+          _ => null,
+        },
+        foregroundColor: switch ((foregroundColor, selectedColor)) {
+          (Color color?, null) => ForegroundStateOverlay(
+            color: color,
+            disabledColor: disabledColor,
+          ),
+          (Color unselected?, Color selected?) => ForegroundStateOverlay.toggle(
+            unselected: unselected,
+            selected: selected,
+            disabledColor: disabledColor,
+          ),
+          _ => null,
+        },
+        iconColor: switch ((foregroundColor, selectedColor)) {
+          (Color color?, null) => ForegroundStateOverlay(
+            color: color,
+            disabledColor: disabledColor,
+          ),
+          (Color unselected?, Color selected?) => ForegroundStateOverlay.toggle(
+            unselected: unselected,
+            selected: selected,
+            disabledColor: disabledColor,
+          ),
+          _ => null,
+        },
+        overlayColor: switch ((foregroundColor, selectedColor)) {
+          (Color color?, null) => InteractionStatesOverlay(color: color),
+          (Color unselected?, Color selected?) =>
+            InteractionStatesOverlay.toggle(
+              unselected: unselected,
+              selected: selected,
+            ),
+          _ => null,
+        },
+        shadowColor: WidgetStatePropertyAll(shadowColor),
+        padding: WidgetStatePropertyAll(padding),
+        minimumSize: WidgetStatePropertyAll(minimumSize),
+        fixedSize: WidgetStatePropertyAll(fixedSize),
+        maximumSize: WidgetStatePropertyAll(maximumSize),
+        shape: WidgetStatePropertyAll(shape),
+      );
 
   /// A helper constructor that allows creating Material 3 [ElevatedButton]'s
   /// style by limiting properties to the ones that are used in Material 3
@@ -134,7 +131,7 @@ final class M3ButtonStyle extends ButtonStyle {
   /// <https://m3.material.io/components/buttons/guidelines#4e89da4d-a8fa-4e20-bb8d-b8a93eff3e3e>
   /// * Material 3 buttons accessibility:
   /// <https://m3.material.io/components/buttons/accessibility>
-  factory M3ButtonStyle.elevated({
+  factory elevated({
     TextStyle? textStyle,
     Color? backgroundColor,
     Color? foregroundColor,
@@ -200,7 +197,7 @@ final class M3ButtonStyle extends ButtonStyle {
   /// <https://m3.material.io/components/buttons/guidelines#9ecffdb3-ef29-47e7-8d5d-f78b404fcafe>
   /// * Material 3 buttons accessibility:
   /// <https://m3.material.io/components/buttons/accessibility>
-  factory M3ButtonStyle.filled({
+  factory filled({
     TextStyle? textStyle,
     Color? backgroundColor,
     Color? foregroundColor,
@@ -266,7 +263,7 @@ final class M3ButtonStyle extends ButtonStyle {
   /// <https://m3.material.io/components/buttons/guidelines#3742b09f-c224-43e0-a83e-541bd29d0f05>
   /// * Material 3 buttons accessibility:
   /// <https://m3.material.io/components/buttons/accessibility>
-  factory M3ButtonStyle.outlined({
+  factory outlined({
     TextStyle? textStyle,
     Color? backgroundColor,
     Color? foregroundColor,
@@ -332,7 +329,7 @@ final class M3ButtonStyle extends ButtonStyle {
   /// <https://m3.material.io/components/buttons/guidelines#c9bcbc0b-ee05-45ad-8e80-e814ae919fbb>
   /// * Material 3 buttons accessibility:
   /// <https://m3.material.io/components/buttons/accessibility>
-  factory M3ButtonStyle.text({
+  factory text({
     TextStyle? textStyle,
     Color? foregroundColor,
     Color? selectedColor,
